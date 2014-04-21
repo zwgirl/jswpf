@@ -1,0 +1,146 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+
+	<script>
+		var dojoConfig = {
+		    baseUrl: "js",
+		    tlmSiblingOfDojo: false,
+		    packages: [
+		        { name: "dojo", location: "lib/dojo" },
+		        { name: "dijit", location: "lib/dijit" },
+		        { name: "dojox", location: "lib/dojox" },
+		        { name: "util", location: "MS/utility" },
+		        { name: "internal", location: "MS/internal" },
+		        { name: "system", location: "system" },
+		        { name: "data", location: "system/windows/data" },
+		        
+		        { name: "markup", location: "system/windows/markup" },  
+		        { name: "controls", location: "system/windows/controls" },	
+		        
+		        { name: "collections", location: "system/collections" },
+		        { name: "generic", location: "system/collections/generic" },
+		        { name: "objectmodel", location: "system/collections/objectmodel" },
+		        { name: "specialized", location: "system/collections/specialized" },
+		        { name: "componentmodel", location: "system/componentmodel" },
+		        
+		        { name: "internal.data", location: "MS/internal/data" },
+		        { name: "threading", location: "system/windows/threading" },
+		        { name: "windows", location: "system/windows"},
+		        { name: "my", location: "my"
+		        	, main: "app" 
+		        	}
+		    ]
+		};
+	</script>
+
+	<script type="text/javascript"  data-dojo-config="async: true" src="js/lib/dojo.js"></script>
+	
+</head>
+<body>
+	<script>
+
+
+	
+		// using the class elsewhere...
+		require(["dojo/_base/declare", "system/Type", "windows/UncommonField", "windows/DependencyObject", "windows/FrameworkPropertyMetadata",
+		         "windows/DependencyProperty", "system/Delegate", "windows/FrameworkPropertyMetadataOptions"], 
+				function(declare, Type, UncommonField, DependencyObject, FrameworkPropertyMetadata, 
+						DependencyProperty, Delegate, FrameworkPropertyMetadataOptions){
+			
+				var Person = declare(DependencyObject,{
+					constructor:function(){
+					}
+				});
+				
+				Person.Type = new Type("Person", Person, [DependencyObject.Type]);
+				
+				Object.defineProperties(Person.prototype,{
+					Name:
+					{
+						get:function(){
+							return this.GetValue(Person.NameProperty);
+						},
+						set:function(value){
+							this.SetValue(Person.NameProperty, value)
+						}
+					}
+				});
+				
+				function OnLayoutTransformChanged(){
+					alert("this is PropertyValueValidateCalback call! " + "arg1: " + arguments[0] + " arg2:" + arguments[1])
+				}
+				
+				Object.defineProperties(Person, {
+				    NameProperty:
+				    {
+				    	get:function(){
+				    		if(Person._NameProperty === undefined){
+				    			Person._NameProperty= DependencyProperty.Register(
+						                "Name", 
+						                String.Type, 
+						                Person.Type,
+						                FrameworkPropertyMetadata.Build3PCCB( 
+						                        null,
+						                        FrameworkPropertyMetadataOptions.Inherited,
+						                        new Delegate(null, OnLayoutTransformChanged)));
+				    		}
+				    		
+				    		return Person._NameProperty;
+				    	}
+				    },
+				    
+				    //private static final UncommonField<DependencyObject> 
+				    ContextField:
+				    {
+				    	get:function(){
+					    	if(Person._InheritanceContextField === undefined){
+					    		Person._InheritanceContextField = new UncommonField();
+					    	}	
+					    	
+					    	return Person._InheritanceContextField;
+				    	}
+				    }
+				    	
+				});
+				
+				
+				
+				
+				
+				var Emp = declare(Person,{
+					constructor:function(){
+					}
+				});
+				
+				function OnLayoutTransformChanged1(){
+					alert("this is PropertyValueValidateCalback call once again! " + "arg1: " + arguments[0] + " arg2:" + arguments[1])
+				}
+				
+				Emp.Type = new Type("Emp", Emp, [Person.Type]);
+				Person.NameProperty.OverrideMetadata(Emp.Type, FrameworkPropertyMetadata.Build3PCCB( 
+                        null,
+                        FrameworkPropertyMetadataOptions.Inherited,
+                        new Delegate(null, OnLayoutTransformChanged1)) );
+				
+				var person = new Emp();
+				console.log(person.DependencyObjectType);
+				alert("isInstanceof :"  + DependencyObject.DType.IsInstanceOfType(person));
+				person.Name ="zhangsan";
+				alert(person.Name);
+				
+				Person.ContextField.SetValue(person, "lisi");
+				alert("Person.ContextField : " + Person.ContextField.GetValue(person));
+				
+				var person1 = new Emp();
+				Person.ContextField.SetValue(person1, "lisi1");
+				alert("Person.ContextField : " + Person.ContextField.GetValue(person1));
+
+
+		});
+
+	</script>
+</body>
+</html>

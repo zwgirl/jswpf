@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/org.summer.view.widget/src" modelPluginID="org.summer.view.widget"
+    modelName="Views" editPluginClass="org.summer.view.widget.provider.ViewsEditPlugin"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="7.0" copyrightFields="false"
+    usedGenPackages="platform:/plugin/org.eclipse.xtext.common.types/model/JavaVMTypes.genmodel#//types ../../org.summer.ui.core/model/ui.genmodel#//core">
+  <foreignModel>views.ecore</foreignModel>
+  <genPackages prefix="Widget" basePackage="org.summer.view" disposableProviderFactory="true"
+      ecorePackage="views.ecore#/">
+    <genClasses image="false" ecoreClass="views.ecore#//DependencyObject"/>
+    <genClasses ecoreClass="views.ecore#//Visual"/>
+    <genClasses ecoreClass="views.ecore#//UIElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute views.ecore#//UIElement/vsibility"/>
+    </genClasses>
+    <genClasses image="false" ecoreClass="views.ecore#//FrameworkElement">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute views.ecore#//FrameworkElement/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference views.ecore#//FrameworkElement/margin"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference views.ecore#//FrameworkElement/padding"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference views.ecore#//FrameworkElement/border"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute views.ecore#//FrameworkElement/width"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute views.ecore#//FrameworkElement/height"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute views.ecore#//FrameworkElement/maxHeight"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute views.ecore#//FrameworkElement/minHeight"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute views.ecore#//FrameworkElement/minWidth"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute views.ecore#//FrameworkElement/maxWidth"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference views.ecore#//FrameworkElement/resources"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference views.ecore#//FrameworkElement/triggers"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference views.ecore#//FrameworkElement/style"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference views.ecore#//FrameworkElement/tooltip"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute views.ecore#//FrameworkElement/actualHeight"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute views.ecore#//FrameworkElement/actualWidth"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference views.ecore#//FrameworkElement/dataContext"/>
+    </genClasses>
+    <genClasses ecoreClass="views.ecore#//Page">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute views.ecore#//Page/name"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference views.ecore#//Page/model"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference views.ecore#//Page/content"/>
+    </genClasses>
+    <genClasses ecoreClass="views.ecore#//Package">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute views.ecore#//Package/name"/>
+    </genClasses>
+    <genClasses ecoreClass="views.ecore#//Import">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute views.ecore#//Import/importedNamespace"/>
+    </genClasses>
+    <genClasses ecoreClass="views.ecore#//Models">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference views.ecore#//Models/package"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference views.ecore#//Models/imports"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference views.ecore#//Models/pages"/>
+    </genClasses>
+    <nestedGenPackages prefix="Shapes" basePackage="org.summer.view.widget" disposableProviderFactory="true"
+        ecorePackage="views.ecore#//shapes">
+      <genClasses ecoreClass="views.ecore#//shapes/Shape"/>
+      <genClasses ecoreClass="views.ecore#//shapes/Ellipse">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference views.ecore#//shapes/Ellipse/stroke"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference views.ecore#//shapes/Ellipse/fill"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute views.ecore#//shapes/Ellipse/cx"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute views.ecore#//shapes/Ellipse/cy"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute views.ecore#//shapes/Ellipse/rx"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute views.ecore#//shapes/Ellipse/ry"/>
+      </genClasses>
+      <genClasses ecoreClass="views.ecore#//shapes/Line"/>
+      <genClasses ecoreClass="views.ecore#//shapes/Path"/>
+      <genClasses ecoreClass="views.ecore#//shapes/Polygon"/>
+      <genClasses ecoreClass="views.ecore#//shapes/Polyline"/>
+      <genClasses ecoreClass="views.ecore#//shapes/Retangle"/>
+      <genClasses ecoreClass="views.ecore#//shapes/Stroke">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference views.ecore#//shapes/Stroke/color"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference views.ecore#//shapes/Stroke/width"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute views.ecore#//shapes/Stroke/dasharray"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute views.ecore#//shapes/Stroke/dashoffset"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute views.ecore#//shapes/Stroke/linecap"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute views.ecore#//shapes/Stroke/linejoin"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute views.ecore#//shapes/Stroke/linemiterlimit"/>
+      </genClasses>
+    </nestedGenPackages>
+    <nestedGenPackages prefix="Controls" basePackage="org.summer.view.widget" disposableProviderFactory="true"
+        ecorePackage="views.ecore#//controls">
+      <genEnums typeSafeEnumCompatible="false" ecoreEnum="views.ecore#//controls/ExpandDirection">
+        <genEnumLiterals ecoreEnumLiteral="views.ecore#//controls/ExpandDirection/left"/>
+        <genEnumLiterals ecoreEnumLiteral="views.ecore#//controls/ExpandDirection/right"/>
+        <genEnumLiterals ecoreEnumLiteral="views.ecore#//controls/ExpandDirection/top"/>
+        <genEnumLiterals ecoreEnumLiteral="views.ecore#//controls/ExpandDirection/bottom"/>
+      </genEnums>
+      <genEnums typeSafeEnumCompatible="false" ecoreEnum="views.ecore#//controls/Orientation">
+        <genEnumLiterals ecoreEnumLiteral="views.ecore#//controls/Orientation/Horizontal"/>
+        <genEnumLiterals ecoreEnumLiteral="views.ecore#//controls/Orientation/Vertical"/>
+      </genEnums>
+      <genEnums typeSafeEnumCompatible="false" ecoreEnum="views.ecore#//controls/Dock">
+        <genEnumLiterals ecoreEnumLiteral="views.ecore#//controls/Dock/LEFT"/>
+        <genEnumLiterals ecoreEnumLiteral="views.ecore#//controls/Dock/RIGHT"/>
+        <genEnumLiterals ecoreEnumLiteral="views.ecore#//controls/Dock/TOP"/>
+        <genEnumLiterals ecoreEnumLiteral="views.ecore#//controls/Dock/BOTTOM"/>
+      </genEnums>
+      <genClasses ecoreClass="views.ecore#//controls/Control">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference views.ecore#//controls/Control/background"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference views.ecore#//controls/Control/font"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute views.ecore#//controls/Control/tabIndex"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference views.ecore#//controls/Control/foreground"/>
+      </genClasses>
+      <genClasses ecoreClass="views.ecore#//controls/MediaElement"/>
+      <genClasses ecoreClass="views.ecore#//controls/RichTextBox"/>
+      <genClasses image="false" ecoreClass="views.ecore#//controls/ContentControl">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference views.ecore#//controls/ContentControl/content"/>
+      </genClasses>
+      <genClasses ecoreClass="views.ecore#//controls/PasswordBox">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute views.ecore#//controls/PasswordBox/maxLength"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute views.ecore#//controls/PasswordBox/password"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute views.ecore#//controls/PasswordBox/passwordChar"/>
+      </genClasses>
+      <genClasses image="false" ecoreClass="views.ecore#//controls/ItemsControl">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference views.ecore#//controls/ItemsControl/items"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference views.ecore#//controls/ItemsControl/itemsSource"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference views.ecore#//controls/ItemsControl/itemTemplate"/>
+      </genClasses>
+      <genClasses ecoreClass="views.ecore#//controls/Separator"/>
+      <genClasses ecoreClass="views.ecore#//controls/Frame">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute views.ecore#//controls/Frame/source"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute views.ecore#//controls/Frame/baseUri"/>
+      </genClasses>
+      <genClasses ecoreClass="views.ecore#//controls/Label">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute views.ecore#//controls/Label/text"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference views.ecore#//controls/Label/target"/>
+      </genClasses>
+      <genClasses ecoreClass="views.ecore#//controls/Image">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute views.ecore#//controls/Image/source"/>
+      </genClasses>
+      <genClasses ecoreClass="views.ecore#//controls/TextBlock"/>
+      <genClasses ecoreClass="views.ecore#//controls/Panel">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference views.ecore#//controls/Panel/children"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference views.ecore#//controls/Panel/itemsSource"/>
+      </genClasses>
+      <genClasses ecoreClass="views.ecore#//controls/ComboBox">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference views.ecore#//controls/ComboBox/selectedItem"/>
+      </genClasses>
+      <genClasses ecoreClass="views.ecore#//controls/ComboBoxItem"/>
+      <genClasses ecoreClass="views.ecore#//controls/ListBox">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference views.ecore#//controls/ListBox/selectedItem"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference views.ecore#//controls/ListBox/selectedItems"/>
+      </genClasses>
+      <genClasses ecoreClass="views.ecore#//controls/ListBoxItem"/>
+      <genClasses ecoreClass="views.ecore#//controls/ListView"/>
+      <genClasses ecoreClass="views.ecore#//controls/ListViewItem"/>
+      <genClasses ecoreClass="views.ecore#//controls/HeaderedContentControl">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference views.ecore#//controls/HeaderedContentControl/header"/>
+      </genClasses>
+      <genClasses ecoreClass="views.ecore#//controls/Expander">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute views.ecore#//controls/Expander/expandDirection"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute views.ecore#//controls/Expander/expanded"/>
+      </genClasses>
+      <genClasses ecoreClass="views.ecore#//controls/GroupBox"/>
+      <genClasses ecoreClass="views.ecore#//controls/GroupItem"/>
+      <genClasses ecoreClass="views.ecore#//controls/TabItem">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute views.ecore#//controls/TabItem/selected"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute views.ecore#//controls/TabItem/tabStripPlacement"/>
+      </genClasses>
+      <genClasses ecoreClass="views.ecore#//controls/TabControl"/>
+      <genClasses ecoreClass="views.ecore#//controls/StackPanel">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute views.ecore#//controls/StackPanel/orientation"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute views.ecore#//controls/StackPanel/canHorizontallyScroll"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute views.ecore#//controls/StackPanel/canVerticallyScroll"/>
+      </genClasses>
+      <genClasses ecoreClass="views.ecore#//controls/Grid">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute views.ecore#//controls/Grid/column"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute views.ecore#//controls/Grid/columnSpan"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute views.ecore#//controls/Grid/row"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute views.ecore#//controls/Grid/rowSpan"/>
+      </genClasses>
+      <genClasses ecoreClass="views.ecore#//controls/DefinitionBase"/>
+      <genClasses ecoreClass="views.ecore#//controls/ColumnDefinition"/>
+      <genClasses ecoreClass="views.ecore#//controls/RowDefinition"/>
+      <genClasses ecoreClass="views.ecore#//controls/DockPanel">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute views.ecore#//controls/DockPanel/Dock"/>
+      </genClasses>
+      <genClasses ecoreClass="views.ecore#//controls/WrapPanel"/>
+      <genClasses ecoreClass="views.ecore#//controls/Canvas">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute views.ecore#//controls/Canvas/left"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute views.ecore#//controls/Canvas/right"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute views.ecore#//controls/Canvas/top"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute views.ecore#//controls/Canvas/bottom"/>
+      </genClasses>
+      <genClasses ecoreClass="views.ecore#//controls/TreeView"/>
+      <genClasses ecoreClass="views.ecore#//controls/HeaderedItemsControl"/>
+      <genClasses ecoreClass="views.ecore#//controls/TreeViewItem"/>
+      <genClasses ecoreClass="views.ecore#//controls/MenuItem"/>
+      <genClasses ecoreClass="views.ecore#//controls/Menu"/>
+      <genClasses ecoreClass="views.ecore#//controls/ContextMenu"/>
+      <genClasses ecoreClass="views.ecore#//controls/DataGrid"/>
+      <genClasses ecoreClass="views.ecore#//controls/DataGridColumn"/>
+      <genClasses ecoreClass="views.ecore#//controls/DataGridRow"/>
+      <genClasses ecoreClass="views.ecore#//controls/DataGridCell"/>
+      <genClasses ecoreClass="views.ecore#//controls/Button"/>
+      <genClasses ecoreClass="views.ecore#//controls/CheckBox"/>
+      <genClasses ecoreClass="views.ecore#//controls/RadioButton"/>
+      <genClasses ecoreClass="views.ecore#//controls/ProgressBar"/>
+      <genClasses ecoreClass="views.ecore#//controls/Slider"/>
+      <nestedGenPackages prefix="Primitives" basePackage="org.summer.view.widget.controls"
+          disposableProviderFactory="true" ecorePackage="views.ecore#//controls/primitives">
+        <genClasses ecoreClass="views.ecore#//controls/primitives/MultiSelector"/>
+        <genClasses ecoreClass="views.ecore#//controls/primitives/Selector"/>
+        <genClasses ecoreClass="views.ecore#//controls/primitives/MenuBase"/>
+        <genClasses ecoreClass="views.ecore#//controls/primitives/ButtonBase"/>
+        <genClasses ecoreClass="views.ecore#//controls/primitives/ToggleButton"/>
+        <genClasses ecoreClass="views.ecore#//controls/primitives/TextBoxBase"/>
+        <genClasses ecoreClass="views.ecore#//controls/primitives/RangeBase"/>
+      </nestedGenPackages>
+    </nestedGenPackages>
+    <nestedGenPackages prefix="Style" basePackage="org.summer.view.widget" disposableProviderFactory="true"
+        ecorePackage="views.ecore#//style">
+      <genEnums typeSafeEnumCompatible="false" ecoreEnum="views.ecore#//style/BorderStyle">
+        <genEnumLiterals ecoreEnumLiteral="views.ecore#//style/BorderStyle/none"/>
+        <genEnumLiterals ecoreEnumLiteral="views.ecore#//style/BorderStyle/hidden"/>
+        <genEnumLiterals ecoreEnumLiteral="views.ecore#//style/BorderStyle/dotted"/>
+        <genEnumLiterals ecoreEnumLiteral="views.ecore#//style/BorderStyle/dashed"/>
+        <genEnumLiterals ecoreEnumLiteral="views.ecore#//style/BorderStyle/solid"/>
+        <genEnumLiterals ecoreEnumLiteral="views.ecore#//style/BorderStyle/double"/>
+        <genEnumLiterals ecoreEnumLiteral="views.ecore#//style/BorderStyle/groove"/>
+        <genEnumLiterals ecoreEnumLiteral="views.ecore#//style/BorderStyle/ridge"/>
+        <genEnumLiterals ecoreEnumLiteral="views.ecore#//style/BorderStyle/insert"/>
+        <genEnumLiterals ecoreEnumLiteral="views.ecore#//style/BorderStyle/outset"/>
+      </genEnums>
+      <genEnums typeSafeEnumCompatible="false" ecoreEnum="views.ecore#//style/FontStyle">
+        <genEnumLiterals ecoreEnumLiteral="views.ecore#//style/FontStyle/normal"/>
+        <genEnumLiterals ecoreEnumLiteral="views.ecore#//style/FontStyle/italic"/>
+        <genEnumLiterals ecoreEnumLiteral="views.ecore#//style/FontStyle/oblique"/>
+      </genEnums>
+      <genEnums typeSafeEnumCompatible="false" ecoreEnum="views.ecore#//style/FontVariant">
+        <genEnumLiterals ecoreEnumLiteral="views.ecore#//style/FontVariant/normal"/>
+        <genEnumLiterals ecoreEnumLiteral="views.ecore#//style/FontVariant/smallCaps"/>
+      </genEnums>
+      <genEnums typeSafeEnumCompatible="false" ecoreEnum="views.ecore#//style/FontWeight">
+        <genEnumLiterals ecoreEnumLiteral="views.ecore#//style/FontWeight/bold"/>
+        <genEnumLiterals ecoreEnumLiteral="views.ecore#//style/FontWeight/normal"/>
+        <genEnumLiterals ecoreEnumLiteral="views.ecore#//style/FontWeight/bolder"/>
+        <genEnumLiterals ecoreEnumLiteral="views.ecore#//style/FontWeight/lighter"/>
+        <genEnumLiterals ecoreEnumLiteral="views.ecore#//style/FontWeight/w100"/>
+        <genEnumLiterals ecoreEnumLiteral="views.ecore#//style/FontWeight/w200"/>
+        <genEnumLiterals ecoreEnumLiteral="views.ecore#//style/FontWeight/w300"/>
+        <genEnumLiterals ecoreEnumLiteral="views.ecore#//style/FontWeight/w400"/>
+        <genEnumLiterals ecoreEnumLiteral="views.ecore#//style/FontWeight/w500"/>
+        <genEnumLiterals ecoreEnumLiteral="views.ecore#//style/FontWeight/w600"/>
+        <genEnumLiterals ecoreEnumLiteral="views.ecore#//style/FontWeight/w700"/>
+        <genEnumLiterals ecoreEnumLiteral="views.ecore#//style/FontWeight/w800"/>
+        <genEnumLiterals ecoreEnumLiteral="views.ecore#//style/FontWeight/w900"/>
+        <genEnumLiterals ecoreEnumLiteral="views.ecore#//style/FontWeight/inherit"/>
+      </genEnums>
+      <genEnums typeSafeEnumCompatible="false" ecoreEnum="views.ecore#//style/BackgroundAttachment">
+        <genEnumLiterals ecoreEnumLiteral="views.ecore#//style/BackgroundAttachment/fixed"/>
+        <genEnumLiterals ecoreEnumLiteral="views.ecore#//style/BackgroundAttachment/scroll"/>
+        <genEnumLiterals ecoreEnumLiteral="views.ecore#//style/BackgroundAttachment/inherit"/>
+      </genEnums>
+      <genEnums typeSafeEnumCompatible="false" ecoreEnum="views.ecore#//style/BackgroundRepeat">
+        <genEnumLiterals ecoreEnumLiteral="views.ecore#//style/BackgroundRepeat/repaetX"/>
+        <genEnumLiterals ecoreEnumLiteral="views.ecore#//style/BackgroundRepeat/repeatY"/>
+        <genEnumLiterals ecoreEnumLiteral="views.ecore#//style/BackgroundRepeat/noRepeat"/>
+        <genEnumLiterals ecoreEnumLiteral="views.ecore#//style/BackgroundRepeat/inherit"/>
+      </genEnums>
+      <genEnums typeSafeEnumCompatible="false" ecoreEnum="views.ecore#//style/Unit">
+        <genEnumLiterals ecoreEnumLiteral="views.ecore#//style/Unit/pixel"/>
+        <genEnumLiterals ecoreEnumLiteral="views.ecore#//style/Unit/point"/>
+        <genEnumLiterals ecoreEnumLiteral="views.ecore#//style/Unit/pica"/>
+        <genEnumLiterals ecoreEnumLiteral="views.ecore#//style/Unit/mm"/>
+        <genEnumLiterals ecoreEnumLiteral="views.ecore#//style/Unit/cm"/>
+        <genEnumLiterals ecoreEnumLiteral="views.ecore#//style/Unit/in"/>
+        <genEnumLiterals ecoreEnumLiteral="views.ecore#//style/Unit/pcrcent"/>
+        <genEnumLiterals ecoreEnumLiteral="views.ecore#//style/Unit/em"/>
+        <genEnumLiterals ecoreEnumLiteral="views.ecore#//style/Unit/ex"/>
+      </genEnums>
+      <genClasses ecoreClass="views.ecore#//style/Margin">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference views.ecore#//style/Margin/left"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference views.ecore#//style/Margin/top"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference views.ecore#//style/Margin/right"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference views.ecore#//style/Margin/bottom"/>
+      </genClasses>
+      <genClasses ecoreClass="views.ecore#//style/Padding">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference views.ecore#//style/Padding/left"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference views.ecore#//style/Padding/top"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference views.ecore#//style/Padding/right"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference views.ecore#//style/Padding/bottom"/>
+      </genClasses>
+      <genClasses ecoreClass="views.ecore#//style/Border">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference views.ecore#//style/Border/left"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference views.ecore#//style/Border/top"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference views.ecore#//style/Border/right"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference views.ecore#//style/Border/bottom"/>
+      </genClasses>
+      <genClasses ecoreClass="views.ecore#//style/BorderContent">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference views.ecore#//style/BorderContent/color"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute views.ecore#//style/BorderContent/style"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference views.ecore#//style/BorderContent/width"/>
+      </genClasses>
+      <genClasses ecoreClass="views.ecore#//style/RGB">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute views.ecore#//style/RGB/red"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute views.ecore#//style/RGB/green"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute views.ecore#//style/RGB/blue"/>
+      </genClasses>
+      <genClasses ecoreClass="views.ecore#//style/RGBA">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute views.ecore#//style/RGBA/alpha"/>
+      </genClasses>
+      <genClasses ecoreClass="views.ecore#//style/Font">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference views.ecore#//style/Font/size"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute views.ecore#//style/Font/style"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute views.ecore#//style/Font/variant"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute views.ecore#//style/Font/weight"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute views.ecore#//style/Font/family"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference views.ecore#//style/Font/lineHeight"/>
+      </genClasses>
+      <genClasses ecoreClass="views.ecore#//style/Background">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute views.ecore#//style/Background/attachment"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute views.ecore#//style/Background/image"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute views.ecore#//style/Background/repeat"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference views.ecore#//style/Background/color"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference views.ecore#//style/Background/position"/>
+      </genClasses>
+      <genClasses ecoreClass="views.ecore#//style/BackgroundPosition">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference views.ecore#//style/BackgroundPosition/x"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference views.ecore#//style/BackgroundPosition/y"/>
+      </genClasses>
+      <genClasses ecoreClass="views.ecore#//style/Length">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute views.ecore#//style/Length/value"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute views.ecore#//style/Length/unit"/>
+      </genClasses>
+    </nestedGenPackages>
+  </genPackages>
+</genmodel:GenModel>

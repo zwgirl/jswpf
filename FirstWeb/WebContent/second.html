@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<!--
+  Created using jsbin.com
+  Source can be edited via http://jsbin.com/oliban/4/edit
+-->
+<head>
+<link href="http://cdn.kendostatic.com/2013.1.319/styles/kendo.common.min.css" rel="stylesheet" type="text/css" />
+<link href="http://cdn.kendostatic.com/2013.1.319/styles/kendo.default.min.css" rel="stylesheet" type="text/css" />
+<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script src="http://cdn.kendostatic.com/2013.1.319/js/kendo.all.min.js"></script>
+<meta charset=utf-8 />
+<title>RequireJS Fundamentals</title>
+
+<style id="jsbin-css">
+body {
+    font-family: sans-serif;
+}
+
+.container {
+    margin: auto;
+    width: 80%;
+    max-width: 960px;
+}
+
+.left {
+    float: left;
+}
+
+#sliders {
+    margin-left: 20px;
+}
+
+</style>
+</head>
+<body>
+  <div class="container">
+  
+        <h1>RequireJS Fundamentals</h1>
+
+        <div class="left">
+            <div id="colors"></div>
+        </div>
+        
+
+        <div id="sliders" class="left">
+            <div>
+                <p>Red</p>
+                <input data-role="slider" id="red" type="text" min="0" max="255" data-bind="value: red, events: { change: update }" />
+            </div>
+            <div>
+                <p>Blue</p>
+                <input data-role="slider" id="blue" type="text" min="0" max="255" data-bind="value: blue, events: { change: update }" />
+            </div>
+            <div>
+                <p>Green</p>
+                <input data-role="slider" id="green" type="text" min="0" max="255" data-bind="value: green, events: { change: update }" />
+            </div>
+        </div>
+
+    </div>
+  
+<script>
+// open a document ready function
+$(function () {
+  
+  // create a view model to control the sliders
+  viewModel = kendo.observable({
+    red: 0,
+    green: 0,
+    blue: 0,
+    update: function () {
+      // create a new color object
+      var color = kendo.Color.fromBytes(this.get("red"), this.get("green"), this.get("blue"));
+      
+      // change the color of the pallete
+      colors.color(color);
+      
+      // change the color of the page
+      setBackground("#" + color.toHex());
+    },
+    color: "#fff"
+  });
+  
+  // bind the sliders to the view model
+  kendo.bind(document.body, viewModel);
+  
+  // function that just changes the background color
+  var setBackground = function (color) {
+    $(document.body).css("background-color", color);
+  };
+  
+  // function to handle the pallete color selection
+  var setColor = function (e) {
+    // the color object contains all the hex, rgba, and hsl
+    // conversions and utilities
+    var color = e.sender.color().toBytes();
+    
+    // set the color
+    setBackground(e.value);
+    
+    // change the sliders by updating the view model
+    viewModel.set("red", color.r);
+    viewModel.set("blue", color.b);
+    viewModel.set("green", color.g);
+  };
+  
+  // select and create the color pallete
+  var colors = $("#colors").kendoFlatColorPicker({
+    change: setColor,
+    value: "#fff"
+  }).getKendoFlatColorPicker();   
+  
+});
+</script>
+<!-- 
+<script src="http://static.jsbin.com/js/render/edit.js"></script>
+<script>jsbinShowEdit({"root":"http://static.jsbin.com","csrf":"901C4l/Wo3gCwdAZ5MyITxxR"});</script>
+<script src="http://static.jsbin.com/js/vendor/eventsource.js"></script>
+<script src="http://static.jsbin.com/js/spike.js"></script>
+
+<script>
+
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-1656750-34']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ga);
+})();
+</script>
+ -->
+</body>
+</html>

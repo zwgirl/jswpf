@@ -1,0 +1,78 @@
+package org.summer.view.widget;
+
+import org.summer.view.widget.permission.XamlLoadPermission;
+
+//[TypeConverter(typeof(DeferrableContentConverter))]
+    public class DeferrableContent 
+    {
+        /// <SecurityNote> 
+        /// Critical to write: We will assert this permission before realizing the deferred content. 
+        /// Critical to read: Can be mutated via FromXml method.
+        /// </SecurityNote> 
+        /*internal*/ public XamlLoadPermission LoadPermission
+        {
+//            [SecurityCritical]
+            get; 
+//            [SecurityCritical]
+            private set; 
+        } 
+
+        /// <SecurityNote> 
+        /// Critical to write: This describes the content that is allowed to be loaded with LoadPermission.
+        ///                    If LoadPermission is null then this is non-critical.
+        /// Safe to read: Carries no privilege in itself.
+        /// </SecurityNote> 
+        /*internal*/ public Stream Stream
+        { 
+//            [SecurityCritical, SecurityTreatAsSafe] 
+            get;
+//            [SecurityCritical] 
+            private set;
+        }
+
+        /*internal*/ public Baml2006SchemaContext SchemaContext { get; private set; } 
+        /*internal*/ public IXamlObjectWriterFactory ObjectWriterFactory { get; private set; }
+        /*internal*/ public XamlObjectWriterSettings ObjectWriterParentSettings { get; private set; } 
+        /*internal*/ public Object RootObject { get; private set; } 
+
+        // 
+
+        /*internal*/ public IServiceProvider ServiceProvider { get; private set; }
+
+        /// <SecurityNote> 
+        /// Critical: Sets critical properties LoadPermission and Stream
+        /// Safe: Demands LoadPermission before setting it 
+        /// </SecurityNote> 
+//        [SecurityCritical, SecurityTreatAsSafe]
+        /*internal*/ public DeferrableContent(Stream stream, Baml2006SchemaContext schemaContext, 
+            IXamlObjectWriterFactory objectWriterFactory, IServiceProvider serviceProvider,
+            Object rootObject)
+        {
+            ObjectWriterParentSettings = objectWriterFactory.GetParentSettings(); 
+            if (ObjectWriterParentSettings.AccessLevel != null)
+            { 
+                XamlLoadPermission loadPermission = 
+                    new XamlLoadPermission(ObjectWriterParentSettings.AccessLevel);
+                loadPermission.Demand(); 
+                this.LoadPermission = loadPermission;
+            }
+            boolean assemblyTargetsFramework2 = false;
+            // The local assembly can be null if it is not specified in the XamlReaderSettings. 
+            if (schemaContext.LocalAssembly != null)
+            { 
+                assemblyTargetsFramework2 = schemaContext.LocalAssembly.ImageRuntimeVersion.StartsWith("v2", StringComparison.Ordinal); 
+            }
+            // There is an incompatibility between the framework versions 3 and 4 regarding MarkupExtension resources. 
+            // In version 3, MarkupExtension resources did not provide values when looked up.
+            // In version 4, they do.
+            if (assemblyTargetsFramework2)
+            { 
+                ObjectWriterParentSettings.SkipProvideValueOnRoot = true;
+            } 
+            this.Stream = stream; 
+            this.SchemaContext = schemaContext;
+            this.ObjectWriterFactory = objectWriterFactory; 
+            this.ServiceProvider = serviceProvider;
+            this.RootObject = rootObject;
+        }
+    } 

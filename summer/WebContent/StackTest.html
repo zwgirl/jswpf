@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+
+	<script>
+		var dojoConfig = {
+		    baseUrl: "js",
+		    tlmSiblingOfDojo: false,
+		    packages: [
+		        { name: "dojo", location: "lib/dojo" },
+		        { name: "dijit", location: "lib/dijit" },
+		        { name: "dojox", location: "lib/dojox" },
+		        { name: "utility", location: "MS/utility" },
+		        { name: "internal", location: "MS/internal" },
+		        { name: "system", location: "system" },
+		        { name: "data", location: "system/windows/data" },
+		        
+		        { name: "input", location: "system/windows/input" },
+		        { name: "media", location: "system/windows/media" },
+		        { name: "markup", location: "system/windows/markup" },  
+		        { name: "controls", location: "system/windows/controls" },	
+		        { name: "primitives", location: "system/windows/controls/primitives" },
+		        { name: "animation", location: "system/windows/media/animation" },
+		        
+		        { name: "collections", location: "system/collections" },
+		        { name: "generic", location: "system/collections/generic" },
+		        { name: "objectmodel", location: "system/collections/objectmodel" },
+		        { name: "specialized", location: "system/collections/specialized" },
+		        { name: "componentmodel", location: "system/componentmodel" },
+		        
+		        { name: "internal.data", location: "MS/internal/data" },
+		        { name: "internal.controls", location: "MS/internal/controls" },
+		        { name: "threading", location: "system/windows/threading" },
+		        { name: "windows", location: "system/windows"},
+		        { name: "my", location: "my"
+		        	, main: "app" 
+		        	}
+		    ]
+		};
+	</script>
+
+	<script type="text/javascript"  data-dojo-config="async: true" src="js/lib/dojo.js"></script>
+	
+</head>
+<body>
+	<div id="test1" />
+	<script>
+		//console.log(require);
+		// using the class elsewhere...
+		require([ "collections/Stack"], 
+				function(Stack){
+			var stack = new Stack();
+			
+			stack.Push({"name" : "1"});
+			
+			stack.Push({"name" : "2"});
+			stack.Push({"name" : "3"});
+			stack.Push({"name" : "4"});
+			stack.Push({"name" : "5"});
+			
+			var e = stack.GetEnumerator();
+			while(e.MoveNext()){
+				alert(e.Current.name)
+			}
+			
+			alert(stack.Peek().name);
+		});
+
+	</script>
+</body>
+</html>

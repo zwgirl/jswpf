@@ -1,0 +1,281 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+
+
+  
+  <style type="text/css">
+
+	table, th, td
+  {
+  border: 1px solid blue;
+  border-collapse: collapse;
+  }
+
+</style>
+
+	<script>
+		var dojoConfig = {
+		    baseUrl: "js",
+		    tlmSiblingOfDojo: false,
+		    packages: [
+		        { name: "dojo", location: "lib/dojo" },
+		        { name: "dijit", location: "lib/dijit" },
+		        { name: "dojox", location: "lib/dojox" },
+		        { name: "utility", location: "MS/utility" },
+		        { name: "internal", location: "MS/internal" },
+		        { name: "system", location: "system" },
+		        { name: "data", location: "system/windows/data" },
+		        
+		        { name: "documents", location: "system/windows/documents" },
+		        { name: "input", location: "system/windows/input" },
+		        { name: "media", location: "system/windows/media" },
+		        { name: "markup", location: "system/windows/markup" },  
+		        { name: "controls", location: "system/windows/controls" },	
+		        { name: "primitives", location: "system/windows/controls/primitives" },
+		        { name: "animation", location: "system/windows/media/animation" },
+		        
+		        { name: "collections", location: "system/collections" },
+		        { name: "generic", location: "system/collections/generic" },
+		        { name: "objectmodel", location: "system/collections/objectmodel" },
+		        { name: "specialized", location: "system/collections/specialized" },
+		        { name: "componentmodel", location: "system/componentmodel" },
+		        
+		        { name: "internal.data", location: "MS/internal/data" },
+		        { name: "internal.commands", location: "MS/internal/commands" },
+		        { name: "internal.controls", location: "MS/internal/controls" },
+		        { name: "threading", location: "system/windows/threading" },
+		        { name: "windows", location: "system/windows"},
+		        { name: "my", location: "my"
+		        	, main: "app" 
+		        	}
+		    ]
+		};
+	</script>
+
+	<script type="text/javascript"  data-dojo-config="async: true" src="js/lib/dojo.js"></script>
+	
+</head>
+<body>
+	<div id="test1" />
+	<script>
+	
+		//console.log(require);
+		// using the class elsewhere...
+		require([
+		         "windows/FrameworkContentElement", "windows/FrameworkElement", "controls/ItemsControl", "controls/ContextMenu",
+		         "controls/StackPanel", "windows/Style", "controls/ContextMenuService",
+		         "internal/FrameworkObject", 
+		         "controls/Control", "windows/ControlTemplate", "primitives/Popup", "primitives/ButtonBase", "controls/Button", 
+		         "windows/RoutedEventHandler", "windows/FrameworkElementFactory", "controls/Border",
+		         "controls/ContentPresenter",
+		         "controls/Page", "controls/PasswordBox", "controls/TextBlock", "windows/Trigger",
+		         "windows/Application", "documents/Run", "documents/Hyperlink", "documents/LineBreak",
+		         "documents/InlineUIContainer", "documents/FlowDocumentView",
+		         "documents/FlowDocument", "documents/Paragraph", "documents/List", "documents/ListItem",
+		         "controls/DockPanel", "controls/Dock", "controls/Grid",
+		         "controls/ColumnDefinition", "controls/RowDefinition"], 
+				function(
+						FrameworkContentElement, FrameworkElement, ItemsControl, ContextMenu,
+						StackPanel, Style, ContextMenuService, 
+						FrameworkObject, 
+						Control, ControlTemplate, Popup, ButtonBase, Button, 
+						RoutedEventHandler, FrameworkElementFactory, Border,
+						ContentPresenter,
+						Page, PasswordBox, TextBlock, Trigger,
+						Application, Run, Hyperlink, LineBreak,
+						InlineUIContainer, FlowDocumentView, 
+						FlowDocument, Paragraph, List, ListItem,
+						DockPanel, Dock, Grid,
+						ColumnDefinition, RowDefinition){
+		 
+		    
+		    function CreateTemplate1()
+	        {
+	            /* ControlTemplate */var template = new ControlTemplate(Page.Type);
+
+	            /* FrameworkElementFactory */
+	            var rootfactory = new FrameworkElementFactory(Border.Type, "border");
+	            //rootfactory.SetValue(Border.CornerRadiusProperty, CornerRadus);
+	            //rootfactory.SetValue(Border.BackgroundProperty, new SolidColorBrush(Colors.YellowGreen));
+
+
+	            /* FrameworkElementFactory */ 
+	            var cp = new FrameworkElementFactory(ContentPresenter.Type, "cp1");
+	            //rootfactory.SetValue(Border.BorderBrushProperty, BorderColor);
+	            //rootfactory.SetValue(Border.BorderThicknessProperty, BorderThickness);
+
+
+	            rootfactory.AppendChild(cp);
+	            template.VisualTree = rootfactory;
+	            
+	            template.Seal();
+	            return template;
+	        }
+		    
+		    var panel = new Grid();
+		    panel.RowDefinitions.Add(new RowDefinition());
+		    panel.RowDefinitions.Add(new RowDefinition());
+		    panel.RowDefinitions.Add(new RowDefinition());
+		    
+		    panel.ColumnDefinitions.Add(new ColumnDefinition());
+		    panel.ColumnDefinitions.Add(new ColumnDefinition());
+		    panel.ColumnDefinitions.Add(new ColumnDefinition());
+		    
+		    panel.SetValue(FrameworkElement.NameProperty, "dib");
+		    //panel.AddHandler(ButtonBase.ClickEvent, new RoutedEventHandler(panel, _button_Click));
+		    
+			/*var pwd = new PasswordBox();
+	 		panel.AddChild(pwd);
+			
+			//panel.DataContext = "DataContext";*/
+			
+			var pStyle = new Style(TextBlock.Type);
+			
+  			var trg1 = new Trigger();
+			trg1.Property = UIElement.IsMouseOverProperty;
+			trg1.Value = true;
+			
+			var setter1 =new Setter(TextBlock.ForegroundProperty, new SolidColorBrush(Colors.YellowGreen));
+			trg1.AddChild(setter1);
+			
+			pStyle.Triggers.Add(trg1);  
+			
+			//setter1 =new Setter(TextBlock.BackgroundProperty, new SolidColorBrush(Colors.Blue));
+			//pStyle.AddChild(setter1);
+			
+			var page = new Page();
+			page.AddChild(panel); 
+			
+			//var tb = new TextBlock();
+			//tb.Foreground = new SolidColorBrush(Colors.Red);
+			//tb.Style = pStyle;
+			//panel.AddChild(tb);
+			
+			//tb = new TextBlock();
+			//panel.AddChild(tb);
+			
+			pStyle.Seal();
+			
+			
+			function CreateTemplate()
+	        {
+	            /* ControlTemplate */var template = new ControlTemplate(Button.Type);
+
+	            /* FrameworkElementFactory */
+	            var rootfactory = new FrameworkElementFactory(Border.Type, "border");
+	            //rootfactory.SetValue(Border.CornerRadiusProperty, CornerRadus);
+	            //rootfactory.SetValue(Border.BackgroundProperty, new SolidColorBrush(Colors.YellowGreen));
+
+
+	            /* FrameworkElementFactory */ 
+	            var cp = new FrameworkElementFactory(ContentPresenter.Type, "cp1");
+	            //rootfactory.SetValue(Border.BorderBrushProperty, BorderColor);
+	            //rootfactory.SetValue(Border.BorderThicknessProperty, BorderThickness);
+
+	            rootfactory.AppendChild(cp);
+
+	            template.VisualTree = rootfactory;
+	            
+	            template.Seal();
+	            return template;
+	        }
+
+			var temp = CreateTemplate();
+			var btn = new Button();
+			//btn.AddChild("button"); 
+			
+			var tb = new TextBlock(); 
+			tb.AddChild(new Run("ceshi"));
+			
+			tb.AddChild(new LineBreak());
+			
+			var hl = new Hyperlink(new Run("ceshi111"));
+			hl.NavigateUri = "www.sina.com.cn";
+			tb.AddChild(hl);
+			
+			var tb1 = new TextBlock(); 
+			tb1.AddChild(new Run("ceshi21212121"));
+			var btn1 = new Button();
+			btn1.Content =  "button"; //tb1; //"button";
+			btn1.Template = temp;
+			tb.AddChild(new InlineUIContainer(btn1));
+			
+			
+			
+			btn.Content = tb
+			//btn.AddChild(new PasswordBox());
+			btn.Template = temp;
+			//btn.AddClickHandler( new RoutedEventHandler(btn, _button_Click));
+			btn.SetValue(Grid.RowProperty, 0);
+			btn.SetValue(Grid.ColumnProperty, 0);
+			btn.SetValue(Grid.ColumnSpanProperty, 3);
+			panel.AddChild(btn); 
+			btn.Resources.Set(TextBlock.Type, pStyle);
+			
+ 			btn2 = new Button();
+			//btn.AddChild("button"); 
+			btn2.Content = "button1"; 
+			//btn.AddChild(new PasswordBox());
+			btn2.Template = temp;
+			//btn.AddClickHandler( new RoutedEventHandler(btn, _button_Click));
+			btn2.SetValue(Grid.RowProperty, 1);
+			//btn2.SetValue(Grid.ColumnSpanProperty, 2);
+			btn2.SetValue(Grid.ColumnProperty, 1);
+			panel.AddChild(btn2); 
+			
+			btn.Resources.Set(TextBlock.Type, pStyle);
+			
+			
+			var flowDoc = new FlowDocument();
+			flowDoc.AddChild(new Paragraph(new Run("//pStyle.AddChild(new Setter(TextBlock.ForegroundProperty, new SolidColorBrush(Colors.YellowGreen)));")));
+			
+			
+			flowDoc.AddChild(new Paragraph(new Run("//btn.AddChild(new PasswordBox());")));
+			
+			var ls = new List();
+			
+			var li = new ListItem(new Paragraph(new Run("list item 1")));
+			ls.AddChild(li);
+			
+			li = new ListItem(new Paragraph(new Run("list item 2")));
+			ls.AddChild(li);
+			
+			li = new ListItem(new Paragraph(new Run("list item 3")));
+			ls.AddChild(li);
+			
+			flowDoc.AddChild(ls);
+			
+			
+			flowDocView = new FlowDocumentView();
+			flowDocView.Document = flowDoc;
+			
+
+			panel.AddChild(flowDocView);
+			
+			flowDocView.SetValue(Grid.RowProperty, 2);
+			flowDocView.SetValue(Grid.ColumnProperty, 2);
+						
+			//Application.Current.Resources.Set(TextBlock.Type, pStyle); 
+			//panel.Resources.Set(TextBlock.Type, pStyle); 
+			
+			//pStyle.AddChild(new Setter(TextBlock.ForegroundProperty, new SolidColorBrush(Colors.YellowGreen)));
+			alert(panel.ShouldLookupImplicitStyles);
+			
+	
+			page.DataContext = "datacontext";
+			page.Template = CreateTemplate1();
+			
+			page.Arrange();
+			
+
+			
+			alert(btn.DataContext);
+			
+		});
+
+	</script>
+</body>
+</html>

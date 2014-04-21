@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+<meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+<title>Grid Example</title>
+<style type="text/css">
+#myGrid {
+	background: gray;
+	border: blue;
+	display: -ms-grid;
+	-ms-grid-columns: 30px 100px 1fr 2fr;
+	-ms-grid-rows: 50px 5em 100px;
+}
+#item1 {
+	background: maroon;
+	border: orange solid 1px;
+	-ms-grid-row: 1; /* default is 1 */;
+	-ms-grid-column: 1; /* default is 1 */
+}
+#item2 {
+	background: lightgray;
+	border: red solid 1px;
+	-ms-grid-row: 1;
+	-ms-grid-column: 2;
+	width: 40px;
+	height: 30px;
+	-ms-grid-column-align: stretch;
+	-ms-grid-row-align: stretch;
+}
+#item3 {
+	background: orange;
+	border: maroon solid 1px;
+	-ms-grid-row: 2;
+	-ms-grid-column: 1;
+}
+#item4 {
+	background: orange;
+	border: maroon solid 1px;
+	-ms-grid-row: 2;
+	-ms-grid-column: 2;
+}
+#item5 {
+	background: orange;
+	border: maroon solid 1px;
+	-ms-grid-row: 3;
+	-ms-grid-column: 4;
+}
+</style>
+
+</head>
+
+<!--TOOLBAR_START-->
+<!--TOOLBAR_EXEMPT-->
+<!--TOOLBAR_END-->
+<body>
+
+<div class="body">
+	<h1>Grid Sample 3: Stacking Grid items</h1>
+	<div id="myGrid">
+		<div id="item1">
+			Item 1</div>
+		<div id="item2">
+			Item 2</div>
+		<div id="item3">
+			Item 3</div>
+		<div id="item4">
+			Item 3</div>
+		<div id="item5">
+			Item 3</div>
+	</div>
+	<p>For more information, please see
+	<a href="http://go.microsoft.com/fwlink/?LinkId=215528">Internet Explorer Developer 
+	Guide</a>.</p>
+	<a class="copyright" href="http://www.microsoft.com/isapi/gomscom.asp?TARGET=/info/cpyright.htm">&copy; 
+	2011 Microsoft Corporation. All rights reserved. Terms of use.</a></div>
+
+</body>
+
+</html>

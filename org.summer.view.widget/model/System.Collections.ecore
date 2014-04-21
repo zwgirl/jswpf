@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="Collections" nsURI="Collections" nsPrefix="Collections">
+  <eClassifiers xsi:type="ecore:EClass" name="IEnumerable"/>
+  <eClassifiers xsi:type="ecore:EClass" name="ICollection" eSuperTypes="#//IEnumerable"/>
+  <eClassifiers xsi:type="ecore:EClass" name="IEnumerator"/>
+  <eClassifiers xsi:type="ecore:EClass" name="BitArray" eSuperTypes="#//IEnumerable #//ICollection"/>
+  <eClassifiers xsi:type="ecore:EClass" name="IDictionary" eSuperTypes="#//IEnumerable #//ICollection"/>
+  <eClassifiers xsi:type="ecore:EClass" name="DictionaryEntry">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="Key" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="Value" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IList" eSuperTypes="#//IEnumerable #//ICollection"/>
+</ecore:EPackage>

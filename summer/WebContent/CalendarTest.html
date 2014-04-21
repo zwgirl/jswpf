@@ -1,0 +1,494 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+
+	<script>
+		var dojoConfig = {
+		    baseUrl: "js",
+		    tlmSiblingOfDojo: false,
+		    packages: [
+		        { name: "dojo", location: "lib/dojo" },
+		        { name: "dijit", location: "lib/dijit" },
+		        { name: "dojox", location: "lib/dojox" },
+		        { name: "test", location: "test" },
+		        { name: "utility", location: "MS/utility" },
+		        { name: "reflection", location: "system/reflection" },
+		        { name: "internal", location: "MS/internal" },
+		        { name: "system", location: "system" },
+		        { name: "data", location: "system/windows/data" },
+		        { name: "text", location: "system/text" },
+		        
+		        { name: "documents", location: "system/windows/documents" },
+		        
+		        { name: "input", location: "system/windows/input" },
+		        { name: "shapes", location: "system/windows/shapes" },
+		        { name: "media", location: "system/windows/media" },
+		        { name: "markup", location: "system/windows/markup" },  
+		        { name: "controls", location: "system/windows/controls" },	
+		        { name: "primitives", location: "system/windows/controls/primitives" },
+		        { name: "animation", location: "system/windows/media/animation" },
+		        
+		        { name: "collections", location: "system/collections" },
+		        { name: "generic", location: "system/collections/generic" },
+		        { name: "objectmodel", location: "system/collections/objectmodel" },
+		        { name: "specialized", location: "system/collections/specialized" },
+		        { name: "componentmodel", location: "system/componentmodel" },
+		        
+		        { name: "internal.data", location: "MS/internal/data" },
+		        { name: "internal.commands", location: "MS/internal/commands" },
+		        { name: "internal.controls", location: "MS/internal/controls" },
+		        { name: "threading", location: "system/windows/threading" },
+		        { name: "windows", location: "system/windows"},
+		        { name: "my", location: "my"
+		        	, main: "app" 
+		        	}
+		    ]
+		};
+	</script>
+
+	<script type="text/javascript"  data-dojo-config="async: true" src="js/lib/dojo.js"></script>
+	
+	
+<style type="text/css">
+<!--
+#help{
+    width:30px;
+    height:20px;
+    background-color:green;
+    position:fixed;
+    left:60px;
+    top:100px;
+}
+-->
+</style>
+	
+</head>
+<body>
+	<div id="test1" />
+	<script>
+ 	console.log(new Date().toString());
+		//console.log(require);
+		// using the class elsewhere...
+		require(["dojo/_base/declare", "internal.data/ViewManager", "internal.data/CommitManager",
+		         "internal.data/CollectionViewProxy",
+		         "windows/FrameworkContentElement", "windows/FrameworkElement", "controls/ItemsControl", "controls/ContextMenu",
+		         "controls/StackPanel", "windows/Style", "controls/ContextMenuService",
+		         "internal/FrameworkObject", 
+		         "controls/Control", "windows/ControlTemplate", "primitives/Popup", "primitives/ButtonBase", "controls/Button", 
+		         "windows/RoutedEventHandler", "windows/FrameworkElementFactory", "controls/Border",
+		         "controls/ContentPresenter",
+		         "controls/Page", "controls/PasswordBox", "controls/TextBlock", "windows/Trigger",
+		         "windows/Application", "documents/Run", "documents/Hyperlink", "documents/LineBreak",
+		         "documents/InlineUIContainer", "documents/FlowDocumentView",
+		         "documents/FlowDocument", "documents/Paragraph", "documents/List", "documents/ListItem",
+		         "controls/CheckBox", 
+				 "windows/Visibility", "windows/UIElement",
+		         "threading/DispatcherTimer", "system/TimeSpan", "controls/Orientation",
+		         "shapes/Rectangle",
+		         "shapes/Ellipse", "shapes/Line", "shapes/Polygon", "shapes/Polyline", "shapes/Path",
+		         "controls/TextBox",
+		         "controls/WrapPanel", "test/Person", "markup/INameScope", "data/RelativeSource",
+		         "data/ObjectDataProvider", "controls/ToolTip",
+		         "controls/MenuItem"], 
+				function(declare, ViewManager, CommitManager,
+						CollectionViewProxy,
+						FrameworkContentElement, FrameworkElement, ItemsControl, ContextMenu,
+						StackPanel, Style, ContextMenuService, 
+						FrameworkObject, 
+						Control, ControlTemplate, Popup, ButtonBase, Button, 
+						RoutedEventHandler, FrameworkElementFactory, Border,
+						ContentPresenter,
+						Page, PasswordBox, TextBlock, Trigger,
+						Application, Run, Hyperlink, LineBreak,
+						InlineUIContainer, FlowDocumentView, 
+						FlowDocument, Paragraph, List, ListItem,
+						CheckBox,
+						Visibility, UIElement, 
+						DispatcherTimer, TimeSpan, Orientation, 
+						Rectangle,
+						Ellipse, Line, Polygon, Polyline, Path,
+						TextBox,
+						WrapPanel, Person, INameScope, RelativeSource,
+						ObjectDataProvider, ToolTip,
+						MenuItem){
+
+		 	console.log(new Date().toString());
+		    
+		    function CreatePageTemplate()
+	        {
+	            /* ControlTemplate */var template = new ControlTemplate(Page.Type);
+
+	            /* FrameworkElementFactory */
+	            var border = new FrameworkElementFactory(Border.Type, "border");
+
+	            /* FrameworkElementFactory */ 
+	            var cp = new FrameworkElementFactory(ContentPresenter.Type, "cp1");
+
+	            border.AppendChild(cp);
+	            template.VisualTree = border;
+	            
+	            //template.Seal();
+	            return template;
+	        }
+		    
+		  //var ics = new Style(ItemsControl.Type);
+		    function CreatePersonTemplate()
+	        {
+		        var template = new DataTemplate(Person.Type);
+	            
+	            var stack = new FrameworkElementFactory(StackPanel.Type, "stackPanel");
+	            var pwdBox1 = new FrameworkElementFactory(TextBox.Type, "btn1");
+	            //pwdBox1.SetValue(Control.FontSizeProperty, 14);
+	            
+	            var binding = new Binding();
+	            binding.Path = new PropertyPath("Name");
+	            binding.Mode = BindingMode.TwoWay;
+	            
+	            pwdBox1.SetValue(TextBox.TextProperty, binding);
+	            
+	            
+				var brush = new SolidColorBrush(Colors.YellowGreen);
+				brush.Seal();
+				
+	            pwdBox1.SetValue(Control.ForegroundProperty, brush);
+	            stack.AppendChild(pwdBox1);
+	            
+/* 	            var img1 = new FrameworkElementFactory(Image.Type, "img1");
+	            rootfactory.AppendChild(pwdBox1);
+	            rootfactory.AppendChild(img1); */
+	            
+	            var rect1 = new FrameworkElementFactory(Rectangle.Type, "rect1");
+	            stack.AppendChild(rect1);
+	            
+	            var ellipse = new FrameworkElementFactory(Ellipse.Type, "ellipse");
+	            stack.AppendChild(ellipse);
+	            
+	            var line = new FrameworkElementFactory(Line.Type, "line");
+	            stack.AppendChild(line);
+	            
+	            var polygon = new FrameworkElementFactory(Polygon.Type, "polygon");
+	            stack.AppendChild(polygon);
+	            
+	            var polyline = new FrameworkElementFactory(Polyline.Type, "polyline");
+	            stack.AppendChild(polyline);
+	            
+	            var path = new FrameworkElementFactory(Path.Type, "path");
+	            path.SetValue(Path.DataProperty, "M 0 0 L 7 7 M 0 7 L 7 0");
+	            
+	            //path.SetValue(Path.DataProperty, "M 0 0 L 4 4 L 8 0 Z");
+	            //path.SetValue(Path.DataProperty, "M 0 4 L 4 0 L 8 4 Z");
+	            stack.AppendChild(path);
+	            
+	            //var image1 = new FrameworkElementFactory(Image.Type, "image1");
+	            //stack.AppendChild(image1);
+	            
+	            
+	            template.VisualTree = stack;
+	            template.Seal();
+	            return template;
+	        }
+		    
+			
+			function CreateCheckBoxTemplate()
+	        {
+	            /* ControlTemplate */var template = new ControlTemplate(CheckBox.Type);
+	            
+	            
+	            /* FrameworkElementFactory */
+	            var border = new FrameworkElementFactory(Border.Type, "Border");
+	            //rootfactory.SetValue(Border.CornerRadiusProperty, CornerRadus);
+	            //rootfactory.SetValue(Border.BackgroundProperty, new SolidColorBrush(Colors.YellowGreen));
+
+
+	        	var stackPanel = new FrameworkElementFactory(StackPanel.Type);
+	        	stackPanel.SetValue(StackPanel.OrientationProperty, Orientation.Horizontal);
+	            border.AppendChild(stackPanel);
+	            
+	            var path = new FrameworkElementFactory(Path.Type, "checkMark");
+	            path.SetValue(Path.DataProperty, "M 0 0 L 7 7 M 0 7 L 7 0" /*"M 0 0 L 7 7 M 0 7 L 7 0"*/);
+	            
+	            
+	            var trg = new Trigger();
+                trg.Property = ToggleButton.IsCheckedProperty;
+                trg.Value = true;
+                
+                setter = new Setter(UIElement.VisibilityProperty, Visibility.Collapsed, "checkMark");
+                trg.AddChild(setter);
+                
+                template.Triggers.Add(trg);
+	           
+	            stackPanel.AppendChild(path);
+	            /* FrameworkElementFactory */ 
+	            var cp = new FrameworkElementFactory(ContentPresenter.Type);
+	            //rootfactory.SetValue(Border.BorderBrushProperty, BorderColor);
+	            //rootfactory.SetValue(Border.BorderThicknessProperty, BorderThickness);
+
+	            stackPanel.AppendChild(cp);
+
+	            template.VisualTree = border;
+	            
+	            //template.Seal();
+	            return template;
+	        }
+
+			/*
+			      <ControlTemplate TargetType="{x:Type CheckBox}">
+			        <BulletDecorator Background="Transparent">
+			          <BulletDecorator.Bullet>
+			            <Border x:Name="Border"
+			                    Width="13"
+			                    Height="13"
+			                    CornerRadius="0"
+			                    BorderThickness="1">
+			              <Grid>
+			                <Path Visibility="Collapsed"
+			                      Width="7"
+			                      Height="7"
+			                      x:Name="CheckMark"
+			                      SnapsToDevicePixels="False"
+			                      StrokeThickness="2"
+			                      Data="M 0 0 L 7 7 M 0 7 L 7 0">
+			                  <Path.Stroke>
+			                    <SolidColorBrush Color="{DynamicResource GlyphColor}" />
+			                  </Path.Stroke>
+			                </Path>
+			                <Path Visibility="Collapsed"
+			                      Width="7"
+			                      Height="7"
+			                      x:Name="InderminateMark"
+			                      SnapsToDevicePixels="False"
+			                      StrokeThickness="2"
+			                      Data="M 0 7 L 7 0">
+			                  <Path.Stroke>
+			                    <SolidColorBrush Color="{DynamicResource GlyphColor}" />
+			                  </Path.Stroke>
+			                </Path>
+			              </Grid>
+			            </Border>
+			          </BulletDecorator.Bullet>
+			          <ContentPresenter Margin="4,0,0,0"
+			                            VerticalAlignment="Center"
+			                            HorizontalAlignment="Left"
+			                            RecognizesAccessKey="True" />
+			        </BulletDecorator>
+			      </ControlTemplate>
+			*/
+			
+/* 			var MyPage = declare("MyPage", Page,{
+		
+			});
+			MyPage.Type = new Type("MyPage", MyPage, [Page.Type, INameScope.Type]); */
+			
+			var page = new Page();
+			
+			NameScope.SetNameScope(page, new NameScope());
+	
+			page.Template = CreatePageTemplate();
+			page.DataContext = "datacontext";
+			
+			function CreateStyle(){
+				var style = new Style(ListBoxItem.Type);
+				var setter = new Setter(Control.TemplateProperty, CreateListBoxItemControlTemplate());
+				style.AddChild(setter);
+				
+				return style;
+			}
+			
+			//lb.Resources.Set(ListBoxItem.Type, CreateStyle());
+			page.Resources.Set(new DataTemplateKey(Person.Type), CreatePersonTemplate());
+
+			
+		    var panel = new WrapPanel();
+		    
+		    panel.SetValue(FrameworkElement.NameProperty, "WrapPanel");
+		    
+			page.AddChild(panel); 
+		    
+	/* 	    <StackPanel Background="Blue">
+		    <Button x:Name="refButton" Background="Orange"/>
+		    <Button Background="{Binding ElementName=refButton, Path=Background}"/>
+		    </StackPanel> */
+			var brush = new SolidColorBrush(Colors.Red);
+			brush.Seal();
+		    //panel.Background = brush;
+		    
+		    
+		    var person = new Person("毛泽东", "man", '10');
+		    var checkTemp = CreateCheckBoxTemplate();
+		    var checkBox1 = new CheckBox();
+		    panel.AddChild(checkBox1);
+		    
+		    checkBox1.Name = "refButton";
+		    checkBox1.RegisterName("refButton", checkBox1);
+		    checkBox1.Background = brush;
+		    checkBox1.Template = checkTemp
+		    checkBox1.Content = person;
+		    //checkBox1.Content= "sasasas";
+
+		    
+		    /* <ObjectDataProvider x:Key="myDataSource" ObjectType="{x:Type src:Person}">
+  				<ObjectDataProvider.ConstructorParameters>
+    				<system:String>Joe</system:String>
+  				</ObjectDataProvider.ConstructorParameters>
+			</ObjectDataProvider>
+			<TextBlock Text="{Binding Source={StaticResource myDataSource}, Path=PersonName}"/> */
+			
+		    
+		    person = new Person("周恩来", "man", '10');
+		    var checkBox2 = new CheckBox();
+		    //checkBox2.FontSize = 20;
+		    checkBox2.Name = "refButton2";
+		    checkBox2.Content= person;
+		    //checkBox2.Content= "sasasas";
+		    checkBox2.Template = checkTemp
+		    panel.AddChild(checkBox2); 
+		    
+		    
+		    var binding = new Binding();
+		    binding.ElementName = "refButton";
+		    binding.Path = new PropertyPath("Background");
+		    binding.Mode = BindingMode.OneWay;
+		    BindingOperations.SetBinding(checkBox2, Control.BackgroundProperty, binding);
+		    
+		    
+		   // console.log(new Date().toString());
+		    
+/* 		    for(var i=0; i<150; i++){
+		    	person = new Person("党员" +　i, "man", '10');
+			    checkBox1 = new CheckBox();
+			    checkBox1.Content = person;
+			    checkBox1.Template = checkTemp
+			    //checkBox1.Content= "sasasas";
+			    panel.AddChild(checkBox1);
+		    } */
+		    
+		    //console.log(new Date().toString());
+		    var textBox1 = new TextBox();
+		    panel.AddChild(textBox1);
+		    
+		    
+            var rs = new RelativeSource();
+            rs.Mode = RelativeSourceMode.FindAncestor;
+            rs.AncestorLevel = 1;
+            rs.AncestorType = WrapPanel.Type;
+
+            binding = new Binding();
+            binding.RelativeSource = rs;
+            binding.Path = new PropertyPath("Name");
+            textBox1.SetBinding(TextBox.TextProperty, binding);
+            
+		    var tb = new TextBlock(); 
+			tb.AddChild(new Run("ceshi"));
+			tb.AddChild(new LineBreak());
+			panel.AddChild(tb);
+		    
+            
+			var provider = new ObjectDataProvider();
+			provider.ConstructorParameters.Add("周恩来");
+			provider.ConstructorParameters.Add("man");
+			provider.ConstructorParameters.Add('10');
+			provider.ObjectType = Person.Type;
+			
+		    var textBox2 = new TextBox();
+		    //textBox2.FontSize = 20;
+		    panel.AddChild(textBox2);
+			
+		    var binding = new Binding();
+		    binding.Source = provider;
+		    binding.Path = new PropertyPath("Name");
+		    binding.Mode = BindingMode.OneWay;
+		    BindingOperations.SetBinding(textBox2, TextBox.TextProperty, binding);
+		    
+/* 		    <ObjectDataProvider x:Key="odp" ObjectType="{x:Type local:Calculator}" MethodName="Add">  
+            <ObjectDataProvider.MethodParameters>  
+                <system:String>0</system:String>  
+                <system:String>0</system:String>  
+            </ObjectDataProvider.MethodParameters>  
+        	</ObjectDataProvider>  */
+        	
+    	    var Calculator = declare(Object, 
+    	    {
+    	        Add:function(/* double */ one,/* double */ two)
+    	        {
+    	            return one + two;
+    	        }
+    	    });
+        	Calculator.Type = new Type("Calculator", Calculator, [Object.Type]);
+        	
+        	var odp = new ObjectDataProvider();
+        	odp.ObjectType = Calculator.Type;
+        	odp.MethodName = "Add";
+        	odp.MethodParameters.Add(1);
+        	
+        	odp.MethodParameters.Add(2);
+        	
+        	var textBox3 = new TextBox();
+		    panel.AddChild(textBox3);
+		    
+		    textBox2.ToolTip = "这个是tooltip！";
+		    
+		    var MyConverter = declare(IValueConverter, {
+//				public object 
+				Convert:function(/*object*/ o, /*Type*/ type, /*object*/ parameter, /*CultureInfo*/ culture) 
+		        {
+		            // conversion from any type to object is easy
+		            return new String(o);
+		        },
+
+//			        public object 
+		        ConvertBack:function(/*object*/ o, /*Type*/ type, /*object*/ parameter, /*CultureInfo*/ culture) 
+		        { 
+					return new String(o);
+		        }
+		    });
+		    
+		    MyConverter.Type = new Type("MyConverter", MyConverter, [IValueConverter.Type]);
+			
+		    var binding = new Binding();
+		    binding.Source = odp;
+		    //binding.Path = new PropertyPath("");
+		    binding.Mode = BindingMode.OneWay;
+		    binding.Converter = new MyConverter();
+		    BindingOperations.SetBinding(textBox3, TextBox.TextProperty, binding);
+		    
+			//page.Template = CreatePageTemplate();
+			page.FontSize = 15;
+			
+			page.Arrange();
+			page.Title = "Summer是WPF的js实现";
+			
+			
+/* 			var timer = new DispatcherTimer(new TimeSpan(0,0,0,0,1000));
+			var count = 0;
+			timer.Tick.Combine(new Delegate(null, function() {
+				alert("timer"); 
+				if(count++ >= 0){
+					timer.Stop();
+			}}));
+			timer.Start(); */
+			
+			//alert(checkBox2.DataContext);
+			console.log(new Date().toString());
+			
+			var changeColor = document.createElement("input");
+			changeColor.setAttribute("type", "button");
+			changeColor.setAttribute("value", "changeColor");
+			changeColor.addEventListener("click", function(){
+				brush = new SolidColorBrush(Colors.Yellow);
+				brush.Seal();
+			    checkBox1.Background = brush;
+			    
+			    page.FontSize = 25;
+			    
+			    page.Title = "";
+				
+			});
+			document.body.appendChild(changeColor);
+		});
+
+	</script>
+  </script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+
+
+<title>Demo Flexbox 3 - CodePen</title>
+
+<style id="cm-font-size">
+.flex-container {
+  padding: 0;
+  height:500px;
+  margin: 0;
+  list-style: none;
+  display: flex;
+  flex-flow: row;
+  align-items: stretch; 
+  justify-content: space-between;
+  border: 1px solid;
+}
+
+.flex-item {
+  background: red;
+  padding: 5px;
+  width: 200px;
+  //height: 150px;
+  margin-top: 10px;
+  
+  line-height: 150px;
+  color: white;
+  font-weight: bold;
+  font-size: 3em;
+  text-align: center;
+}
+
+.flex-item1 {
+  background: blue;
+  padding: 5px;
+  width: 300px;
+  //height: 250px;
+  margin-top: 10px;
+  
+  line-height: 150px;
+  color: white;
+  font-weight: bold;
+  font-size: 3em;
+  text-align: center;
+}
+
+.flex-item2 {
+  background: green;
+  padding: 5px;
+  width: 400px;
+  //height: 350px;
+  margin-top: 10px;
+  
+  line-height: 150px;
+  color: white;
+  font-weight: bold;
+  font-size: 3em;
+  text-align: center;
+}
+</style>
+
+</head>
+
+<body class="preload no-mobile editor">
+
+<ul class="flex-container">
+  <li class="flex-item">1</li>
+  <li class="flex-item2">2</li>
+  <li class="flex-item1">3</li>
+  <li class="flex-item2">4</li>
+  <li class="flex-item1">5</li>
+  <li class="flex-item">6</li>
+</ul>
+</body>
+
+</html>

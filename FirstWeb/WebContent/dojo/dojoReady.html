@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Tutorial: Hello Dojo!</title>
+    <!-- load Dojo -->
+    <script src="dojo.js"></script>
+    <script>
+        dojo.ready(function(){
+        	// using the class elsewhere...
+        	require(["dojo/Person"], function(Person){
+        	  var anon  = new Person(),
+        	      alice = new Person({ name: "Alice", age: 42, residence: "Universe 1" });
+
+        	  //console.log(anon.name, alice.name); // "Anonymous", "Alice"
+        	  alert(anon.name, alice.name); // "Anonymous", "Alice"
+        	  alert(anon.residence, alice.residence); // "Universe A", "Universe 1"
+        	  alice.moveTo("Universe 420");
+        	  alert(alice.residence); // "Universe 420"
+        	});
+
+            
+        });
+    </script>
+</head>
+<body>
+    <h1 id="greeting">Hello</h1>
+</body>
+</html>

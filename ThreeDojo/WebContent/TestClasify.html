@@ -1,0 +1,69 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+	<script>
+		var dojoConfig = {
+		    baseUrl: "js/",
+		    tlmSiblingOfDojo: false,
+		    packages: [
+		        { name: "dojo", location: "lib/dojo" },
+		        { name: "dijit", location: "lib/dijit" },
+		        { name: "dojox", location: "lib/dojox" },
+		        { name: "my", location: "my"
+		        	, main: "app" 
+		        	}
+		    ]
+		};
+	</script>
+	<script type="text/javascript" src="js/lib/dojo.js"></script>
+	<script type="text/javascript">
+	/*
+		require(['my/Employee', 'my/DependencyProperty'], function(Employee, DependencyProperty){
+			
+		  var   matt = new Employee("Matt", 33, "California", 1000);
+			
+		  //kathryn.Test1="text/javascript";
+		  //matt.setValue(matt.nameProperty,"依赖属性");
+		  //matt.getValue(matt.nameProperty);
+		  
+		  var   matt1 = new Employee("Matt1", 332, "California1", 10001);
+		  matt1.name="21212";
+		  console.log("askForRaise" + matt1.askForRaise());
+		  alert(matt.nameProperty===matt1.nameProperty);
+			
+		   console.log('Employee: ' + DependencyProperty.RegisteredPropertyCount()); // 3600, 20
+		});
+	*/
+	require(['my/Delegate'], function(Delegate){
+		
+		  var   delegate = new Delegate(/* function(sender,eventArgs){
+			  console.log("Delegate notify0 : " + sender + eventArgs);
+		  } */);
+		  
+		  delegate.addHandler(function(sender,eventArgs){
+			  console.log("Delegate notify1 : " + sender + eventArgs);
+		  });
+		  
+		  function f(sender,eventArgs){
+			  console.log("Delegate notify2 : " + sender + eventArgs);
+		  }
+		  
+		  delegate.addHandler(f);
+		  
+		  delegate.notify("test","event");
+		  
+		  delegate.removeHandler(f);
+		  
+		  delegate.notify("test","event");
+
+		  console.log(delegate.GetInvocationList());
+		});
+
+	</script>
+</head>
+<body>
+	
+</body>
+</html>

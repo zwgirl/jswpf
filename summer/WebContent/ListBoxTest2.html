@@ -1,0 +1,633 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="expires" content="FRI,1 JUN 2016 00 00 00 GMT">
+<title>Insert title here</title>
+
+	<script>
+		var dojoConfig = {
+		    baseUrl: "js",
+		    tlmSiblingOfDojo: false,
+		    packages: [
+		        { name: "dojo", location: "lib/dojo" },
+		        { name: "dijit", location: "lib/dijit" },
+		        { name: "dojox", location: "lib/dojox" },
+		        { name: "test", location: "test" },
+		        { name: "utility", location: "MS/utility" },
+		        { name: "reflection", location: "system/reflection" },
+		        { name: "internal", location: "MS/internal" },
+		        { name: "system", location: "system" },
+		        { name: "data", location: "system/windows/data" },
+		        { name: "text", location: "system/text" },
+		        
+		        { name: "documents", location: "system/windows/documents" },
+		        
+		        { name: "input", location: "system/windows/input" },
+		        { name: "shapes", location: "system/windows/shapes" },
+		        { name: "media", location: "system/windows/media" },
+		        { name: "markup", location: "system/windows/markup" },  
+		        { name: "controls", location: "system/windows/controls" },	
+		        { name: "primitives", location: "system/windows/controls/primitives" },
+		        { name: "animation", location: "system/windows/media/animation" },
+		        
+		        { name: "collections", location: "system/collections" },
+		        { name: "generic", location: "system/collections/generic" },
+		        { name: "objectmodel", location: "system/collections/objectmodel" },
+		        { name: "specialized", location: "system/collections/specialized" },
+		        { name: "componentmodel", location: "system/componentmodel" },
+		        
+		        { name: "internal.data", location: "MS/internal/data" },
+		        { name: "internal.commands", location: "MS/internal/commands" },
+		        { name: "internal.controls", location: "MS/internal/controls" },
+		        { name: "threading", location: "system/windows/threading" },
+		        { name: "windows", location: "system/windows"},
+		        { name: "my", location: "my"
+		        	, main: "app" 
+		        	}
+		    ]
+		};
+	</script>
+
+	<script type="text/javascript"  data-dojo-config="async: true" src="js/lib/dojo.js"></script>
+	
+
+	
+	<style type="text/css">
+	span {
+	font-weight:bold;
+	color:#ff9955;
+	}
+	</style>
+	
+</head>
+<body>
+	<div id="test1" />
+	<p>asasasasasa</p>
+	<script>
+	
+		//console.log(require);
+		// using the class elsewhere...
+		console.log("loader begin: " +　new Date());
+		var startDate = new Date();
+		require(["dojo/_base/declare", "internal.data/ViewManager", "internal.data/CommitManager",
+		         "internal.data/CollectionViewProxy",
+		         "windows/FrameworkContentElement", "windows/FrameworkElement", "controls/ItemsControl", "controls/ContextMenu",
+		         "controls/StackPanel", "windows/Style", "controls/ContextMenuService",
+		         "internal/FrameworkObject", 
+		         "controls/Control", "windows/ControlTemplate", "primitives/Popup", "primitives/ButtonBase", "controls/Button", 
+		         "windows/RoutedEventHandler", "windows/FrameworkElementFactory", "controls/Border1",
+		         "controls/ListBox", "controls/ListBoxItem", "controls/Page", "controls/ItemsPresenter",
+		         "controls/ItemsPanelTemplate",
+		         "windows/Setter", "controls/TreeViewItem",
+		         "media/Colors", "controls/PasswordBox",
+		         "windows/DataTemplateKey", "controls/Image", "controls/TextBox",
+		         "shapes/Rectangle", "windows/Trigger",
+		         "componentmodel/INotifyPropertyChanged",
+		         "input/Mouse", "input/MouseButtonEventHandler",
+		         "input/Keyboard", "controls/SelectionMode",
+		         "controls/ClickMode", "controls/Image", "data/BindingListCollectionView",
+		         "data/PropertyGroupDescription",
+		         "shapes/Ellipse", "shapes/Line", "shapes/Polygon", "shapes/Polyline", "shapes/Path",
+		         "media/MatrixTransform", "windows/PropertyPath",
+		         "controls/ComboBox", "test/Person"], 
+				function(declare, ViewManager, CommitManager,
+						CollectionViewProxy,
+						FrameworkContentElement, FrameworkElement, ItemsControl, ContextMenu,
+						StackPanel, Style, ContextMenuService, 
+						FrameworkObject, 
+						Control, ControlTemplate, Popup, ButtonBase, Button, 
+						RoutedEventHandler, FrameworkElementFactory, Border,
+						ListBox, ListBoxItem, Page, ItemsPresenter,
+						ItemsPanelTemplate,
+						Setter, TreeViewItem,
+						Colors, PasswordBox,
+						DataTemplateKey, Image, TextBox,
+						Rectangle, Trigger, INotifyPropertyChanged,
+						Mouse, MouseButtonEventHandler,
+						Keyboard, SelectionMode,
+						ClickMode, Image, BindingListCollectionView,
+						PropertyGroupDescription,
+						Ellipse, Line, Polygon, Polyline, Path,
+						MatrixTransform, PropertyPath,
+						ComboBox, Person){
+			
+			var loadEndDate = new Date();
+			var duar = loadEndDate.getMilliseconds()-startDate.getMilliseconds();
+			console.log("loader complete: " + duar);
+			
+			
+		    function _button_Click(sender, /* RoutedEventArgs */ e)
+	        {
+	           	if(sender instanceof StackPanel){
+			    	alert("你好，你点击了 : StackPanel" + sender.GetValue(FrameworkElement.NameProperty));
+	           	}
+	           	if(sender instanceof Button){
+			    	alert("你好，你点击了 : Button" + sender.GetValue(FrameworkElement.NameProperty));
+	           	}
+	        } 
+		    
+		    function CreateTemplate()
+	        {
+	            /* ControlTemplate */var template = new ControlTemplate(Button.Type);
+
+	            /* FrameworkElementFactory */
+	            var rootfactory = new FrameworkElementFactory(Border.Type, "border");
+	            //rootfactory.SetValue(Border.CornerRadiusProperty, CornerRadus);
+	            //rootfactory.SetValue(Border.BackgroundProperty, new SolidColorBrush(Colors.YellowGreen));
+
+	            /* FrameworkElementFactory */ 
+	            var cp = new FrameworkElementFactory(ContentPresenter.Type, "cp1");
+	            //rootfactory.SetValue(Border.BorderBrushProperty, BorderColor);
+	            //rootfactory.SetValue(Border.BorderThicknessProperty, BorderThickness);
+
+	            rootfactory.AppendChild(cp);
+
+	            template.VisualTree = rootfactory;
+	            
+	            template.Seal();
+	            return template;
+	        }
+		    
+		    
+		    function CreateListBoxTemplate()
+	        {
+	            /* ControlTemplate */var template = new ControlTemplate(ListBox.Type);
+
+	            /* FrameworkElementFactory */
+	            var rootfactory = new FrameworkElementFactory(Border.Type, "border");
+	            //rootfactory.SetValue(Border.CornerRadiusProperty, CornerRadus);
+	            //rootfactory.SetValue(Border.BackgroundProperty, new SolidColorBrush(Colors.YellowGreen));
+
+
+	            /* FrameworkElementFactory */ 
+	            var ip = new FrameworkElementFactory(ItemsPresenter.Type, "ip1");
+	            //rootfactory.SetValue(Border.BorderBrushProperty, BorderColor);
+	            //rootfactory.SetValue(Border.BorderThicknessProperty, BorderThickness);
+
+
+	            rootfactory.AppendChild(ip);
+	            template.VisualTree = rootfactory;
+	            
+	            template.Seal();
+	            return template;
+	        }
+		    
+		    function CreateItemsPanel()
+	        {
+	            /* FrameworkElementFactory */
+	            var rootfactory = new FrameworkElementFactory(StackPanel.Type, "stackPanel");
+
+	            
+	            /* ControlTemplate */var template = new ItemsPanelTemplate(rootfactory);
+	            
+	            //template.Seal();
+	            return template;
+	        }
+		    
+		    var panel = new StackPanel();
+		    panel.SetValue(FrameworkElement.NameProperty, "dib");
+		    panel.AddHandler(ButtonBase.ClickEvent, new RoutedEventHandler(panel, _button_Click));
+		    
+		    
+		    var person1 = new Person("tom1", "man", '10');
+          	var binding = new Binding();
+         	binding.Path = new PropertyPath("Name");
+         	binding.Source = person1;
+            binding.Mode = BindingMode.OneWay;
+		    
+	 		var pwdBox = new TextBox();
+			pwdBox.SetValue(FrameworkElement.NameProperty, "save");
+			
+			bindExpr = binding.CreateBindingExpression(pwdBox, TextBox.TextProperty);
+            pwdBox.SetValue(TextBox.TextProperty, bindExpr);
+			
+			panel.AddChild(pwdBox); 
+			
+			var lb = new ListBox();
+			//lb.SelectionMode = SelectionMode.Extended;
+			panel.AddChild(lb);
+			
+ 			var btn = new Button();
+			//btn.AddChild("button"); 
+			btn.Content = "button"; 
+			//btn.AddChild(new PasswordBox());
+			btn.Template = CreateTemplate();
+			btn.AddClickHandler( new RoutedEventHandler(btn, _button_Click));
+			panel.AddChild(btn); 
+			
+ 			btn = new Button();
+ 			btn.ClickMode = ClickMode.Press;
+			//btn.AddChild("button"); 
+			//btn.Content = "button1"; 
+            var image1 = new Image();
+            btn.AddChild(image1);
+			//btn.AddChild(new PasswordBox());
+			btn.Template = CreateTemplate();
+			btn.AddClickHandler( new RoutedEventHandler(btn, _button_Click));
+			panel.AddChild(btn); 
+			
+	        //var ics = new Style(ItemsControl.Type);
+		    function CreatePersonTemplate()
+	        {
+		        var template = new DataTemplate(Person.Type);
+	            
+	            var stack = new FrameworkElementFactory(StackPanel.Type, "stackPanel");
+	            var pwdBox1 = new FrameworkElementFactory(TextBox.Type, "btn1");
+	            
+	            var binding = new Binding();
+	            binding.Path = new PropertyPath("Name");
+	            binding.Mode = BindingMode.TwoWay;
+	            
+	            pwdBox1.SetValue(TextBox.TextProperty, binding);
+	            
+				var brush = new SolidColorBrush(Colors.YellowGreen);
+				brush.Seal();
+				
+	            pwdBox1.SetValue(Control.ForegroundProperty, brush);
+	            stack.AppendChild(pwdBox1);
+	            
+/* 	            var img1 = new FrameworkElementFactory(Image.Type, "img1");
+	            rootfactory.AppendChild(pwdBox1);
+	            rootfactory.AppendChild(img1); */
+	            
+/* 	            var rect1 = new FrameworkElementFactory(Rectangle.Type, "rect1");
+	            stack.AppendChild(rect1);
+	            
+	            var ellipse = new FrameworkElementFactory(Ellipse.Type, "ellipse");
+	            stack.AppendChild(ellipse);
+	            
+	            var line = new FrameworkElementFactory(Line.Type, "line");
+	            stack.AppendChild(line);
+	            
+	            var polygon = new FrameworkElementFactory(Polygon.Type, "polygon");
+	            stack.AppendChild(polygon);
+	            
+	            var polyline = new FrameworkElementFactory(Polyline.Type, "polyline");
+	            stack.AppendChild(polyline);*/
+	            
+	            var path = new FrameworkElementFactory(Path.Type, "path");
+	            //path.SetValue(Path.DataProperty, "M 0 0 L 7 7 M 0 7 L 7 0");
+	            
+	            path.SetValue(Path.DataProperty, "M 0 0 L 4 4 L 8 0 Z");
+	            path.SetValue(Path.DataProperty, "M 0 4 L 4 0 L 8 4 Z");
+	            stack.AppendChild(path); 
+	            
+	            //var image1 = new FrameworkElementFactory(Image.Type, "image1");
+	            //stack.AppendChild(image1);
+	            
+	            
+	            template.VisualTree = stack;
+	            template.Seal();
+	            return template;
+	        }
+	        
+	        /* var setter = new Setter(ItemsControl.TemplateProperty, CreateListBoxItemTemplate());
+	        ics.AddChild(setter);
+	        lb.ItemContainerStyle = ics;  */
+	        
+			
+			//var lbi = new ListBoxItem();
+			//lb.AddChild(lbi);
+			//lb.AddChild("张三");
+			//lb.AddChild("张三1");
+			//lb.AddChild("张三2");
+			//lb.AddChild("张三3");
+			//lb.SelectedIndex = 0;
+			
+		/* 	lb.AddChild(new PasswordBox());
+			lb.AddChild(new PasswordBox());
+			lb.AddChild(new PasswordBox());
+			lb.AddChild(new PasswordBox());
+			lb.AddChild(new PasswordBox());  */
+			
+/*  			lb.AddChild(new Person("tom1"));
+			lb.AddChild(new Person("tom2"));
+			lb.AddChild(new Person("tom3"));
+			lb.AddChild(new Person("tom4"));
+			lb.AddChild(new Person("tom5"));  */
+			
+/*  			lb.AddChild("tom1");
+			lb.AddChild("tom2");
+			lb.AddChild("tom3");
+			lb.AddChild("tom4");
+			lb.AddChild("tom5");  */
+			
+			
+            /* List<User> */var items = new List();
+            items.Add(/* new Person("tom1", "man", '10') */person1);
+            items.Add(new Person("tom2", "man", '10'));
+            items.Add(new Person("tom3", "woman", '20'));
+            items.Add(new Person("tom4", "man", '20'));
+            items.Add(new Person("tom5", "woman", '20'));
+            items.Add(new Person("tom5", "woman", '10'));
+            
+             for(var i=0; i<10; i++){
+            	items.Add(new Person("tom5" + i, "woman", '20'));
+            } 
+            lb.ItemsSource = items;
+
+            ///* CollectionView */var view = CollectionViewSource.GetDefaultView(lb.ItemsSource);
+            var view = CollectionViewSource.GetDefaultCollectionView(lb.ItemsSource, false);
+            /* PropertyGroupDescription */var groupDescription = new PropertyGroupDescription("Sex");
+            view.GroupDescriptions.Add(groupDescription);
+            
+            groupDescription = new PropertyGroupDescription("Age");
+            view.GroupDescriptions.Add(groupDescription);
+            
+/*             <GroupStyle ContainerStyle="{StaticResource GroupHeaderStyle}">
+            <GroupStyle.Panel>
+                <ItemsPanelTemplate>
+                    <WrapPanel Width="800" />
+                </ItemsPanelTemplate>
+            </GroupStyle.Panel>
+        	</GroupStyle> */
+        	
+        /* 	<GroupStyle.HeaderTemplate>
+            <DataTemplate>
+                <TextBlock Text="{Binding Path=Name}" />
+            </DataTemplate>
+        	</GroupStyle.HeaderTemplate> */
+        	
+/*         	<GroupStyle.ContainerStyle>
+            <Style TargetType="GroupItem">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type GroupItem}">
+                            <StackPanel>
+                                <ContentPresenter/>
+                                <ItemsPresenter Margin="5,0,0,0"/>
+                                <TextBlock Text="*** End of group ***"/>
+                            </StackPanel>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        	</GroupStyle.ContainerStyle> */
+        	function createGroupStyle(){
+        		var gs = new GroupStyle();
+        		gs.Panel = new ItemsPanelTemplate(new FrameworkElementFactory(StackPanel.Type, "stackPanel")); 
+        		
+        		var headerTemplate = new DataTemplate();
+        		var nameTb = new FrameworkElementFactory(TextBlock.Type, "textBlock");
+        		var binding = new Binding();
+        		binding.Path = new PropertyPath("Name");
+        		binding.Mode = BindingMode.OneWay;
+        		nameTb.SetBinding(TextBlock.TextProperty, binding);
+        		
+        		headerTemplate.VisualTree = nameTb
+        		gs.HeaderTemplate = headerTemplate;
+        		
+        		var style = new Style(GroupItem.Type);
+        		var template =new ControlTemplate();
+        		var stack = new FrameworkElementFactory(StackPanel.Type, "stackPanel1");
+        		stack.AppendChild(new FrameworkElementFactory(ContentPresenter.Type, "ContentPresenter"));
+        		stack.AppendChild(new FrameworkElementFactory(ItemsPresenter.Type, "ItemsPresenter"));
+        		var tb = new FrameworkElementFactory(TextBlock.Type, "tb");
+        		tb.SetBinding(TextBlock.TextProperty, "*** End of group ***");
+        		stack.AppendChild(tb);
+        		
+        		template.VisualTree = stack;
+        		var setter = new Setter(Control.TemplateProperty, template);
+        		style.AddChild(setter);
+        		
+        		gs.ContainerStyle = style;
+        		
+        		return gs;
+        	}
+        	
+
+        	
+        	lb.GroupStyle.Add(createGroupStyle());
+            
+			
+			lb.Template = CreateListBoxTemplate();
+			lb.ItemsPanel = CreateItemsPanel();
+			//lb.SelectAllImpl();
+			lb.AlternationCount = 3;
+			
+			//lb.ItemTemplate = CreateListBoxItemTemplate();
+
+			//btn.Template = CreateTemplate();
+			//btn.ApplyTemplate();
+			//btn.OnClick();
+			
+			 function CreateListBoxItemControlTemplate()
+		        {
+		            /* ControlTemplate */var template = new ControlTemplate(ListBoxItem.Type);
+
+		            /* FrameworkElementFactory */
+		            var rootfactory = new FrameworkElementFactory(Border.Type, "border");
+		            //rootfactory.SetValue(Border.CornerRadiusProperty, CornerRadus);
+		            //rootfactory.SetValue(Border.BackgroundProperty, new SolidColorBrush(Colors.YellowGreen));
+
+
+		            /* FrameworkElementFactory */ 
+		            var cp = new FrameworkElementFactory(ContentPresenter.Type, "cp1");
+		            //rootfactory.SetValue(Border.BorderBrushProperty, BorderColor);
+		            //rootfactory.SetValue(Border.BorderThicknessProperty, BorderThickness);
+
+     				/* <ControlTemplate.Triggers>
+                        <Trigger Property="IsSelected" Value="true">
+                            <Setter TargetName="Border" Property="Background" Value="Red"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers> */
+                    
+                    var trg = new Trigger();
+                    trg.Property = Selector.IsSelectedProperty;
+                    trg.Value = true;
+                    
+                    var brush = new SolidColorBrush(Colors.Red);
+                    brush.Seal();
+                    
+                    setter = new Setter(Control.BackgroundProperty, brush, "border");
+                    trg.AddChild(setter);
+                    
+                    template.Triggers.Add(trg);
+                    
+		            rootfactory.AppendChild(cp);
+		            template.VisualTree = rootfactory;
+		            
+		            template.Seal();
+		            return template;
+		        }
+			 
+			 function CreatePageTemplate()
+		        {
+		            /* ControlTemplate */var template = new ControlTemplate(Page.Type);
+
+		            /* FrameworkElementFactory */
+		            var rootfactory = new FrameworkElementFactory(Border.Type, "border");
+		            //rootfactory.SetValue(Border.CornerRadiusProperty, CornerRadus);
+		            //rootfactory.SetValue(Border.BackgroundProperty, new SolidColorBrush(Colors.YellowGreen));
+
+
+		            /* FrameworkElementFactory */ 
+		            var cp = new FrameworkElementFactory(ContentPresenter.Type, "cp1");
+		            //rootfactory.SetValue(Border.BorderBrushProperty, BorderColor);
+		            //rootfactory.SetValue(Border.BorderThicknessProperty, BorderThickness);
+
+
+		            rootfactory.AppendChild(cp);
+		            template.VisualTree = rootfactory;
+		            
+		            template.Seal();
+		            return template;
+		        }
+			
+			function CreateStyle(){
+				var style = new Style(ListBoxItem.Type);
+				var setter = new Setter(Control.TemplateProperty, CreateListBoxItemControlTemplate());
+				style.AddChild(setter);
+				
+				return style;
+			}
+			
+			lb.Resources.Set(ListBoxItem.Type, CreateStyle());
+			
+			
+			var page = new Page();
+			
+
+			page.Resources.Set(new DataTemplateKey(Person.Type), CreatePersonTemplate());
+			
+ 			var pStyle = new Style(TextBlock.Type);
+			var trg1 = new Trigger();
+			trg1.Property = UIElement.IsMouseOverProperty;
+			trg1.Value = true;
+			
+			var brush = new SolidColorBrush(Colors.YellowGreen);
+			brush.Seal();
+			var setter1 =new Setter(TextBlock.ForegroundProperty, brush);
+			trg1.AddChild(setter1);
+			pStyle.Triggers.Add(trg1);
+			
+			brush = new SolidColorBrush(Colors.Red);
+			brush.Seal();
+			pStyle.AddChild(new Setter(TextBlock.BackgroundProperty, brush));
+			
+			pStyle.Seal();
+			panel.Resources.Set(TextBlock.Type, pStyle); 
+			//page.Style = pStyle;
+	
+			page.AddChild(panel);
+			page.Template = CreatePageTemplate();
+			
+			page.DataContext= "My DataContext";
+			//page.Foreground = new SolidColorBrush(Colors.YellowGreen);
+			
+			var arrangeStartDate = new Date();
+			console.log("loader complete: " + (arrangeStartDate.getMilliseconds() - loadEndDate.getMilliseconds()));
+			page.Arrange();
+			console.log("Arrange begin: " + (new Date().getMilliseconds() - arrangeStartDate.getMilliseconds()));
+			
+/* 			page.AddHandler(Keyboard.PreviewKeyDownEvent, new KeyEventHandler(this, function(sender, event)
+				{
+				//event.Handled = true;
+					console.log("page routed PreviewKeyDownEvent! key= " + event.Key);
+				}
+			));
+			panel.AddHandler(Keyboard.KeyDownEvent, new KeyEventHandler(this, function(sender, event)
+				{
+				console.log("panel routed KeyDownEvent! key= " +  event.Key + " modifier : " + Keyboard.Modifiers);
+				}
+			));
+			
+			panel.AddHandler(Keyboard.PreviewKeyDownEvent, new KeyEventHandler(this, function(){console.log("panel routed PreviewKeyDownEvent!");}));
+			page.AddHandler(Keyboard.KeyDownEvent, new KeyEventHandler(this, function(){console.log("page routed KeyDownEvent!");}));
+			
+			
+			page.AddHandler(Keyboard.PreviewKeyUpEvent, new KeyEventHandler(this, function(sender, event)
+					{
+				//event.Handled = true;
+					console.log("page routed PreviewKeyUpEvent!");
+					}
+			));
+			panel.AddHandler(Keyboard.KeyUpEvent, new KeyEventHandler(this, function(){console.log("panel routed KeyUpEvent!");}));
+			
+			panel.AddHandler(Keyboard.PreviewKeyUpEvent, new KeyEventHandler(this, function(){console.log("panel routed PreviewKeyUpEvent!");}));
+			page.AddHandler(Keyboard.KeyUpEvent, new KeyEventHandler(this, function(){console.log("page routed KeyUpEvent!");})); */
+			
+			//alert(btn.DataContext/* .Color.R */);
+			
+	/* 		var element = document.createElement("div");
+			element.className = "message";
+			var textNode = document.createTextNode("Hello world!");
+			element.appendChild(textNode);
+			
+			var spanNode = document.createElement("span");
+			spanNode.appendChild(document.createTextNode("I am a SPAN!"));
+			element.appendChild(spanNode);
+			
+			
+			var anotherTextNode = document.createTextNode("Yippee!");
+			element.appendChild(anotherTextNode);
+			document.body.appendChild(element); */
+			var focusable = lb.Focusable;
+			alert("Focusable: " + focusable);
+			
+			var p;
+			
+			var addBtn = document.createElement("input");
+			addBtn.setAttribute("type", "button");
+			addBtn.setAttribute("value", "add");
+			addBtn.addEventListener("click", function(){
+	
+				p = new Person("tom888");
+				lb.AddChild(p); 
+				//var item = lb.ContainerFromElement(person);
+				//alert(item.Content);
+				//alert(page);
+				
+			});
+			document.body.appendChild(addBtn);
+			
+			
+			var deleteBtn = document.createElement("input");
+			deleteBtn.setAttribute("type", "button");
+			deleteBtn.setAttribute("value", "delete");
+			deleteBtn.addEventListener("click", function(){
+	
+				lb.Items.Remove(p); 
+				//var item = lb.ContainerFromElement(person);
+				//alert(item.Content);
+				//alert(page);
+				
+			});
+			document.body.appendChild(deleteBtn);
+			
+			
+			var selectBtn = document.createElement("input");
+			selectBtn.setAttribute("type", "button");
+			selectBtn.setAttribute("value", "select2");
+			selectBtn.addEventListener("click", function(){
+	
+				lb.SelectedIndex = 2; 
+				//var item = lb.ContainerFromElement(person);
+				//alert(item.Content);
+				//alert(page);
+				var li = lb.SelectedItem;
+				
+				alert(lb.SelectedItem);
+			});
+			document.body.appendChild(selectBtn);
+			
+			function GetPos(obj){ 
+				var pos=new Object(); 
+				pos.x=obj.offsetLeft; 
+				pos.y=obj.offsetTop; 
+				while(obj=obj.offsetParent){ 
+				pos.x+=obj.offsetLeft; 
+				pos.y+=obj.offsetTop; 
+				} 
+				return pos; 
+				}; 
+				
+			alert(GetPos(document.getElementById("test1")).x)
+			
+			
+		});
+
+	</script>
+</body>
+</html>

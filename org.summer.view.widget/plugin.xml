@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://www.summer.org/view/widget"
+            class="org.summer.view.widget.WidgetPackage"
+            genModel="model/views.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="shapes"
+            class="org.summer.view.widget.shapes.ShapesPackage"
+            genModel="model/views.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="controls"
+            class="org.summer.view.widget.controls.ControlsPackage"
+            genModel="model/views.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="primitives"
+            class="org.summer.view.widget.controls.primitives.PrimitivesPackage"
+            genModel="model/views.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="style"
+            class="org.summer.view.widget.style.StylePackage"
+            genModel="model/views.genmodel"/>
+   </extension>
+
+</plugin>

@@ -1,0 +1,472 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="expires" content="FRI,1 JUN 2016 00 00 00 GMT">
+<title>Insert title here</title>
+
+	<script>
+		var dojoConfig = {
+		    baseUrl: "js",
+		    tlmSiblingOfDojo: false,
+		    packages: [
+		        { name: "dojo", location: "lib/dojo" },
+		        { name: "dijit", location: "lib/dijit" },
+		        { name: "dojox", location: "lib/dojox" },
+		        { name: "test", location: "test" },
+		        { name: "utility", location: "MS/utility" },
+		        { name: "reflection", location: "system/reflection" },
+		        { name: "internal", location: "MS/internal" },
+		        { name: "system", location: "system" },
+		        { name: "data", location: "system/windows/data" },
+		        { name: "text", location: "system/text" },
+		        { name: "dom", location: "system/windows/dom" },
+		        
+		        { name: "documents", location: "system/windows/documents" },
+		        
+		        { name: "input", location: "system/windows/input" },
+		        { name: "shapes", location: "system/windows/shapes" },
+		        { name: "media", location: "system/windows/media" },
+		        { name: "markup", location: "system/windows/markup" },  
+		        { name: "controls", location: "system/windows/controls" },	
+		        { name: "primitives", location: "system/windows/controls/primitives" },
+		        { name: "animation", location: "system/windows/media/animation" },
+		        
+		        { name: "collections", location: "system/collections" },
+		        { name: "generic", location: "system/collections/generic" },
+		        { name: "objectmodel", location: "system/collections/objectmodel" },
+		        { name: "specialized", location: "system/collections/specialized" },
+		        { name: "componentmodel", location: "system/componentmodel" },
+		        
+		        { name: "internal.data", location: "MS/internal/data" },
+		        { name: "internal.commands", location: "MS/internal/commands" },
+		        { name: "internal.controls", location: "MS/internal/controls" },
+		        { name: "threading", location: "system/windows/threading" },
+		        { name: "windows", location: "system/windows"},
+		        { name: "my", location: "my"
+		        	, main: "app" 
+		        	}
+		    ]
+		};
+	</script>
+
+	<script type="text/javascript"  data-dojo-config="async: true" src="js/lib/dojo.js"></script>
+	
+
+	
+	<style type="text/css">
+	span {
+	font-weight:bold;
+	color:#ff9955;
+	}
+	</style>
+	
+</head>
+<body>
+	<div id="test1" />
+	<p>asasasasasa</p>
+	<script>
+	
+		//console.log(require);
+		// using the class elsewhere...
+		console.log("loader begin: " +　new Date());
+		var startDate = new Date();
+		require(["dojo/_base/declare", "internal.data/ViewManager", "internal.data/CommitManager",
+		         "internal.data/CollectionViewProxy",
+		         "windows/FrameworkContentElement", "windows/FrameworkElement", "controls/ItemsControl", "controls/ContextMenu",
+		         "controls/StackPanel", "windows/Style", "controls/ContextMenuService",
+		         "internal/FrameworkObject", 
+		         "controls/Control", "windows/ControlTemplate", "primitives/Popup", "primitives/ButtonBase", "controls/Button", 
+		         "windows/RoutedEventHandler", "windows/FrameworkElementFactory",
+		         "controls/ListBox", "controls/ListBoxItem", "controls/Page", "controls/ItemsPresenter",
+		         "controls/ItemsPanelTemplate",
+		         "windows/Setter", "controls/TreeViewItem",
+		         "media/Colors", "controls/PasswordBox",
+		         "windows/DataTemplateKey", "controls/TextBox",
+		         "controls/Canvas",
+		         "shapes/Rectangle", "windows/Trigger", "windows/DataTrigger", 
+		         "componentmodel/INotifyPropertyChanged",
+		         "input/Mouse", "input/MouseButtonEventHandler",
+		         "input/Keyboard", "controls/SelectionMode",
+		         "controls/ClickMode", "dom/Img", "data/BindingListCollectionView",
+		         "data/PropertyGroupDescription",
+		         "shapes/Ellipse", "shapes/Line", "shapes/Polygon", "shapes/Polyline", "shapes/Path",
+		         "media/MatrixTransform", "windows/PropertyPath",
+		         "controls/ComboBox",
+		         "windows/Text", "windows/Margin", "controls/Border", "windows/Layout", "controls/Background"], 
+				function(declare, ViewManager, CommitManager,
+						CollectionViewProxy,
+						FrameworkContentElement, FrameworkElement, ItemsControl, ContextMenu,
+						StackPanel, Style, ContextMenuService, 
+						FrameworkObject, 
+						Control, ControlTemplate, Popup, ButtonBase, Button, 
+						RoutedEventHandler, FrameworkElementFactory,
+						ListBox, ListBoxItem, Page, ItemsPresenter,
+						ItemsPanelTemplate,
+						Setter, TreeViewItem,
+						Colors, PasswordBox,
+						DataTemplateKey, TextBox,
+						Canvas,
+						Rectangle, Trigger, DataTrigger, 
+						INotifyPropertyChanged,
+						Mouse, MouseButtonEventHandler,
+						Keyboard, SelectionMode,
+						ClickMode, Img, BindingListCollectionView,
+						PropertyGroupDescription,
+						Ellipse, Line, Polygon, Polyline, Path,
+						MatrixTransform, PropertyPath,
+						ComboBox,
+						Text, Margin, Border, Layout, Background){
+			
+			
+/* 			<Window.Resources>
+		    <src:CharacterCollection x:Key="Characters">
+		      <src:Character First="Bart" Last="Simpson" Age="10" 
+		          Gender="Male" Image="images/bart.png" Location="25,150" />
+		      <src:Character First="Homer" Last="Simpson" Age="38" 
+		          Gender="Male" Image="images/homer.png" Location="75,0" />
+		      <src:Character First="Lisa" Last="Bouvier" Age="8" 
+		          Gender="Female" Image="images/lisa.png" Location="125,150" />
+		      <src:Character First="Maggie" Last="Simpson" Age="0" 
+		          Gender="Female" Image="images/maggie.png" Location="225,150" />
+		      <src:Character First="Marge" Last="Bouvier" Age="38" 
+		          Gender="Female" Image="images/marge.png" Location="175,0" />
+		    </src:CharacterCollection> */
+			var Character = declare("Character", INotifyPropertyChanged, {
+				constructor:function(first, last, age, gender, image, location){
+			    	this.First = first;
+			    	this.Last = last;
+			    	this.Age = age;
+			    	this.Gender = gender;
+			    	this.Image = image;
+			    	this.Location = location;
+			    }
+			});
+		    
+		    Object.defineProperties(Character.prototype, {
+		    	First:{
+		    		get:function(){return this._first;},
+		    		set:function(value) {this._first = value; }
+		    	},
+		    	Last:{
+		    		get:function(){return this._last;},
+		    		set:function(value) {this._last = value; }
+		    	},
+		    	Age:{
+		    		get:function(){return this._age;},
+		    		set:function(value) {this._age = value; }
+		    	},
+		    	Gender:{
+		    		get:function(){return this._gender;},
+		    		set:function(value) {this._gender = value; }
+		    	},
+		    	Image:{
+		    		get:function(){return this._image;},
+		    		set:function(value) {this._image = value; }
+		    	},
+		    	Location:{
+		    		get:function(){return this._location;},
+		    		set:function(value) {this._location = value; }
+		    	},
+		    	
+		    });
+		    Character.Type = new Type("Character", Character, [INotifyPropertyChanged.Type]);
+		    
+		    var Location = declare("Location", INotifyPropertyChanged, {
+				constructor:function(x, y){
+			    	this.X = x;
+			    	this.Y = y;
+			    }
+			});
+		    
+		    Object.defineProperties(Location.prototype, {
+		    	X:{
+		    		get:function(){return this._x;},
+		    		set:function(value) {this._x = value; }
+		    	},
+		    	Y:{
+		    		get:function(){return this._y;},
+		    		set:function(value) {this._y = value; }
+		    	},
+		    	
+		    });
+		    Location.Type = new Type("Location", Location, [INotifyPropertyChanged.Type]);
+		    
+		    
+		    /*
+		    <src:CharacterCollection x:Key="Characters">
+		      <src:Character First="Bart" Last="Simpson" Age="10" 
+		          Gender="Male" Image="images/bart.png" Location="25,150" />
+		      <src:Character First="Homer" Last="Simpson" Age="38" 
+		          Gender="Male" Image="images/homer.png" Location="75,0" />
+		      <src:Character First="Lisa" Last="Bouvier" Age="8" 
+		          Gender="Female" Image="images/lisa.png" Location="125,150" />
+		      <src:Character First="Maggie" Last="Simpson" Age="0" 
+		          Gender="Female" Image="images/maggie.png" Location="225,150" />
+		      <src:Character First="Marge" Last="Bouvier" Age="38" 
+		          Gender="Female" Image="images/marge.png" Location="175,0" />
+		    </src:CharacterCollection> */
+		    
+		    var Characters = new Collection();
+		    Characters.Add(new Character("Homer", "Simpson", "38", "Male", "images/homer.png", new Location("80px","10px")));
+		    Characters.Add(new Character("Marge", "Bouvier", "38" ,"Female", "images/marge.png", new Location("200px","10px")));
+		    
+		    Characters.Add(new Character("Bart", "Simpson", "10", "Male", "images/bart.png", new Location("20px","180px")));
+		    Characters.Add(new Character("Lisa", "Bouvier", "8" ,"Female", "images/lisa.png", new Location("150px","180px")));
+		    Characters.Add(new Character("Maggie", "Simpson", "0", "Female", "images/maggie.png", new Location("280px","180px")));
+
+		   
+/* 		    <DataTemplate DataType="{x:Type src:Character}">
+		      <StackPanel Orientation="Vertical" Margin="5">
+		        <TextBlock FontWeight="Bold" Text="{Binding First}"
+		            TextAlignment="Center" />
+		        <Image Margin="0,5,0,0" Source="{Binding Image}" />
+		      </StackPanel>
+		    </DataTemplate> */
+		    
+		    function CharacterTemplate(){
+	            var template = new DataTemplate();
+
+	            var panel = new FrameworkElementFactory(StackPanel.Type);
+	            var textBlock = new FrameworkElementFactory(TextBlock.Type);
+	            var binding = new Binding();
+	            binding.Path = new PropertyPath("First");
+	            binding.Mode = BindingMode.OneWay;
+	            textBlock.SetValue(TextBlock.TextProperty, binding);
+	            textBlock.SetValue(Text.TextAlignProperty, "center");
+	            panel.AppendChild(textBlock);
+	            
+	            var img = new FrameworkElementFactory(Img.Type);
+	            binding = new Binding();
+	            binding.Path = new PropertyPath("Image");
+	            binding.Mode = BindingMode.OneWay;
+	            img.SetValue(Img.SrcProperty, binding);
+	            img.SetValue(Margin.MarginProperty, "0px 5px 0px 0px");
+	            img.SetValue(Layout.MaxWidthProperty, "100%");
+	            img.SetValue(Layout.MaxHeightProperty, "125px");
+	            
+	            panel.AppendChild(img);
+	            
+	            template.VisualTree = panel;
+	            return template;	
+		    }
+		    
+		    function CreateListBoxTemplate()
+	        {
+	            var template = new ControlTemplate(ListBox.Type);
+	            var ip = new FrameworkElementFactory(ItemsPresenter.Type, "ip1");
+	            ip.SetValue(Margin.MarginProperty, "5px");
+	            template.VisualTree = ip;
+	            
+	            return template;
+	        }
+		    
+ 		    function CreateItemsPanel()
+	        {
+	            var rootfactory = new FrameworkElementFactory(StackPanel.Type, "stackPanel");
+	            var template = new ItemsPanelTemplate(rootfactory);
+	            return template;
+	        } 
+	        
+		    /*function CreateItemsPanel()
+	        {
+	            var canvas = new FrameworkElementFactory(Canvas.Type, "canvas");
+	            canvas.SetValue(Layout.WidthProperty, "500px");
+	            canvas.SetValue(Layout.HeightProperty, "800px");
+	            var template = new ItemsPanelTemplate(canvas);
+	            return template;
+	        }*/
+		    
+			var lb = new ListBox();
+			lb.SetValue(Layout.WidthProperty, "500px");
+		    
+            lb.ItemsSource = Characters;
+            
+			lb.Template = CreateListBoxTemplate();
+			lb.ItemsPanel = CreateItemsPanel();
+			//lb.SelectAllImpl();
+			lb.AlternationCount = 3;
+
+            ///* CollectionView */var view = CollectionViewSource.GetDefaultView(lb.ItemsSource);
+            var view = CollectionViewSource.GetDefaultCollectionView(lb.ItemsSource, false);
+            /* PropertyGroupDescription */var groupDescription = new PropertyGroupDescription("Gender");
+            view.GroupDescriptions.Add(groupDescription);
+            
+            groupDescription = new PropertyGroupDescription("Age");
+            view.GroupDescriptions.Add(groupDescription);
+            
+		    function _button_Click(sender, /* RoutedEventArgs */ e)
+	        {
+	           	if(sender instanceof StackPanel){
+			    	alert("你好，你点击了 : StackPanel" + sender.GetValue(FrameworkElement.NameProperty));
+	           	}
+	           	if(sender instanceof Button){
+			    	alert("你好，你点击了 : Button" + sender.GetValue(FrameworkElement.NameProperty));
+	           	}
+	        } 
+            var panel = new StackPanel();
+		    panel.SetValue(FrameworkElement.NameProperty, "dib");
+		    panel.AddHandler(ButtonBase.ClickEvent, new RoutedEventHandler(panel, _button_Click));
+			//lb.SelectionMode = SelectionMode.Extended;
+			panel.AddChild(lb);
+		    
+		    function CreatePageTemplate()
+	        {
+	            var template = new ControlTemplate(Page.Type);
+	            var cp = new FrameworkElementFactory(ContentPresenter.Type, "cp1");
+
+	            template.VisualTree = cp;
+	            return template;
+	        }
+		    
+		    function CreateListBoxItemControlTemplate()
+	        {
+	            var template = new ControlTemplate(ListBoxItem.Type);
+
+	            var cp = new FrameworkElementFactory(ContentPresenter.Type, "cp1");
+
+ 				/* <ControlTemplate.Triggers>
+                    <Trigger Property="IsSelected" Value="true">
+                        <Setter TargetName="Border" Property="Background" Value="Red"/>
+                    </Trigger>
+                </ControlTemplate.Triggers> */
+                
+                var binding = new Binding();
+                binding.Path = new PropertyPath("Gender");
+                binding.Mode = BindingMode.OneWay;
+                var trg = new DataTrigger();
+                trg.Binding = binding;
+                trg.Value = "Female";
+                
+                setter = new Setter(Background.ColorProperty, "rgba(127, 61, 106, 0.6)"/* "#FFF339CB" */, "cp1");
+                trg.AddChild(setter);
+                template.Triggers.Add(trg);
+                
+                var trg = new Trigger();
+                trg.Property = Selector.IsSelectedProperty;
+                trg.Value = true;
+                
+                setter = new Setter(Background.ColorProperty, "blue", "cp1");
+                trg.AddChild(setter);
+                
+                template.Triggers.Add(trg);
+                
+            	/*             <Style.Triggers>
+	            <DataTrigger Binding="{Binding Gender} " Value="Female">
+	              <Setter Property="Background" Value="#FFF339CB" />
+	            </DataTrigger>
+          	</Style.Triggers> */
+                
+	            //rootfactory.AppendChild(cp);
+	            template.VisualTree = cp;
+	            
+	            return template;
+	        }
+		    
+		    function CreateListBoxItemControlTemplate1()
+	        {
+	            var template = new ControlTemplate(ListBoxItem.Type);
+
+	            var cp = new FrameworkElementFactory(ContentPresenter.Type, "cp1");
+                
+                var binding = new Binding();
+                binding.Path = new PropertyPath("Gender");
+                binding.Mode = BindingMode.OneWay;
+                var trg = new DataTrigger();
+                trg.Binding = binding;
+                trg.Value = "Female";
+                
+                setter = new Setter(Background.ColorProperty, "rgba(127, 61, 106, 0.6)"/* "#FFF339CB" */, "cp1");
+                trg.AddChild(setter);
+                template.Triggers.Add(trg);
+                
+                var trg = new Trigger();
+                trg.Property = Selector.IsSelectedProperty;
+                trg.Value = true;
+                
+                setter = new Setter(Background.ColorProperty, "blue", "cp1");
+                trg.AddChild(setter);
+                
+                template.Triggers.Add(trg);
+                
+       	/*  <Style.Triggers>
+	            <DataTrigger Binding="{Binding Gender} " Value="Female">
+	              <Setter Property="Background" Value="#FFF339CB" />
+	            </DataTrigger>
+          	</Style.Triggers> */
+                
+	            //rootfactory.AppendChild(cp);
+	            template.VisualTree = cp;
+	            
+	            return template;
+	        }
+		
+			function ListBoxItemStyle(){
+				var style = new Style(ListBoxItem.Type);
+ 				/* <ControlTemplate.Triggers>
+	                <Trigger Property="IsSelected" Value="true">
+	                    <Setter TargetName="Border" Property="Background" Value="Red"/>
+	                </Trigger>
+           		 </ControlTemplate.Triggers> */
+            
+   /*           <Setter Property="Canvas.Left" Value="{Binding Location.X}" />
+            	<Setter Property="Canvas.Top" Value="{Binding Location.Y}" /> */
+            	
+ 	         	var binding = new Binding();
+	            binding.Path = new PropertyPath("Location.Y");
+	            binding.Mode = BindingMode.OneWay;
+	            
+	            var setter = new Setter(Canvas.TopProperty, binding); 
+	            //var setter = new Setter(Canvas.TopProperty, "200px"); 
+				style.AddChild(setter);
+            
+            	//cp.SetValue(Canvas.TopProperty, "100px");
+            
+                 binding = new Binding();
+	            binding.Path = new PropertyPath("Location.X");
+	            binding.Mode = BindingMode.OneWay;
+	            setter = new Setter(Canvas.LeftProperty, binding); 
+	            //setter = new Setter(Canvas.LeftProperty, "200px");
+	            style.AddChild(setter);
+            	//cp.SetValue(Canvas.LeftProperty, "100px");
+            	
+                setter = new Setter(Margin.MarginProperty, "5px");
+	            style.AddChild(setter);
+	            
+                setter = new Setter(Border.BorderProperty, "solid thin red");
+	            style.AddChild(setter);
+	            
+                setter = new Setter(Border.RadiusProperty, "5px");
+	            style.AddChild(setter);
+	            
+                setter = new Setter(Layout.WidthProperty, "80px");
+	            style.AddChild(setter);
+	            
+                setter = new Setter(Layout.HeightProperty, "140px");
+	            style.AddChild(setter);
+            
+				setter = new Setter(Control.TemplateProperty, CreateListBoxItemControlTemplate());
+				style.AddChild(setter);
+				
+				return style;
+			}
+			
+			lb.Resources.Set(ListBoxItem.Type, ListBoxItemStyle());
+			
+			var page = new Page();
+			page.Resources.Set(new DataTemplateKey(Character.Type), CharacterTemplate());
+			
+			page.AddChild(panel);
+			page.Template = CreatePageTemplate();
+			
+			page.DataContext= "My DataContext";
+			//page.Foreground = new SolidColorBrush(Colors.YellowGreen);
+			
+			page.Arrange();
+			
+			
+		});
+
+	</script>
+</body>
+</html>

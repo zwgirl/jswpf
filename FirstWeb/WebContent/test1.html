@@ -1,0 +1,51 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>requirejs 应用</title>
+</head>
+<style>
+</style>
+<body>
+<!--<script src="js/jquery-1.6.2.min.js"></script>-->
+<script src="require.js"></script>
+<script>
+define("Employee", function () {
+    //You can name this function here,
+    //which can help in debuggers but
+    //has no impact on the module name.
+    return function(first, last) {
+        this.first = first; 
+        this.last = last;
+    };
+});
+
+/*
+define("main", ["Employee"], function (Employee) {
+    var john = new Employee("John", "Smith");
+	//alert(john.first);
+});*/
+
+/*  
+ @ 这时的require包括了define里定义的对象变量及加载js文件对象.
+ @ function(Employee)里的Employee,是需要通过define里的变量传递过来形参;
+*/
+
+require(["Employee", "js/test", "jquery-1.9.1"], function(Employee11) {
+ 
+	//alert(this.name)
+	var john = new Employee11("John", "Smith");
+ 	alert(john.first)
+	alert(objstu.country);
+	var inputVal = $("input:checkbox").prop("name");
+	alert(inputVal);
+});
+
+
+</script>
+<div id="dic">sssssssssssss</div>
+用户名：<input type="text" name="username" value="1244555" /><br/>
+性别：　<input type="checkbox" name="sex" value="0" /> 
+</body>
+</html>

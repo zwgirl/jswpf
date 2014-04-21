@@ -1,0 +1,129 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+
+	<script>
+		var dojoConfig = {
+		    baseUrl: "js",
+		    tlmSiblingOfDojo: false,
+		    packages: [
+		        { name: "dojo", location: "lib/dojo" },
+		        { name: "dijit", location: "lib/dijit" },
+		        { name: "dojox", location: "lib/dojox" },
+		        { name: "utility", location: "MS/utility" },
+		        { name: "internal", location: "MS/internal" },
+		        { name: "system", location: "system" },
+		        { name: "data", location: "system/windows/data" },
+		        
+		        { name: "documents", location: "system/windows/documents" },
+		        { name: "input", location: "system/windows/input" },
+		        { name: "media", location: "system/windows/media" },
+		        { name: "markup", location: "system/windows/markup" },  
+		        { name: "controls", location: "system/windows/controls" },	
+		        { name: "primitives", location: "system/windows/controls/primitives" },
+		        { name: "animation", location: "system/windows/media/animation" },
+		        
+		        { name: "collections", location: "system/collections" },
+		        { name: "generic", location: "system/collections/generic" },
+		        { name: "objectmodel", location: "system/collections/objectmodel" },
+		        { name: "specialized", location: "system/collections/specialized" },
+		        { name: "componentmodel", location: "system/componentmodel" },
+		        
+		        { name: "internal.data", location: "MS/internal/data" },
+		        { name: "internal.commands", location: "MS/internal/commands" },
+		        { name: "internal.controls", location: "MS/internal/controls" },
+		        { name: "threading", location: "system/windows/threading" },
+		        { name: "windows", location: "system/windows"},
+		        { name: "my", location: "my"
+		        	, main: "app" 
+		        	}
+		    ]
+		};
+	</script>
+
+	<script type="text/javascript"  data-dojo-config="async: true" src="js/lib/dojo.js"></script>
+	
+</head>
+<body>
+	<div id="test1" />
+	<script>
+	
+		//console.log(require);
+		// using the class elsewhere...
+		require([
+		         "windows/FrameworkContentElement", "windows/FrameworkElement", "controls/ItemsControl", "controls/ContextMenu",
+		         "controls/StackPanel", "windows/Style", "controls/ContextMenuService",
+		         "internal/FrameworkObject", 
+		         "controls/Control", "windows/ControlTemplate", "primitives/Popup", "primitives/ButtonBase", "controls/Button", 
+		         "windows/RoutedEventHandler", "windows/FrameworkElementFactory", "controls/Border",
+		         "controls/ContentPresenter"], 
+				function(
+						FrameworkContentElement, FrameworkElement, ItemsControl, ContextMenu,
+						StackPanel, Style, ContextMenuService, 
+						FrameworkObject, 
+						Control, ControlTemplate, Popup, ButtonBase, Button, 
+						RoutedEventHandler, FrameworkElementFactory, Border,
+						ContentPresenter
+						){
+		    function _button_Click(sender, /* RoutedEventArgs */ e)
+	        {
+	           	if(sender instanceof StackPanel){
+			    	alert("你好，你点击了 : StackPanel" + sender.GetValue(FrameworkElement.NameProperty));
+	           	}
+	           	if(sender instanceof Button){
+			    	alert("你好，你点击了 : Button" + sender.GetValue(FrameworkElement.NameProperty));
+	           	}
+	        } 
+		    
+		    function CreateTemplate()
+	        {
+	            /* ControlTemplate */var template = new ControlTemplate(Button.Type);
+
+	            /* FrameworkElementFactory */
+	            var rootfactory = new FrameworkElementFactory(Border.Type, "border");
+	            //rootfactory.SetValue(Border.CornerRadiusProperty, CornerRadus);
+	            //rootfactory.SetValue(Border.BackgroundProperty, new SolidColorBrush(Colors.YellowGreen));
+
+	            /* FrameworkElementFactory */
+	            var stackPanel = new FrameworkElementFactory(StackPanel.Type, "stackPanel");
+
+	            /* FrameworkElementFactory */ 
+	            var cp = new FrameworkElementFactory(ContentPresenter.Type, "cp1");
+	            //rootfactory.SetValue(Border.BorderBrushProperty, BorderColor);
+	            //rootfactory.SetValue(Border.BorderThicknessProperty, BorderThickness);
+
+	            stackPanel.AppendChild(cp);
+
+	            rootfactory.AppendChild(stackPanel);
+	            template.VisualTree = rootfactory;
+	            
+	            template.Seal();
+	            return template;
+	        }
+		    
+		    var panel = new StackPanel();
+		    panel.SetValue(FrameworkElement.NameProperty, "dib");
+		    panel.AddHandler(ButtonBase.ClickEvent, new RoutedEventHandler(panel, _button_Click));
+		    
+			var btn = new Button();
+			btn.SetValue(FrameworkElement.NameProperty, "save");
+			btn.AddClickHandler( new RoutedEventHandler(btn, _button_Click));
+			
+			btn.AddChild("sasasa");
+			panel.AddChild(btn);
+			
+
+			btn.Template = CreateTemplate();
+			btn.ApplyTemplate();
+			btn.OnClick();
+			
+			
+			
+			
+		});
+
+	</script>
+</body>
+</html>

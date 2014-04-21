@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+
+   
+	body {
+	 /* First, we define body as a grid element */
+	 display: grid;
+	   
+	 /* Then, we define the number of columns we want by setting their dimensions */
+	 /* Beware, gaps between columns will be actual columns too */
+	 /* 1. This means there are 3 columns: 
+	  * the first one is 200px wide
+	  * the second one will be a margin (1%) 
+	  * the third one will occupy the remaining space 
+	  */
+	 grid-columns: 200px 1% 1fr; /* 1 */
+	   
+	 /* Now we define the number of rows and their dimensions */
+	 /* 2. this means there are 5 rows: 
+	  * the first one will be sized according to its content
+	  * the second one will be a margin
+	  * the third one will be sized according to its content
+	  * the fourth one will be a margin as well
+	  * the last one will be sized according to its content 
+	  */
+	 grid-rows: auto 15px auto 15px auto; /* 2 */
+	   
+	 /* The body element is now a 3*5 grid. */
+	}
+	 
+	/* Both the header and the footer will be full width, so we have to make them occupy the 3 columns */
+	.header, 
+	.footer {
+	  grid-column-span: 3;
+	}
+	
+	/* Let's define in which row the header will be: the first one */
+	.header {
+	  grid-row: 1;
+	}
+	 
+	/* Same for the footer: the last one so the fifth (remember margins count as cols/rows */
+	.footer {
+	  grid-row: 5;
+	}
+	 
+	.sidebar {
+	  /* The sidebar will occupy the first column which is 200px wide */
+	  grid-column: 1;
+	  /* And the 3rd row (there are the header and a margin before) */
+	  grid-row: 3;
+	}
+	 
+	.main {
+	  /* The main content will be on the 3rd column and the 3rd row */
+	 grid-column: 3;
+	 grid-row: 3;
+	}
+</style>
+</head>
+
+<body>
+	<div class="main">
+	  My awesome content here
+	</div>
+	  
+	<footer class="footer">
+	   Some informations here
+	</footer>
+	  
+	<header class="header">
+	  My site title goes here
+	</header>
+	  
+	<aside class="sidebar">
+	    Here is my side content
+	</aside>
+
+</body>
+</html>

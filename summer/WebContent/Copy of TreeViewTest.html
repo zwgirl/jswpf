@@ -1,0 +1,400 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+
+
+  
+  <style type="text/css">
+
+	table, th, td
+  {
+  border: 1px solid blue;
+  border-collapse: collapse;
+  }
+
+</style>
+
+	<script>
+		var dojoConfig = {
+		    baseUrl: "js",
+		    tlmSiblingOfDojo: false,
+		    packages: [
+		        { name: "dojo", location: "lib/dojo" },
+		        { name: "dijit", location: "lib/dijit" },
+		        { name: "dojox", location: "lib/dojox" },
+		        { name: "utility", location: "MS/utility" },
+		        { name: "internal", location: "MS/internal" },
+		        { name: "system", location: "system" },
+		        { name: "data", location: "system/windows/data" },
+		        
+		        { name: "documents", location: "system/windows/documents" },
+		        { name: "input", location: "system/windows/input" },
+		        { name: "media", location: "system/windows/media" },
+		        { name: "markup", location: "system/windows/markup" },  
+		        { name: "controls", location: "system/windows/controls" },	
+		        { name: "primitives", location: "system/windows/controls/primitives" },
+		        { name: "animation", location: "system/windows/media/animation" },
+		        
+		        { name: "collections", location: "system/collections" },
+		        { name: "generic", location: "system/collections/generic" },
+		        { name: "objectmodel", location: "system/collections/objectmodel" },
+		        { name: "specialized", location: "system/collections/specialized" },
+		        { name: "componentmodel", location: "system/componentmodel" },
+		        
+		        { name: "internal.data", location: "MS/internal/data" },
+		        { name: "internal.commands", location: "MS/internal/commands" },
+		        { name: "internal.controls", location: "MS/internal/controls" },
+		        { name: "threading", location: "system/windows/threading" },
+		        { name: "windows", location: "system/windows"},
+		        { name: "my", location: "my"
+		        	, main: "app" 
+		        	}
+		    ]
+		};
+	</script>
+
+	<script type="text/javascript"  data-dojo-config="async: true" src="js/lib/dojo.js"></script>
+	
+</head>
+<body>
+	<div id="test1" />
+	<script>
+	
+		//console.log(require);
+		// using the class elsewhere...
+		require(["dojo/_base/declare", "internal.data/ViewManager", "internal.data/CommitManager",
+		         "windows/FrameworkContentElement", "windows/FrameworkElement", "controls/ItemsControl", "controls/ContextMenu",
+		         "controls/StackPanel", "windows/Style", "controls/ContextMenuService",
+		         "internal/FrameworkObject", 
+		         "controls/Control", "windows/ControlTemplate", "primitives/Popup", "primitives/ButtonBase", "controls/Button", 
+		         "windows/RoutedEventHandler", "windows/FrameworkElementFactory", "controls/Border",
+		         "controls/ContentPresenter",
+		         "controls/Page", "controls/PasswordBox", "controls/TextBlock", "windows/Trigger",
+		         "windows/Application", "documents/Run", "documents/Hyperlink", "documents/LineBreak",
+		         "documents/InlineUIContainer", "documents/FlowDocumentView",
+		         "documents/FlowDocument", "documents/Paragraph", "documents/List", "documents/ListItem",
+		         "controls/DockPanel", "controls/Dock", "controls/Grid",
+		         "controls/ColumnDefinition", "controls/RowDefinition",
+		         "controls/TreeView", "controls/TreeViewItem",
+		         "controls/ItemsPresenter"], 
+				function(declare, ViewManager, CommitManager,
+						FrameworkContentElement, FrameworkElement, ItemsControl, ContextMenu,
+						StackPanel, Style, ContextMenuService, 
+						FrameworkObject, 
+						Control, ControlTemplate, Popup, ButtonBase, Button, 
+						RoutedEventHandler, FrameworkElementFactory, Border,
+						ContentPresenter,
+						Page, PasswordBox, TextBlock, Trigger,
+						Application, Run, Hyperlink, LineBreak,
+						InlineUIContainer, FlowDocumentView, 
+						FlowDocument, Paragraph, List, ListItem,
+						DockPanel, Dock, Grid,
+						ColumnDefinition, RowDefinition,
+						TreeView, TreeViewItem,
+						ItemsPresenter){
+			
+			/*
+			<ControlTemplate TargetType="ToggleButton">
+		        <Grid Width="15"
+		              Height="13"
+		              Background="Transparent">
+		          <Path x:Name="Collapsed"
+		                HorizontalAlignment="Left"
+		                VerticalAlignment="Center"
+		                Margin="1,1,1,1"
+		                Data="M 4 0 L 8 4 L 4 8 Z">
+		            <Path.Fill>
+		              <SolidColorBrush Color="{DynamicResource GlyphColor}" />
+		            </Path.Fill>
+		          </Path>
+		          <Path x:Name="Expanded"
+		                HorizontalAlignment="Left"
+		                VerticalAlignment="Center"
+		                Margin="1,1,1,1"
+		                Data="M 0 4 L 8 4 L 4 8 Z"
+		                Visibility="Hidden">
+		            <Path.Fill>
+		              <SolidColorBrush Color="{DynamicResource GlyphColor}" />
+		            </Path.Fill>
+		          </Path>
+		        </Grid>
+	      	</ControlTemplate>
+	      	*/
+	      	
+	      	function CreateToggleButtonTemplate()
+	        {
+	            /* ControlTemplate */var template = new ControlTemplate(ToggleButton.Type);
+
+	            /* FrameworkElementFactory */
+	            var grid = new FrameworkElementFactory(Grid.Type, "grid");
+	            
+	          
+	            var button = new FrameworkElementFactory(Rectangle.Type, "Rect");
+	            grid.AppendChild(button);
+	            
+
+	            template.VisualTree = grid;
+	            
+	            template.Seal();
+	            return template;
+	        }
+	      
+		 
+			/*
+		      <ControlTemplate TargetType="TreeView">
+		        <Border Name="Border"
+		                CornerRadius="1"
+		                BorderThickness="1">
+		          <Border.BorderBrush>
+		            <SolidColorBrush Color="{DynamicResource BorderMediumColor}" />
+		          </Border.BorderBrush>
+		          <Border.Background>
+		            <SolidColorBrush Color="{DynamicResource ControlLightColor}" />
+		          </Border.Background>
+		          <ScrollViewer Focusable="False"
+		                        CanContentScroll="False"
+		                        Padding="4">
+		            <ItemsPresenter />
+		          </ScrollViewer>
+		        </Border>
+		      </ControlTemplate>
+		      */
+		      
+	      	function CreateTreeViewTemplate()
+	        {
+	            /* ControlTemplate */var template = new ControlTemplate(TreeView.Type);
+
+	            /* FrameworkElementFactory */
+	            var border = new FrameworkElementFactory(Border.Type, "Border");
+	            //rootfactory.SetValue(Border.CornerRadiusProperty, CornerRadus);
+	            //rootfactory.SetValue(Border.BackgroundProperty, new SolidColorBrush(Colors.YellowGreen));
+
+
+	            /* FrameworkElementFactory */ 
+	            var ip = new FrameworkElementFactory(ItemsPresenter.Type, "ip");
+	            //rootfactory.SetValue(Border.BorderBrushProperty, BorderColor);
+	            //rootfactory.SetValue(Border.BorderThicknessProperty, BorderThickness);
+
+
+	            border.AppendChild(ip);
+	            template.VisualTree = border;
+	            
+	            template.Seal();
+	            return template;
+	        }
+		      
+		      /*
+		      <ControlTemplate TargetType="{x:Type TreeViewItem}">
+		        <Grid>
+		          <Grid.ColumnDefinitions>
+		            <ColumnDefinition MinWidth="19"
+		                              Width="Auto" />
+		            <ColumnDefinition Width="Auto" />
+		            <ColumnDefinition Width="*" />
+		          </Grid.ColumnDefinitions>
+		          <Grid.RowDefinitions>
+		            <RowDefinition Height="Auto" />
+		            <RowDefinition />
+		          </Grid.RowDefinitions>
+		          <ToggleButton x:Name="Expander"
+		                        Style="{StaticResource ExpandCollapseToggleStyle}"
+		                        ClickMode="Press"
+		                        IsChecked="{Binding IsExpanded, 
+		            RelativeSource={RelativeSource TemplatedParent}}"/>
+		          <Border x:Name="Bd"
+		                  Grid.Column="1"
+		                  Background="{TemplateBinding Background}"
+		                  BorderBrush="{TemplateBinding BorderBrush}"
+		                  BorderThickness="{TemplateBinding BorderThickness}"
+		                  Padding="{TemplateBinding Padding}">
+		            <ContentPresenter x:Name="PART_Header"
+		                              ContentSource="Header"
+		                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"/>
+		          </Border>
+		          <ItemsPresenter x:Name="ItemsHost"
+		                          Grid.Row="1"
+		                          Grid.Column="1"
+		                          Grid.ColumnSpan="2"
+		                          Visibility="Collapsed" />
+		        </Grid>
+
+		      </ControlTemplate>
+		      */
+	      	
+			function CreateTreeViewItemTemplate()
+	        {
+	            /* ControlTemplate */var template = new ControlTemplate(TreeViewItem.Type);
+
+	            /* FrameworkElementFactory */
+	            var grid = new FrameworkElementFactory(Grid.Type, "grid");
+	            
+	/*             <Grid.RowDefinitions>
+	            <RowDefinition Height="Auto"/>
+	            <RowDefinition Name="ContentRow" Height="0"/>
+	         	 </Grid.RowDefinitions> */
+	         	 var r1 = new FrameworkElementFactory(RowDefinition.Type);
+	             //c1.SetValue(ColumnDefinition.WidthProperty, new GridLength(17.0));
+	             var r2 = new FrameworkElementFactory(RowDefinition.Type);
+	             //c2.SetValue(ColumnDefinition.WidthProperty, new GridLength(30.0));
+	             var c1 = new FrameworkElementFactory(ColumnDefinition.Type);
+	             var c2 = new FrameworkElementFactory(ColumnDefinition.Type);
+	             var c3 = new FrameworkElementFactory(ColumnDefinition.Type);
+
+	             grid.AppendChild(r1);
+	             grid.AppendChild(r2);
+	             grid.AppendChild(c1);
+	             grid.AppendChild(c2);
+	             grid.AppendChild(c3);
+	          
+	          
+	            var toggleButton = new FrameworkElementFactory(ToggleButton.Type, "button");
+	            toggleButton.SetValue(Grid.RowProperty, 0);
+	            toggleButton.SetValue(Control.TemplateProperty, CreateToggleButtonTemplate());
+	            grid.AppendChild(toggleButton);
+	            
+          		var border = new FrameworkElementFactory(Border.Type, "border");
+          		border.SetValue(Grid.ColumnProperty, 1);
+          		//contentBorder.SetValue(Grid.ColumnSpanProperty, 2);
+	            grid.AppendChild(border);
+	            
+	            var contentCp = new FrameworkElementFactory(ContentPresenter.Type, "cp");
+	            border.AppendChild(contentCp);
+	            
+	            
+	            /* FrameworkElementFactory */ 
+	            var ip = new FrameworkElementFactory(ItemsPresenter.Type, "ip");
+	            //rootfactory.SetValue(Border.BorderBrushProperty, BorderColor);
+	            //rootfactory.SetValue(Border.BorderThicknessProperty, BorderThickness);
+	           	ip.SetValue(Grid.ColumnProperty, 1);
+	           	ip.SetValue(Grid.RowProperty, 1);
+	        	ip.SetValue(Grid.ColumnSpanProperty, 2);
+	           	grid.AppendChild(ip);
+
+	            template.VisualTree = grid;
+	            
+	            template.Seal();
+	            return template;
+	        }
+		    
+		    
+		    
+			/*
+			<TreeView>
+	             <TreeViewItem Header="Level 1" IsExpanded="True">
+	                     <TreeViewItem Header="Level 2.1" />
+	                     <TreeViewItem Header="Level 2.2" IsExpanded="True">
+	                             <TreeViewItem Header="Level 3.1" />
+	                             <TreeViewItem Header="Level 3.2" />
+	                     </TreeViewItem>
+	                     <TreeViewItem Header="Level 2.3" />
+	             </TreeViewItem>
+     		</TreeView>
+     		*/
+     		
+     		var treeView = new TreeView();
+     		treeView.Template = CreateTreeViewTemplate();
+     		
+     		var tvi1 = new TreeViewItem();
+     		tvi1.Header = "Level 1";
+     		
+     		var tvi21 = new TreeViewItem();
+     		tvi21.Header = "Level 2.1";
+     		
+       		var tvi22 = new TreeViewItem();
+     		tvi22.Header = "Level 2.2";
+     		
+     		var tvi31 = new TreeViewItem();
+     		tvi31.Header = "Level 3.1";
+    		var tvi32 = new TreeViewItem();
+     		tvi32.Header = "Level 3.2";
+     		
+     		tvi22.AddChild(tvi31);
+     		tvi22.AddChild(tvi32);
+     		
+     		
+     		var tvi23 = new TreeViewItem();
+     		tvi23.Header = "Level 2.3";
+     		
+     		tvi1.AddChild(tvi21);
+     		tvi1.AddChild(tvi22);
+     		tvi1.AddChild(tvi23);
+     		
+     		treeView.AddChild(tvi1);
+     		
+     		
+   			function CreateBtnTemplate()
+	        {
+	            /* ControlTemplate */var template = new ControlTemplate(Button.Type);
+
+	            /* FrameworkElementFactory */
+	            var rootfactory = new FrameworkElementFactory(Border.Type, "border");
+	            //rootfactory.SetValue(Border.CornerRadiusProperty, CornerRadus);
+	            //rootfactory.SetValue(Border.BackgroundProperty, new SolidColorBrush(Colors.YellowGreen));
+
+
+	            /* FrameworkElementFactory */ 
+	            var cp = new FrameworkElementFactory(ContentPresenter.Type, "cp1");
+	            //rootfactory.SetValue(Border.BorderBrushProperty, BorderColor);
+	            //rootfactory.SetValue(Border.BorderThicknessProperty, BorderThickness);
+
+	            rootfactory.AppendChild(cp);
+
+	            template.VisualTree = rootfactory;
+	            
+	            template.Seal();
+	            return template;
+	        }
+     		var btn = new Button();
+     		
+    		var tb = new TextBlock(); 
+			tb.AddChild(new Run("ceshi"));
+     		btn.Content=tb;
+     		btn.Template = CreateBtnTemplate();
+     			
+
+     		var panel = new DockPanel();
+     		btn.SetValue(DockPanel.DockProperty, Dock.Top);
+     		panel.AddChild(btn); 
+     		//panel.AddChild(treeView); 
+     		
+     		
+			function CreatePageTemplate()
+	        {
+	            /* ControlTemplate */var template = new ControlTemplate(Page.Type);
+
+	            /* FrameworkElementFactory */
+	            var border = new FrameworkElementFactory(Border.Type, "border");
+	            //rootfactory.SetValue(Border.CornerRadiusProperty, CornerRadus);
+	            //rootfactory.SetValue(Border.BackgroundProperty, new SolidColorBrush(Colors.YellowGreen));
+
+
+	            /* FrameworkElementFactory */ 
+	            var cp = new FrameworkElementFactory(ContentPresenter.Type, "cp1");
+	            //rootfactory.SetValue(Border.BorderBrushProperty, BorderColor);
+	            //rootfactory.SetValue(Border.BorderThicknessProperty, BorderThickness);
+
+
+	            border.AppendChild(cp);
+	            template.VisualTree = border;
+	            
+	            template.Seal();
+	            return template;
+	        }
+			
+			var page = new Page();
+			page.DataContext = "datacontext";
+			page.Template = CreatePageTemplate();
+			page.AddChild(panel); 
+			
+			page.Arrange();
+			
+			alert("asa");
+			
+			
+		});
+
+	</script>
+</body>
+</html>

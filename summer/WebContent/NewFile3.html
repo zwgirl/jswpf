@@ -1,0 +1,185 @@
+<!Doctype html>
+<html>
+<head>
+<meta charset="UTF-8"/>
+<title>html5,css3,column效果</title>
+<style>
+*{padding:0;margin:0;}
+#wrap{
+column-count:20;
+ -webkit-column-count:22;
+-moz-column-count:1;
+ -moz-column-gap: 28px;
+position:relative;
+margin:0px auto;
+column-width:250px;
+height:1900px;
+-webkit-column-width:250px;
+-moz-cloumn-width:250px;
+}
+#wrap li{width:250px;display:inline-block;list-style:none;}
+.boxCont{position:relative;margin:15px;border:1px solid #ccc;background:#eee;
+background: -webkit-gradient(linear, 0% 20%, 0% 92%, from(#fff), to(#f3f3f3), color-stop(.1,#fff));
+background: -webkit-linear-gradient(0 0 270deg, #f3f3f3, #f3f3f3 10%, #fff);
+background: -moz-linear-gradient(0 0 270deg, #f3f3f3, #f3f3f3 10%, #fff);
+background: -o-linear-gradient(0 0 270deg, #f3f3f3, #f3f3f3 10%, #fff);
+}
+
+</style>
+</head>
+<body>
+<ul id="wrap">
+	<li>
+	<div class="boxCont" style="height:255px;">
+		 1
+	</div>
+	</li>
+	<li>
+	<div class="boxCont" style="height:306px;">
+		 2
+	</div>
+	</li>
+	<li>
+	<div class="boxCont" style="height:317px;">
+		 3
+	</div>
+	</li>
+	<li>
+	<div class="boxCont" style="height:388px;">
+		 4
+	</div>
+	</li>
+	<li>
+	<div class="boxCont" style="height:346px;">
+		 5
+	</div>
+	</li>
+	<li>
+	<div class="boxCont" style="height:272px;">
+		 6
+	</div>
+	</li>
+	<li>
+	<div class="boxCont" style="height:337px;">
+		 7
+	</div>
+	</li>
+	<li style="-webkit-column-span: all;">
+	<div class="boxCont" style="height:257px;">
+		 8
+	</div>
+	</li>
+	<li>
+	<div class="boxCont" style="height:339px;">
+		 9
+	</div>
+	</li>
+	<li>
+	<div class="boxCont" style="height:306px;">
+		 10
+	</div>
+	</li>
+	<li>
+	<div class="boxCont" style="height:350px;">
+		 11
+	</div>
+	</li>
+	<li>
+	<div class="boxCont" style="height:239px;">
+		 12
+	</div>
+	</li>
+	<li>
+	<div class="boxCont" style="height:246px;">
+		 13
+	</div>
+	</li>
+	<li>
+	<div class="boxCont" style="height:270px;">
+		 14
+	</div>
+	</li>
+	<li>
+	<div class="boxCont" style="height:331px;">
+		 15
+	</div>
+	</li>
+	<li>
+	<div class="boxCont" style="height:270px;">
+		 16
+	</div>
+	</li>
+	<li>
+	<div class="boxCont" style="height:232px;">
+		 17
+	</div>
+	</li>
+	<li>
+	<div class="boxCont" style="height:284px;">
+		 18
+	</div>
+	</li>
+	<li>
+	<div class="boxCont" style="height:335px;">
+		 19
+	</div>
+	</li>
+	<li>
+	<div class="boxCont" style="height:245px;">
+		 20
+	</div>
+	</li>
+	<li>
+	<div class="boxCont" style="height:265px;">
+		 21
+	</div>
+	</li>
+	<li>
+	<div class="boxCont" style="height:354px;">
+		 22
+	</div>
+	</li>
+	<li>
+	<div class="boxCont" style="height:255px;">
+		 23
+	</div>
+	</li>
+	<li>
+	<div class="boxCont" style="height:362px;">
+		 24
+	</div>
+	</li>
+	<li>
+	<div class="boxCont" style="height:310px;">
+		 25
+	</div>
+	</li>
+	<li>
+	<div class="boxCont" style="height:272px;">
+		 26
+	</div>
+	</li>
+	<li>
+	<div class="boxCont" style="height:378px;">
+		 27
+	</div>
+	</li>
+	<li>
+	<div class="boxCont" style="height:221px;">
+		 28
+	</div>
+	</li>
+	<li>
+	<div class="boxCont" style="height:236px;">
+		 29
+	</div>
+	</li>
+	<li>
+	<div class="boxCont" style="height:373px;">
+		 30
+	</div>
+	</li>
+</ul>
+<input type="button" id="more_btn" value="加载更多..."/>
+</body>
+</html>

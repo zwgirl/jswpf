@@ -1,0 +1,50 @@
+package org.summer.view.window.automation.peer;
+/// 
+    public enum PatternInterface
+    { 
+        /// 
+        Invoke,
+        /// 
+        Selection,
+        ///
+        Value,
+        /// 
+        RangeValue,
+        /// 
+        Scroll, 
+        ///
+        ScrollItem, 
+        ///
+        ExpandCollapse,
+        ///
+        Grid, 
+        ///
+        GridItem, 
+        /// 
+        MultipleView,
+        /// 
+        Window,
+        ///
+        SelectionItem,
+        /// 
+        Dock,
+        /// 
+        Table, 
+        ///
+        TableItem, 
+        ///
+        Toggle,
+        ///
+        Transform, 
+        ///
+        Text, 
+        /// 
+        ItemContainer,
+        /// 
+        VirtualizedItem,
+        ///
+        SynchronizedInput,
+    } 
+
+    /// 
+    

@@ -1,0 +1,152 @@
+
+<!DOCTYPE html >
+<html >
+<head>
+<meta charset="UTF-8">
+<style type="text/css">
+#two {
+	position: absolute;
+	top: 0;
+}
+
+.wrapper {
+	position: relative;
+	}
+	    #pre1 {
+	    outline: 2px dashed black;
+	    padding: 1em;
+	    background-image: url(Konqi_svg.svg);
+	    background-repeat: no-repeat;
+	    background-size: cover;
+	}
+</style>
+</head>
+<body>
+
+	<pre>
+	
+	Some pre-formatted text.
+	
+	Some pre-formatted text.
+	
+	Some pre-formatted text.
+	
+	Some pre-formatted text.
+	</pre>
+
+	<table style="position:relative;">
+		<tr>
+			<td>
+				<div class="wrapper">
+					<div id="three">Three</div>
+					<div id="two">Two</div>
+				</div>
+			</td>
+			<td >
+					<div id="pre11" style="position: relative; width:200px; height;300px;">
+							<canvas id="myCanvas" width="50" height="50" style="visibility: visible;"></canvas>
+							<script type="text/javascript">
+							var c=document.getElementById("myCanvas");
+							var cxt=c.getContext("2d");
+							ctx.font="10px Georgia";
+							ctx.fillText("Hello World!",10,20);
+
+							ctx.font="10px Verdana";
+							// Create gradient
+							var gradient=ctx.createLinearGradient(0,0,c.width,0);
+							gradient.addColorStop("0","magenta");
+							gradient.addColorStop("0.5","blue");
+							gradient.addColorStop("1.0","red");
+							// Fill with gradient
+							ctx.fillStyle=gradient;
+							ctx.fillText("w3school.com.cn",1,20);
+							</script>
+						<div id="ContentPresenter"
+							style="visibility: visible; top: 0px; left: 0px;z-index: 100; position: absolute; ">
+							sasasas
+						</div>
+					</div>
+			</td>
+			<td>
+					<div id="table_cell" style="position: relative;">
+						<svg height="11" width="11"
+							style="visibility: visible; position: absolute; top: 1px; left: 1px;">
+						<rect width="11" height="11" x="0" fill="#FF00FF" stroke="#000000"
+							stroke-width="1"></svg>
+						<div id="ContentPresenter"
+							style="visibility: visible; top: 1px; left: 1px;">
+							<span style="visibility: visible;">1</span>
+						</div>
+					</div>
+			</td>
+			<td>
+					<div id="table_cell" style="position: relative;">
+						<svg height="11" width="11"
+							style="visibility: visible; position: absolute; top: 1px; left: 1px;">
+						<rect width="11" height="11" x="0" fill="#FF00FF" stroke="#000000"
+							stroke-width="1"></svg>
+						<div id="ContentPresenter"
+							style="visibility: visible; top: 1px; left: 1px;">
+							<span style="visibility: visible;">1</span>
+						</div>
+					</div>
+			</td>
+			<td>
+					<div id="table_cell" style="position: relative;">
+						<svg height="11" width="11"
+							style="visibility: visible; position: absolute; top: 1px; left: 1px;">
+						<rect width="11" height="11" x="0" fill="#FF00FF" stroke="#000000"
+							stroke-width="1"></svg>
+						<div id="ContentPresenter"
+							style="visibility: visible; top: 1px; left: 1px;">
+							<span style="visibility: visible;">1</span>
+						</div>
+					</div>
+			</td>
+			<td>
+					<div id="table_cell" style="position: relative;">
+						<svg height="11" width="11" 
+							style="visibility: visible; top: 1px; left: 1px; position: absolute;">
+						<rect width="11" height="11" x="0" fill="#FF00FF" stroke="#000000"
+							stroke-width="1"></svg>
+						<div id="ContentPresenter"
+							style="visibility: visible;  top: 1px; left: 1px;">
+							<span style="visibility: visible;">1</span>
+						</div>
+					</div>
+			</td>
+		<tr>
+	</table>
+	
+	<div style="background:gradient(linear,center top,center bottom,from(#ccc), to(#000));">
+		p1
+		<input type="text" />
+		p2
+		<input type="button" /> p222
+	</div>
+	
+	<article>
+	  <header>
+	    <h1>标题</h1>
+	    <p>发表日期：<time pubdate="pubdate">2011年7月10号</time></p>
+	  </header>
+		  <section>
+		    <h2>评论</h2>
+		    <article>
+		      <header>
+		        <h3>张三的评论</h3>
+		        <p>12分钟前</p>
+		      </header>
+		      <p>……</p>
+		    </article>
+		    <article>
+		      <header>
+		        <h3>李四的评论</h3>
+		        <p>15分钟前</p>
+		      </header>
+		      <p>……</p>
+		    </article>
+  		</section>
+	</article>
+</body>
+</html>

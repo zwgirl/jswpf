@@ -1,0 +1,78 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<ul id="news">
+		<li>
+			<h3>
+				<a href="news.php?item=1">Title 1</a>
+			</h3>
+			<p>Description 1</p>
+			<p class="more">
+				<a href="news.php?item=1">link 1</a>
+			</p>
+		</li>
+	</ul>
+
+	<script type="text/javascript">
+		bubbleTest = {
+			init : function() {
+				if (!document.getElementById
+						|| !document.createTextNode) {
+					return;
+				}
+				bubbleTest.n = document.getElementById('news');
+				if (!bubbleTest.n) {
+					return;
+				}
+				bubbleTest.addMyListeners('click', bubbleTest.liTestCapture, 'li');
+				bubbleTest.addMyListeners('click', bubbleTest.aTestCapture, 'a');
+				bubbleTest.addMyListeners('click', bubbleTest.pTestCapture, 'p');
+				
+				bubbleTest.addMyListeners1('click', bubbleTest.liTestBubble, 'li');
+				bubbleTest.addMyListeners1('click', bubbleTest.aTestBubble, 'a');
+				bubbleTest.addMyListeners1('click', bubbleTest.pTestBubble, 'p');
+			},
+			addMyListeners : function(eventName, functionName, elements) {
+				var temp = bubbleTest.n.getElementsByTagName(elements);
+				for ( var i = 0; i < temp.length; i++) {
+					temp[i].addEventListener(eventName, functionName, true);
+				}
+			},
+			addMyListeners1 : function(eventName, functionName, elements) {
+				var temp = bubbleTest.n.getElementsByTagName(elements);
+				for ( var i = 0; i < temp.length; i++) {
+					temp[i].addEventListener(eventName, functionName, false);
+				}
+			},
+			liTestCapture : function(e) {
+				alert('Capture: li was clicked');
+				
+			},
+			pTestCapture : function(e) {
+				alert('Capture: p was clicked');
+				
+			},
+			aTestCapture : function(e) {
+				alert('Capture: a was clicked');
+				//e.stopPropagation();
+				e.stopImmediatePropagation();
+			},
+			
+			liTestBubble : function(e) {
+				alert('Bubble: li was clicked');
+			},
+			pTestBubble : function(e) {
+				alert('Bubble: p was clicked');
+			},
+			aTestBubble : function(e) {
+				alert('Bubble: a was clicked');
+			}
+		}
+		window.addEventListener('load', bubbleTest.init, false);
+	</script>
+</body>
+</html>

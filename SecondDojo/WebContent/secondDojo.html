@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+	<!-- note that you can always create a dojoConfig object instead of putting everything into data-dojo-config
+		     if you want -->
+	<script>
+		var dojoConfig = {
+		    baseUrl: "js/",
+		    tlmSiblingOfDojo: false,
+		    packages: [
+		        { name: "dojo", location: "lib/dojo" },
+		        { name: "dijit", location: "lib/dijit" },
+		        { name: "dojox", location: "lib/dojox" },
+		        { name: "my", location: "my"
+		        	, main: "app" 
+		        	}
+		    ]
+		};
+	</script>
+
+	<script type="text/javascript"  data-dojo-config="async: true" src="js/lib/dojo.js"></script>
+</head>
+<body>
+	<script>
+		// using the class elsewhere...
+		require(["my/Person"], function(Person){
+		  var anon  = new Person(),
+		      alice = new Person({ name: "Alice", age: 42, residence: "Universe 1" });
+	
+		  console.log(anon.name, alice.name); // "Anonymous", "Alice"
+		  console.log(anon.residence, alice.residence); // "Universe A", "Universe 1"
+		  alice.moveTo("Universe 420");
+		  console.log(alice.residence); // "Universe 420"
+		});
+
+	</script>
+</body>
+</html>

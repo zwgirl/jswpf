@@ -1,0 +1,171 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+
+	<script>
+	var dojoConfig = {
+		    baseUrl: "js",
+		    tlmSiblingOfDojo: false,
+		    packages: [
+		        { name: "dojo", location: "lib/dojo" },
+		        { name: "dijit", location: "lib/dijit" },
+		        { name: "dojox", location: "lib/dojox" },
+		        { name: "utility", location: "MS/utility" },
+		        { name: "internal", location: "MS/internal" },
+		        { name: "system", location: "system" },
+		        { name: "data", location: "system/windows/data" },
+		        
+		        { name: "documents", location: "system/windows/documents" },
+		        { name: "input", location: "system/windows/input" },
+		        { name: "media", location: "system/windows/media" },
+		        { name: "markup", location: "system/windows/markup" },  
+		        { name: "controls", location: "system/windows/controls" },	
+		        { name: "primitives", location: "system/windows/controls/primitives" },
+		        { name: "animation", location: "system/windows/media/animation" },
+		        
+		        { name: "collections", location: "system/collections" },
+		        { name: "generic", location: "system/collections/generic" },
+		        { name: "objectmodel", location: "system/collections/objectmodel" },
+		        { name: "specialized", location: "system/collections/specialized" },
+		        { name: "componentmodel", location: "system/componentmodel" },
+		        
+		        { name: "internal.data", location: "MS/internal/data" },
+		        { name: "internal.commands", location: "MS/internal/commands" },
+		        { name: "internal.controls", location: "MS/internal/controls" },
+		        { name: "threading", location: "system/windows/threading" },
+		        { name: "windows", location: "system/windows"},
+		        { name: "my", location: "my"
+		        	, main: "app" 
+		        	}
+		    ]
+		};
+	</script>
+
+	<script type="text/javascript"  data-dojo-config="async: true" src="js/lib/dojo.js"></script>
+	
+</head>
+<body>
+	<div id="test1" />
+	<script>
+		//console.log(require);
+		// using the class elsewhere...
+		require(["dojo/_base/declare", "system/Type", 
+		         "data/Binding", "windows/DependencyObject",
+		         "internal.data/CommitManager", "internal.data/ViewManager",
+		         "system/Type", "windows/DependencyProperty", "windows/PropertyMetadata",
+		         "data/BindingOperations", "windows/PropertyPath", "data/BindingMode", 
+		         "componentmodel/PropertyChangedEventArgs", "system/Delegate",
+		         "controls/TextBlock", "input/KeyboardNavigation", 
+		         "controls/ComboBox", "componentmodel/INotifyPropertyChanged",
+		         "componentmodel/PropertyChangedEventHandler"], 
+		         function(declare, Type, 
+		        		 Binding, DependencyObject, 
+		        		 CommitManager, ViewManager,
+		        		 Type, DependencyProperty, PropertyMetadata, BindingOperations, PropertyPath, BindingMode, 
+		        		 PropertyChangedEventArgs, Delegate,
+		        		 TextBlock, KeyboardNavigation,
+		        		 ComboBox, INotifyPropertyChanged, 
+		        		 PropertyChangedEventHandler){
+			
+			var binding = new Binding("propertyName.propertyName2.propertyName3");
+			
+			var Person = declare(INotifyPropertyChanged, {});
+			Object.defineProperties(Person, {
+			});
+			
+			Object.defineProperties(Person.prototype, {
+				Name:{
+					get:function(){
+						return this._name;
+					},
+					set:function(value)
+					{
+						var oldValue = this._name;
+						this._name = value;
+						if(oldValue !=value){
+							if(this._propertyChanged!==undefined){
+								this._propertyChanged.Invoke(this, new PropertyChangedEventArgs("Name"));
+							}
+						}
+					}
+				},
+				
+				PropertyChanged:
+				{
+					get:function(){
+						if(this._propertyChanged===undefined){
+							this._propertyChanged = new PropertyChangedEventHandler();
+						}
+						
+						return this._propertyChanged;
+					}	
+				}
+			});
+			
+			Person.Type = new Type("Person", Person, [INotifyPropertyChanged.Type]);
+			
+			var Child = declare(DependencyObject, {});
+			
+			Object.defineProperties(Child, {
+			});
+			
+			Object.defineProperties(Child.prototype, {
+				ChildName:{
+					get:function(){
+						return this._name;
+					},
+					set:function(value)
+					{
+						var oldValue = this._name;
+						this._name = value;
+						if(oldValue !=value){
+							if(this._propertyChanged!==undefined){
+								this._propertyChanged.Invoke();
+							}
+						}
+					}
+				},
+				
+				PropertyChanged:
+				{
+					get:function(){
+						if(this._propertyChanged===undefined){
+							this._propertyChanged = new Delegate();
+						}
+						
+						return this._propertyChanged;
+					}	
+				}
+			});
+			
+			Child.Type = new Type("Child", Child, [Object.Type]);
+			
+			var person = new Person();
+			person.PropertyChanged.Combine(new Delegate(person, function (event){
+				alert("this is propertychanged event " +  event);
+			}));
+			person.Sex='2121';
+			binding.Source = person;
+			
+			binding.Path = new PropertyPath("Name");
+			binding.Mode = BindingMode.TwoWay;
+			
+			
+			var textBox = new TextBlock();
+			var be = BindingOperations.SetBinding(textBox, TextBlock.TextProperty, binding);
+
+			
+			textBox.SetValue(dp, "毛泽东");
+			
+			alert(person.Name);
+			
+			person.Name = "周恩来";
+			alert(textBox.Text);
+		});
+		
+
+	</script>
+</body>
+</html>

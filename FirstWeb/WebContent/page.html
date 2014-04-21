@@ -1,0 +1,264 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+
+</head>
+<body>
+	<input type='button' id='myBtn'   text='ceshi' value='test'></input>
+	<script type="text/javascript">
+	
+		
+	
+    	org.summer.view.window.BindingMode={
+	        TwoWay:0, 
+	        OneWay:1, 
+	        OneTime:2,
+	        OneWayToSource:3,
+	        Default:4
+	    } 
+    	
+    	org.summer.view.window.UpdateSourceTrigger =
+        {
+            Default:1,
+            PropertyChanged:2,
+            LostFocus:3, 
+            Explicit:4 
+        }   	
+    
+		function DataTemplate(type){
+			this.type=type;
+			visualTree:
+		}
+		
+		function BindingBase(){
+			this.fallbackValue=fallbackValue;
+			this.stringFormat=stringFormat;
+			this.targetNullValue=targetNullValue;
+	
+		}
+		
+		//继承自BindingBase
+		function Binding(){
+			this.bindingGroupName=bindingGroupName;
+			this.validationRule=validationRule;
+			this.validatesOnExceptions=validatesOnExceptions;
+			this.validatesOnDataErrors=validatesOnDataErrors;
+			this.validatesOnNotifyDataErrors=validatesOnNotifyDataErrors;
+			this.path=path;
+			this.mode=mode;
+			this.updateSourceTrigger=updateSourceTrigger;
+			this.notifyOnSourceUpdated=notifyOnSourceUpdated;
+			this.notifyOnTargetUpdated=notifyOnTargetUpdated;
+			this.notifyOnValidationError=notifyOnValidationError;
+			this.converter=converter;
+			this.converterParameter=converterParameter;
+			this.converterCulture=converterCulture;
+			this.source=source;
+			this.relativeSource=relativeSource;
+			this.elementName=elementName;
+		}
+		
+		function BindingExpressionBase(){
+			this.binding=;
+			this.parent=;
+			DetachOverride=function(){
+				
+			}
+			attach=function(target,dp){   //附加binding到依赖属性上
+
+			}
+			
+		    updateTarget=function() 
+		    {
+		    }
+
+		    /// <summary> Send the current value back to the source </summary> 
+		    /// <remarks> Does nothing when binding's Mode is not TwoWay or OneWayToSource </remarks>
+		    updateSource=function() 
+		    { 
+		    }
+		}
+		
+		function BindingExpression(){
+			ValidationError;
+		    Target;
+			TargetProperty;
+			BindingGroup;
+		    HasError=function()
+		    {
+		        return HasValidationError; 
+		    } 
+
+		    /// <summary> 
+		    ///     HasValidationError returns true if any of the ValidationRules 
+		    ///     in the ParentBinding failed its validation rule.
+		    /// </summary> 
+		    public boolean HasValidationError
+		    {
+		        get
+		        { 
+		            return HasValue(Feature.ValidationError) || HasValue(Feature.NotifyDataErrors);
+		        } 
+		    } 
+
+		    /// <summary> 
+		    ///     IsDirty returns true if the target property has a new value that
+		    ///     has not yet been written to the source property.   (This applies
+		    ///     only to bindings that are TwoWay or OneWayToSource.)
+		    /// </summary> 
+		    public boolean IsDirty
+		    { 
+		        get { return NeedsUpdate; } 
+		    }			
+		}
+		
+		
+		function PropertyChangedEvent(prop,newValue,oldValue){
+			this.prop=prop;
+			this.newValue=newValue;
+			this.oldValue=oldValue;
+		}
+	
+		var model={
+			name:"caocao",
+			setName:function(name){
+				console.log("setter: " + name);
+				this.notify(new PropertyChangedEvent('name',name,this.name));
+				this.name=name;
+			},
+			getName:function(){
+				return name;
+			},
+			sex:1,
+			addListener:function(prop,listener){
+				if(this.eventTarget==undefined){
+					this.eventTarget=new Object();
+				
+				}
+				if(this.eventTarget[prop]==undefined){
+					this.eventTarget[prop]=new Array();
+					
+				}
+				console.log('addListener: ' + listener);
+				this.eventTarget[prop].push(listener);
+			},
+			notify:function(event1){
+				if(event1.prop!=null && this.eventTarget!=undefined){
+					var liss=this.eventTarget[event1.prop];
+					for(var lis in liss){
+						liss[lis](event1);
+					}
+				}
+			}
+			
+		};
+		
+		var ExceptionRule={
+				
+		};
+		
+		var binding={
+				path:'name',
+				trigger:'propertychange',
+				converter:{to:function(value){
+						//throw new Error('sasasasas');
+						return 'ceshi';
+					},
+					back:function(value){
+						return value;
+					}
+				},
+				validateRules:[ExceptionRule]
+		};
+		
+		function TextBox(){
+			this.setValue=function(value){
+				if(this.value!=value){
+					this.notify(new PropertyChangedEvent('value',value,this.value));
+					this.value=value;
+				}
+
+				if(this.dom!=undefined){
+					if(value!=this.dom.value){
+						this.dom.value=value;
+					}
+				}
+			},
+			this.getValue=function(){
+				if(this.dom){
+					return this.dom.value;
+				}
+			},
+			
+			this.addListener=function(prop,listener){
+				if(this.eventTarget==undefined){
+					this.eventTarget=new Object();
+				
+				}
+				if(this.eventTarget[prop]==undefined){
+					this.eventTarget[prop]=new Array();
+					
+				}
+//				console.log('addListener: ' + listener);
+				this.eventTarget[prop].push(listener);
+			},
+			this.notify=function(event1){
+				if(event1.prop!=null && this.eventTarget!=undefined){
+					var liss=this.eventTarget[event1.prop];
+					for(var lis in liss){
+						liss[lis](event1);
+					}
+				}
+			},
+			this.render=function(){
+				//alert(this.getValue);
+				this.dom=document.createElement('input');
+				this.dom.type='text';
+				this.dom.value='1212121';
+				//input.onpropertychange=function(){
+				//	alert(this.value + 'onpropertychange');
+				//	};
+				var that=this;
+				this.dom.oninput=function(event){
+						var val;
+						try{
+							if(binding.converter!=undefined){
+								val=binding.converter.to(that.getValue());
+							}
+							//alert('binding: ' + val);
+						}catch(e){
+							//alert('binding: ' + e);
+						}
+						that.setValue(event.target.value);
+					};
+				//alert(input);
+				document.body.appendChild(this.dom);
+			}
+		}
+		
+		(function(){
+			var input=new TextBox();
+			model.addListener('name',function(event){
+				
+				input.setValue(event.newValue);
+			});
+			input.render();
+			
+			var input1=new TextBox();
+			input.addListener('value',function(event){
+				
+				input1.setValue(event.newValue);
+			});
+			input1.render();
+			
+			document.getElementById('myBtn').onclick=function(){
+				input.setValue('21212');
+				model.setName('奥巴马');
+			}
+		})();
+	</script>
+	
+</body>
+</html>

@@ -1,0 +1,531 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+
+
+  
+  <style type="text/css">
+
+	table, th, td
+  {
+  border: 1px solid blue;
+  border-collapse: collapse;
+  }
+
+</style>
+
+	<script>
+		var dojoConfig = {
+		    baseUrl: "js",
+		    tlmSiblingOfDojo: false,
+		    packages: [
+		        { name: "dojo", location: "lib/dojo" },
+		        { name: "dijit", location: "lib/dijit" },
+		        { name: "dojox", location: "lib/dojox" },
+		        { name: "test", location: "test" },
+		        { name: "utility", location: "MS/utility" },
+		        { name: "reflection", location: "system/reflection" },
+		        { name: "internal", location: "MS/internal" },
+		        { name: "system", location: "system" },
+		        { name: "data", location: "system/windows/data" },
+		        { name: "globalization", location: "system/globalization" },
+		        
+		        { name: "text", location: "system/text" },
+		        
+		        { name: "documents", location: "system/windows/documents" },
+		        
+		        { name: "input", location: "system/windows/input" },
+		        { name: "shapes", location: "system/windows/shapes" },
+		        { name: "media", location: "system/windows/media" },
+		        { name: "markup", location: "system/windows/markup" },  
+		        { name: "controls", location: "system/windows/controls" },	
+		        { name: "primitives", location: "system/windows/controls/primitives" },
+		        { name: "animation", location: "system/windows/media/animation" },
+		        
+		        { name: "collections", location: "system/collections" },
+		        { name: "generic", location: "system/collections/generic" },
+		        { name: "objectmodel", location: "system/collections/objectmodel" },
+		        { name: "specialized", location: "system/collections/specialized" },
+		        { name: "componentmodel", location: "system/componentmodel" },
+		        
+		        { name: "internal.data", location: "MS/internal/data" },
+		        { name: "internal.commands", location: "MS/internal/commands" },
+		        { name: "internal.controls", location: "MS/internal/controls" },
+		        { name: "threading", location: "system/windows/threading" },
+		        { name: "windows", location: "system/windows"},
+		        { name: "my", location: "my"
+		        	, main: "app" 
+		        	}
+		    ]
+		};
+	</script>
+
+	<script type="text/javascript"  data-dojo-config="async: true" src="js/lib/dojo.js"></script>
+	
+</head>
+<body>
+	<div id="test1" />
+	<script>
+	
+		//console.log(require);
+		// using the class elsewhere...
+		require(["dojo/_base/declare", "internal.data/ViewManager", "internal.data/CommitManager",
+		         "windows/FrameworkContentElement", "windows/FrameworkElement", "controls/ItemsControl", "controls/ContextMenu",
+		         "controls/StackPanel", "windows/Style", "controls/ContextMenuService",
+		         "internal/FrameworkObject", 
+		         "controls/Control", "windows/ControlTemplate", "primitives/Popup", "primitives/ButtonBase", "controls/Button", 
+		         "windows/RoutedEventHandler", "windows/FrameworkElementFactory", "controls/Border",
+		         "controls/ContentPresenter",
+		         "controls/Page", "controls/PasswordBox", "controls/TextBlock", "windows/Trigger",
+		         "windows/Application", "documents/Run", "documents/Hyperlink", "documents/LineBreak",
+		         "documents/InlineUIContainer", "documents/FlowDocumentView",
+		         "documents/FlowDocument", "documents/Paragraph", "documents/List", "documents/ListItem",
+		         "controls/DockPanel", "controls/Dock", "controls/Grid",
+		         "controls/ColumnDefinition", "controls/RowDefinition",
+		         "controls/TreeView", "controls/TreeViewItem",
+		         "controls/ItemsPresenter", "primitives/ToggleButton", "shapes/Rectangle",
+		         "controls/TabControl", "controls/TabItem",
+		         "controls/ListBox", "input/InputManager",
+		         "input/FocusManager", "primitives/Selector", "generic/List",
+		         "windows/DataTemplateKey", "controls/Image", "controls/TextBox",
+		         "shapes/Ellipse", "shapes/Line", "shapes/Polygon", "shapes/Polyline", "shapes/Path",
+		         "internal.data/CollectionViewProxy", "test/Person"], 
+				function(declare, ViewManager, CommitManager,
+						FrameworkContentElement, FrameworkElement, ItemsControl, ContextMenu,
+						StackPanel, Style, ContextMenuService, 
+						FrameworkObject, 
+						Control, ControlTemplate, Popup, ButtonBase, Button, 
+						RoutedEventHandler, FrameworkElementFactory, Border,
+						ContentPresenter,
+						Page, PasswordBox, TextBlock, Trigger,
+						Application, Run, Hyperlink, LineBreak,
+						InlineUIContainer, FlowDocumentView, 
+						FlowDocument, Paragraph, List, ListItem,
+						DockPanel, Dock, Grid,
+						ColumnDefinition, RowDefinition,
+						TreeView, TreeViewItem,
+						ItemsPresenter, ToggleButton, Rectangle,
+						TabControl, TabItem,
+						ListBox, InputManager,
+						FocusManager, Selector, List1,
+						DataTemplateKey, Image, TextBox, 
+						Ellipse, Line, Polygon, Polyline, Path,
+						CollectionViewProxy, Person){
+			
+			
+			
+     		var panel = new StackPanel();
+			
+			function CreateBtnTemplate()
+	        {
+	            /* ControlTemplate */var template = new ControlTemplate(Button.Type);
+
+	            /* FrameworkElementFactory */
+	            var rootfactory = new FrameworkElementFactory(Border.Type, "border");
+	            //rootfactory.SetValue(Border.CornerRadiusProperty, CornerRadus);
+	            //rootfactory.SetValue(Border.BackgroundProperty, new SolidColorBrush(Colors.YellowGreen));
+
+
+	            /* FrameworkElementFactory */ 
+	            var cp = new FrameworkElementFactory(ContentPresenter.Type, "cp1");
+	            //rootfactory.SetValue(Border.BorderBrushProperty, BorderColor);
+	            //rootfactory.SetValue(Border.BorderThicknessProperty, BorderThickness);
+
+	            rootfactory.AppendChild(cp);
+
+	            template.VisualTree = rootfactory;
+	            
+	            //template.Seal();
+	            return template;
+	        }
+     		var btn = new Button();
+     		
+    		var tb = new TextBlock(); 
+			tb.AddChild(new Run("buton111"));
+     		btn.Content=tb;
+     		btn.Template = CreateBtnTemplate();
+     		panel.AddChild(btn); 
+     		
+     		
+			var page = new Page();
+			page.AddChild(panel); 
+	
+			page.DataContext = "datacontext";
+			page.Template = CreatePageTemplate();
+     		/*
+     		<ControlTemplate TargetType="{x:Type TabControl}">
+	            <Grid>
+	                <Grid.RowDefinitions>
+	                    <RowDefinition Height="Auto"/>
+	                    <RowDefinition Height="*"/>
+	                </Grid.RowDefinitions>
+	                <Border Padding="10">
+	                    <TabPanel IsItemsHost="True" />
+	                </Border>
+	
+	                <Border Grid.Row="1"
+	                       BorderBrush="Gray"
+	                       Padding="10"
+	                       BorderThickness="2">
+	                    <ContentPresenter ContentSource="SelectedContent"
+	
+	                                     Name="PART_SelectedContentHost"/>
+	
+	                </Border>
+	            </Grid>
+       	 	</ControlTemplate>*/
+        
+	        function CreateTabControlTemplate()
+	        {
+	            /* ControlTemplate */var template = new ControlTemplate(TabControl.Type);
+	
+	            /* FrameworkElementFactory */
+	            var grid = new FrameworkElementFactory(Grid.Type, "grid");
+	            
+	/*             <Grid.RowDefinitions>
+	            <RowDefinition Height="Auto"/>
+	            <RowDefinition Name="ContentRow" Height="0"/>
+	         	 </Grid.RowDefinitions> */
+/* 	         	 var r1 = new FrameworkElementFactory(RowDefinition.Type);
+	             var r2 = new FrameworkElementFactory(RowDefinition.Type);
+	             var c1 = new FrameworkElementFactory(ColumnDefinition.Type);
+	
+	             grid.AppendChild(r1);
+	             grid.AppendChild(r2);
+	             grid.AppendChild(c1); */
+	             
+	             grid.SetValue(Grid.RowsProperty,"auto auto");
+	             grid.SetValue(Grid.ColumnsProperty,"auto");
+	          
+	            
+	      		var border = new FrameworkElementFactory(Border.Type, "border");
+	      		var stackPanel = new FrameworkElementFactory(StackPanel.Type, "stack");
+	      		stackPanel.SetValue(StackPanel.OrientationProperty, Orientation.Horizontal);
+	      		
+	      		stackPanel.SetValue(Panel.IsItemsHostProperty, true);
+	            border.AppendChild(stackPanel);
+	      		
+	            grid.AppendChild(border);
+	            
+	            var border1 = new FrameworkElementFactory(Border.Type, "border1");
+	            border1.SetValue(Grid.RowProperty, 2);
+	            var contentCp = new FrameworkElementFactory(ContentPresenter.Type, "PART_SelectedContentHost");
+	            contentCp.SetValue(ContentPresenter.ContentSourceProperty, "SelectedContent");
+	            //contentCp.SetValue(FrameworkElement.NameProperty, "PART_SelectedContentHost");
+	            border1.AppendChild(contentCp);
+	            
+	            grid.AppendChild(border1);
+	
+	            template.VisualTree = grid;
+	            
+	            //template.Seal();
+	            return template;
+	        }
+		
+     		var tabCtrl = new TabControl();
+     		tabCtrl.Template = CreateTabControlTemplate();
+     		
+     		panel.AddChild(tabCtrl); 
+     		
+        	function createDataTemplate(){
+/*    			 <DataTemplate>
+
+	            <TextBlock Foreground="Red" Text="{Binding}"/>
+
+	        </DataTemplate> */
+	        
+                var template = new DataTemplate(Number.Type);
+
+                var tb = new FrameworkElementFactory(TextBlock.Type);
+                var binding = new Binding();
+                
+				tb.SetBinding(TextBlock.TextProperty, binding);
+                template.VisualTree = tb;
+	        	return template;
+        	}
+        	
+        	page.Resources.Set(new DataTemplateKey(Number.Type), createDataTemplate());
+        	
+        	//var ics = new Style(ItemsControl.Type);
+		    function CreatePersonTemplate()
+	        {
+		        var template = new DataTemplate(Person.Type);
+	            
+	            var stack = new FrameworkElementFactory(StackPanel.Type, "stackPanel");
+	            var pwdBox1 = new FrameworkElementFactory(TextBox.Type, "btn1");
+	            
+	            var binding = new Binding();
+	            binding.Path = new PropertyPath("Name");
+	            binding.Mode = BindingMode.TwoWay;
+	            
+	            pwdBox1.SetValue(TextBox.TextProperty, binding);
+	            
+				var brush = new SolidColorBrush(Colors.YellowGreen);
+				brush.Seal();
+				
+	            pwdBox1.SetValue(Control.ForegroundProperty, brush);
+	            stack.AppendChild(pwdBox1);
+	            
+				var gender = new FrameworkElementFactory(TextBox.Type, "gender");
+	            binding = new Binding();
+	            binding.Path = new PropertyPath("Sex");
+	            binding.Mode = BindingMode.TwoWay;
+	            
+	            gender.SetValue(TextBox.TextProperty, binding);
+	            stack.AppendChild(gender);
+	            
+				var age = new FrameworkElementFactory(TextBox.Type, "age");
+	            binding = new Binding();
+	            binding.Path = new PropertyPath("Age");
+	            binding.Mode = BindingMode.TwoWay;
+	            
+	            age.SetValue(TextBox.TextProperty, binding);
+	            stack.AppendChild(age);
+	            
+/* 	            var img1 = new FrameworkElementFactory(Image.Type, "img1");
+	            rootfactory.AppendChild(pwdBox1);
+	            rootfactory.AppendChild(img1); */
+	            
+	            var rect1 = new FrameworkElementFactory(Rectangle.Type, "rect1");
+	            stack.AppendChild(rect1);
+	            
+	            var ellipse = new FrameworkElementFactory(Ellipse.Type, "ellipse");
+	            stack.AppendChild(ellipse);
+	            
+	            var line = new FrameworkElementFactory(Line.Type, "line");
+	            stack.AppendChild(line);
+	            
+	            var polygon = new FrameworkElementFactory(Polygon.Type, "polygon");
+	            stack.AppendChild(polygon);
+	            
+	            var polyline = new FrameworkElementFactory(Polyline.Type, "polyline");
+	            stack.AppendChild(polyline);
+	            
+	            var path = new FrameworkElementFactory(Path.Type, "path");
+	            //path.SetValue(Path.DataProperty, "M 0 0 L 7 7 M 0 7 L 7 0");
+	            
+	            path.SetValue(Path.DataProperty, "M 0 0 L 4 4 L 8 0 Z");
+	            path.SetValue(Path.DataProperty, "M 0 4 L 4 0 L 8 4 Z");
+	            stack.AppendChild(path);
+	            
+	            var image1 = new FrameworkElementFactory(Image.Type, "image1");
+	            stack.AppendChild(image1);
+	            
+	            
+	            template.VisualTree = stack;
+	            template.Seal();
+	            return template;
+	        }
+		    
+		    //page.Resources.Set(new DataTemplateKey(Person.Type), CreatePersonTemplate());
+        
+		    
+		         		/*
+     		<ControlTemplate TargetType="{x:Type TabItem}">
+	            <Grid>
+	                <!-- 主Border -->
+	                <Border Name="bd"
+	
+	                      Background="{TemplateBinding Background}"
+	                      BorderBrush="Gray"
+	                      BorderThickness="3"
+	                      CornerRadius="7"
+	                      Margin="5,10,5,0">
+	                    <ContentPresenter ContentSource="Header"
+	                                    VerticalAlignment="Center"
+	                                    Margin="20,10"/>
+	                </Border>
+	            </Grid>
+	            <ControlTemplate.Triggers>
+	                <Trigger Property="IsSelected" Value="True">
+	                    <Setter TargetName="bd" Property="BorderThickness" Value="2" />
+	                    <Setter TargetName="bd" Property="Margin" Value="0" />
+	                </Trigger>
+	                <Trigger Property="IsMouseOver" Value="True">
+	                </Trigger>
+	            </ControlTemplate.Triggers>
+        	</ControlTemplate>
+        	*/
+     		function CreateTabItemTemplate()
+            {
+                var style = new Style(TabItem.Type);
+				
+                var template = new ControlTemplate(TabItem.Type);
+                
+                var grid = new FrameworkElementFactory(Grid.Type, "Root");
+              
+                
+          		var border = new FrameworkElementFactory(Border.Type, "bd");
+                var contentCp = new FrameworkElementFactory(ContentPresenter.Type, "ContentSite");
+                contentCp.SetValue(ContentPresenter.ContentSourceProperty, "Header");
+                border.AppendChild(contentCp);
+                
+                grid.AppendChild(border);
+
+                template.VisualTree = grid;
+				
+				var setter = new Setter(Control.TemplateProperty, template);
+				style.Setters.Add(setter);
+				
+                var trg = new Trigger();
+                trg.Property = TabItem.IsSelectedProperty;
+                trg.Value = true;
+                var brush = new SolidColorBrush(Colors.Red);
+                brush.Seal();
+                setter = new Setter(Control.BackgroundProperty, brush, "bd");
+                trg.AddChild(setter);
+                template.Triggers.Add(trg);
+				
+				return style;
+                
+            }
+        	
+        	page.Resources.Set(TabItem.Type, CreateTabItemTemplate());
+        
+        	var tabItemTemplate = CreateTabItemTemplate();
+        	
+     		/* var tabItem = new TabItem();
+        	tabItem.Template = tabItemTemplate;
+    		var tb1 = new TextBlock(); 
+			tb1.AddChild(new Run("buton111   sdsdsdfsdsd"));
+			tabItem.Header = 'tab1';
+			tabItem.Content = tb1;
+			tabCtrl.AddChild(tabItem);
+			
+			
+			
+     		var tabItem1 = new TabItem();
+     		tabItem1.Template = tabItemTemplate;
+    		var tb2 = new TextBlock(); 
+			tb2.AddChild(new Run("buton2222222"));
+			tabItem1.Header = 'tab2';
+			tabItem1.Content = tb2;
+			tabItem1.SetValue(UIElement.FocusableProperty, true);
+			tabCtrl.AddChild(tabItem1); */
+			
+			var source = new List1();
+/* 			for(var i=100; i<110; i++){
+				source.Add(i);
+			} */
+			
+			source.Add(new Person("tom2", "man", '10'));
+			source.Add(new Person("tom3", "woman", '20'));
+			source.Add(new Person("tom4", "man", '20'));
+			source.Add(new Person("tom5", "woman", '20'));
+			source.Add(new Person("tom111", "woman", '10'));
+            
+             for(var i=0; i<10; i++){
+            	 source.Add(new Person("tom5" + i, "woman" + i, '20' + i));
+            } 
+             
+/*             <TabControl.ItemTemplate>
+
+             <DataTemplate>
+
+                 <TextBlock Foreground="Red" Text="{Binding}"/>
+
+             </DataTemplate>
+
+         	</TabControl.ItemTemplate> */
+         	
+			function createItemTemplate()
+	        {
+	            var template = new DataTemplate();
+	            var tb = new FrameworkElementFactory(TextBlock.Type, "tb1");
+	            
+                var binding = new Binding();
+                binding.Path = new PropertyPath("Name");
+				tb.SetBinding(TextBlock.TextProperty, binding);
+
+	            template.VisualTree = tb;
+	            
+	            return template;
+	        }
+         	tabCtrl.ItemTemplate = createItemTemplate();
+         	tabCtrl.ContentTemplate = CreatePersonTemplate();
+         	
+			tabCtrl.IsSynchronizedWithCurrentItem = true;
+			
+			tabCtrl.ItemsSource = source;
+			
+
+			
+			//tabItem1.SetValue(Selector.IsSelectedProperty, true);
+			
+			//tabCtrl.SelectItemWithValue(tabItem1);
+
+
+			
+			//Application.Current.Resources.Set(TextBlock.Type, pStyle); 
+			//panel.Resources.Set(TextBlock.Type, pStyle); 
+			
+			//pStyle.AddChild(new Setter(TextBlock.ForegroundProperty, new SolidColorBrush(Colors.YellowGreen)));
+			//alert(panel.ShouldLookupImplicitStyles);
+			
+			
+			function CreatePageTemplate()
+	        {
+	            /* ControlTemplate */var template = new ControlTemplate(Page.Type);
+
+	            /* FrameworkElementFactory */
+	            var rootfactory = new FrameworkElementFactory(Border.Type, "border");
+	            //rootfactory.SetValue(Border.CornerRadiusProperty, CornerRadus);
+	            //rootfactory.SetValue(Border.BackgroundProperty, new SolidColorBrush(Colors.YellowGreen));
+
+
+	            /* FrameworkElementFactory */ 
+	            var cp = new FrameworkElementFactory(ContentPresenter.Type, "cp1");
+	            //rootfactory.SetValue(Border.BorderBrushProperty, BorderColor);
+	            //rootfactory.SetValue(Border.BorderThicknessProperty, BorderThickness);
+
+
+	            rootfactory.AppendChild(cp);
+	            template.VisualTree = rootfactory;
+	            
+	            //template.Seal();
+	            return template;
+	        }
+
+			
+			page.Arrange();
+			
+			var b = Border.BorderBrushProperty;
+			
+			//tabItem1.SetFocus();
+			
+			//tabItem1.GetValue(FocusManager.IsFocusScopeProperty)
+			
+			//tabCtrl.SelectAllImpl();
+			
+			//tabItem1.SetCurrentValueInternal(TabItem.IsSelectedProperty, true);
+			
+			//alert("selected" +　Selector.GetIsSelected(tabItem1));
+			
+			//tabCtrl.SelectedIndex = 1;
+			
+			//alert("tabCtrl.SelectedIndex" + tabCtrl.SelectedIndex)
+			
+			//tabCtrl.UpdateSelectedContent();
+			
+			//alert(btn.DataContext);
+			var select2 = document.createElement("input");
+			select2.setAttribute("type", "button");
+			select2.setAttribute("value", "select2");
+			select2.addEventListener("click", function(){
+
+				//tabCtrl.SelectedIndex = 1;
+				//tabItem1.SetFocus();
+				tabCtrl.View.MoveCurrentToNext();
+				//tabCtrl.SetCurrentToSelected();
+				//alert(tabCtrl.View.CurrentItem.Header);
+			});
+			document.body.appendChild(select2);
+			
+			
+		});
+
+	</script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript" src="dojo.js"></script>
+</head>
+<body>
+	<div id="test1">
+	</div>
+
+	<script>
+	require(["first/my/Person"], function(Person){
+		  var folk = new Person("phiggins", 42, "Tennessee");
+		  console.log('hahhaha : ' + folk.name);
+		});
+
+	</script>
+</body>
+</html>

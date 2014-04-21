@@ -1,0 +1,84 @@
+<!doctype>
+<html>
+<head>    
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+</head>
+<body style="margin:0px;overflow:scroll;">
+    <div id="d1" style="background-color:blue;width:200px;height:500px;overflow:scroll;">        
+            <div style="height:60px;width:60px;background-color:green;border:1px solid #ccc; "></div>
+            <div style="height:60px;width:60px;background-color:green;border:1px solid #ccc; "></div>
+            <div style="height:60px;width:60px;background-color:black;border:1px solid #ccc; "></div>
+            <div style="height:60px;width:60px;background-color:green;border:1px solid #ccc; "></div>    
+            <div style="height:60px;width:60px;background-color:green;border:1px solid #ccc; "></div>
+            <div style="height:60px;width:60px;background-color:green;border:1px solid #ccc; "></div>
+            <div style="height:60px;width:60px;background-color:green;border:1px solid #ccc; "></div>
+            <div style="height:60px;width:60px;background-color:green;border:1px solid #ccc; "></div>
+            <div style="height:60px;width:60px;background-color:green;border:1px solid #ccc; "></div>
+            <div style="height:60px;width:60px;background-color:black;border:1px solid #ccc; "></div>
+            <div style="height:60px;width:60px;background-color:green;border:1px solid #ccc; "></div>    
+            <div style="height:60px;width:60px;background-color:green;border:1px solid #ccc; "></div>
+            <div style="height:60px;width:60px;background-color:green;border:1px solid #ccc; "></div>
+            <div style="height:60px;width:60px;background-color:green;border:1px solid #ccc; "></div>
+            <div style="height:60px;width:60px;background-color:green;border:1px solid #ccc; "></div>
+            <div style="height:60px;width:60px;background-color:green;border:1px solid #ccc; "></div>
+            <div style="height:60px;width:60px;background-color:black;border:1px solid #ccc; "></div>
+            <div style="height:60px;width:60px;background-color:green;border:1px solid #ccc; "></div>    
+            <div style="height:60px;width:60px;background-color:green;border:1px solid #ccc; "></div>
+            <div style="height:60px;width:60px;background-color:green;border:1px solid #ccc; "></div>
+            <div style="height:60px;width:60px;background-color:green;border:1px solid #ccc; "></div>
+            <div style="height:60px;width:60px;background-color:green;border:1px solid #ccc; "></div>
+            <div style="height:60px;width:60px;background-color:green;border:1px solid #ccc; "></div>
+            <div style="height:60px;width:60px;background-color:black;border:1px solid #ccc; "></div>
+            <div style="height:60px;width:60px;background-color:green;border:1px solid #ccc; "></div>    
+            <div style="height:60px;width:60px;background-color:green;border:1px solid #ccc; "></div>
+            <div style="height:60px;width:60px;background-color:green;border:1px solid #ccc; "></div>
+            <div style="height:60px;width:60px;background-color:green;border:1px solid #ccc; "></div>
+            <div style="height:60px;width:60px;background-color:green;border:1px solid #ccc; "></div>
+            <div style="height:60px;width:60px;background-color:green;border:1px solid #ccc; "></div>
+            <div style="height:60px;width:60px;background-color:black;border:1px solid #ccc; "></div>
+            <div style="height:60px;width:60px;background-color:green;border:1px solid #ccc; "></div>    
+            <div style="height:60px;width:60px;background-color:green;border:1px solid #ccc; "></div>
+            <div style="height:60px;width:60px;background-color:green;border:1px solid #ccc; "></div>
+            <div style="height:60px;width:60px;background-color:green;border:1px solid #ccc; "></div>
+    </div>
+    
+	<svg height="11" width="11"  xmlns="http://www.w3.org/2000/svg"> 
+		<path xmlns="http://www.w3.org/2000/svg" fill="#FF00FF"
+			x="0" y="0" stroke="#0000FF" stroke-width="1"
+			d="M288.75,232.25 L288.75,240.625 L283,236.625 z" >
+		</path>
+	</svg>
+																
+	<svg  xmlns="http://www.w3.org/2000/svg"
+      xmlns:xlink="http://www.w3.org/1999/xlink">
+    <rect x="10" y="10" height="100" width="100"
+          style="stroke:#ff0000; fill: #0000ff"/>
+</svg>
+<script>
+function Scroll(event){
+	console.log(event);
+	//this.scrollTop = this.scrollTop + 50;
+	return false;
+}
+
+var d1 = document.getElementById("d1");
+d1.addEventListener("scroll", Scroll, false);
+var divs = document.getElementsByTagName('div');
+for(var i=0;i<divs.length;i++){
+    divs[i].onclick=function(e){
+        e = e || window.event;
+
+        alert(this.offsetTop+'==='+this.offsetParent + "parent scrollHeight = : " + d1.scrollHeight + 
+        		"parent height: " + d1.offsetHeight +　"scrollTop :" + d1.scrollTop +　"offsetTop :" + d1.offsetTop);
+        if(e.stopPropagation){
+            e.stopPropagation();
+        }else{
+            e.cancelBubble = true;    
+        }
+    };
+}
+
+d1.scrollTop = 124;
+</script>
+</body>
+</html>

@@ -1,0 +1,429 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+
+
+  
+  <style type="text/css">
+
+	table, th, td
+  {
+  border: 1px solid blue;
+  border-collapse: collapse;
+  }
+
+</style>
+
+	<script>
+		var dojoConfig = {
+		    baseUrl: "js",
+		    tlmSiblingOfDojo: false,
+		    packages: [
+		        { name: "dojo", location: "lib/dojo" },
+		        { name: "dijit", location: "lib/dijit" },
+		        { name: "dojox", location: "lib/dojox" },
+		        { name: "test", location: "test" },
+		        { name: "utility", location: "MS/utility" },
+		        { name: "reflection", location: "system/reflection" },
+		        { name: "internal", location: "MS/internal" },
+		        { name: "system", location: "system" },
+		        { name: "data", location: "system/windows/data" },
+		        { name: "globalization", location: "system/globalization" },
+		        
+		        { name: "text", location: "system/text" },
+		        
+		        { name: "documents", location: "system/windows/documents" },
+		        
+		        { name: "input", location: "system/windows/input" },
+		        { name: "dom", location: "system/windows/dom" },
+		        { name: "shapes", location: "system/windows/shapes" },
+		        { name: "media", location: "system/windows/media" },
+		        { name: "markup", location: "system/windows/markup" },  
+		        { name: "controls", location: "system/windows/controls" },	
+		        { name: "primitives", location: "system/windows/controls/primitives" },
+		        { name: "animation", location: "system/windows/media/animation" },
+		        
+		        { name: "collections", location: "system/collections" },
+		        { name: "generic", location: "system/collections/generic" },
+		        { name: "objectmodel", location: "system/collections/objectmodel" },
+		        { name: "specialized", location: "system/collections/specialized" },
+		        { name: "componentmodel", location: "system/componentmodel" },
+		        
+		        { name: "internal.data", location: "MS/internal/data" },
+		        { name: "internal.commands", location: "MS/internal/commands" },
+		        { name: "internal.controls", location: "MS/internal/controls" },
+		        { name: "threading", location: "system/windows/threading" },
+		        { name: "windows", location: "system/windows"},
+		        { name: "my", location: "my"
+		        	, main: "app" 
+		        	}
+		    ]
+		};
+	</script>
+
+	<script type="text/javascript"  data-dojo-config="async: true" src="js/lib/dojo.js"></script>
+	
+</head>
+<body>
+	<div id="test1" />
+	<script>
+	
+	//console.log(require);
+	// using the class elsewhere...
+	require(["dojo/_base/declare", "internal.data/ViewManager", "internal.data/CommitManager",
+	         "internal.data/CollectionViewProxy",
+	         "windows/FrameworkContentElement", "windows/FrameworkElement", "controls/ItemsControl", "controls/ContextMenu",
+	         "controls/StackPanel", "windows/Style", "controls/ContextMenuService",
+	         "internal/FrameworkObject", 
+	         "controls/Control", "windows/ControlTemplate", "primitives/Popup", "primitives/ButtonBase", "controls/Button", 
+	         "windows/RoutedEventHandler", "windows/FrameworkElementFactory",
+	         "controls/ContentPresenter",
+	         "controls/Page", "controls/PasswordBox", "controls/TextBlock", "windows/Trigger",
+	         "windows/Application", "documents/Run", "documents/Hyperlink", "documents/LineBreak",
+	         "documents/InlineUIContainer", "documents/FlowDocumentView",
+	         "documents/FlowDocument", "documents/Paragraph", "documents/List", "documents/ListItem",
+	         "controls/CheckBox", 
+			 "windows/Visibility", "windows/UIElement",
+	         "threading/DispatcherTimer", "system/TimeSpan", "controls/Orientation",
+	         "shapes/Rectangle",
+	         "shapes/Ellipse", "shapes/Line", "shapes/Polygon", "shapes/Polyline", "shapes/Path",
+	         "controls/TextBox",
+	         "controls/WrapPanel", "test/Person", "markup/INameScope", "data/RelativeSource",
+	         "data/ObjectDataProvider", "controls/ToolTip",
+	         "controls/MenuItem", "input/Cursors",
+	         "controls/Calendar", "primitives/CalendarItem", "controls/Grid", "windows/HorizontalAlignment",
+	         "primitives/CalendarButton", "primitives/CalendarDayButton",
+	         "controls/ComboBox", "controls/ComboBoxItem", "controls/ItemsPresenter", "generic/List",
+	         "controls/Image", "controls/DatePicker", "controls/DatePickerTextBox",
+	         "windows/DynamicResourceExtension", "controls/Border", "dom/DOMElement"], 
+			function(declare, ViewManager, CommitManager,
+					CollectionViewProxy,
+					FrameworkContentElement, FrameworkElement, ItemsControl, ContextMenu,
+					StackPanel, Style, ContextMenuService, 
+					FrameworkObject, 
+					Control, ControlTemplate, Popup, ButtonBase, Button, 
+					RoutedEventHandler, FrameworkElementFactory, 
+					ContentPresenter,
+					Page, PasswordBox, TextBlock, Trigger,
+					Application, Run, Hyperlink, LineBreak,
+					InlineUIContainer, FlowDocumentView, 
+					FlowDocument, Paragraph, List, ListItem,
+					CheckBox,
+					Visibility, UIElement, 
+					DispatcherTimer, TimeSpan, Orientation, 
+					Rectangle,
+					Ellipse, Line, Polygon, Polyline, Path,
+					TextBox,
+					WrapPanel, Person, INameScope, RelativeSource,
+					ObjectDataProvider, ToolTip,
+					MenuItem, Cursors,
+					Calendar, CalendarItem, Grid, HorizontalAlignment,
+					CalendarButton, CalendarDayButton,
+					Combobox, ComboBoxItem, ItemsPresenter, List1,
+					Image, DatePicker, DatePickerTextBox,
+					DynamicResourceExtension, Border, DOMElement){
+		 
+	    	var expander = new Expander();
+	    	expander.Header = "相见恨晚";
+	    	expander.Content = "   如果相见不会太晚，我们就不会悲伤，和你堂堂的手牵手，过得好简单，    " + 
+	    	"若我有天不见了，或许你会比较快乐，虽然有万般舍不得，也不愿看你难割舍    若我有天不在了。请你原谅我的困扰，虽然你给我的不算少，只是我没福气要就算是完美。";
+	    	
+	    	
+	    	expander.SetValue(Grid.RowProperty, 2);
+	    	expander.SetValue(Grid.ColumnProperty, 0);
+	    	
+	    	/*
+	    	<ControlTemplate x:Key="ExpanderToggleButton"
+                TargetType="{x:Type ToggleButton}">
+			 <Border x:Name="Border"
+			         CornerRadius="2,0,0,0"
+			         BorderThickness="0,0,1,0">
+			   <Border.Background>
+			     <LinearGradientBrush EndPoint="0.5,1"
+			                          StartPoint="0.5,0">
+			       <GradientStop Color="{DynamicResource ControlLightColor}" />
+			       <GradientStop Color="{DynamicResource ControlMediumColor}"
+			                     Offset="1" />
+			     </LinearGradientBrush>
+			   </Border.Background>
+			   <Border.BorderBrush>
+			     <LinearGradientBrush StartPoint="0,0"
+			                          EndPoint="0,1">
+			       <LinearGradientBrush.GradientStops>
+			         <GradientStopCollection>
+			           <GradientStop Color="{DynamicResource BorderLightColor}"
+			                         Offset="0.0" />
+			           <GradientStop Color="{DynamicResource BorderDarkColor}"
+			                         Offset="1.0" />
+			         </GradientStopCollection>
+			       </LinearGradientBrush.GradientStops>
+			     </LinearGradientBrush>
+			
+			   </Border.BorderBrush>
+			   
+			   <Grid>
+			     <Path x:Name="CollapsedArrow"
+			           HorizontalAlignment="Center"
+			           VerticalAlignment="Center"
+			           Data="M 0 0 L 4 4 L 8 0 Z">
+			       <Path.Fill>
+			         <SolidColorBrush Color="{DynamicResource GlyphColor}" />
+			       </Path.Fill>
+			     </Path>
+			     <Path x:Name="ExpandededArrow"
+			           HorizontalAlignment="Center"
+			           VerticalAlignment="Center"
+			           Visibility="Collapsed"
+			           Data="M 0 4 L 4 0 L 8 4 Z">
+			       <Path.Fill>
+			         <SolidColorBrush Color="{DynamicResource GlyphColor}" />
+			       </Path.Fill>
+			     </Path>
+			   </Grid>
+			 </Border>
+			</ControlTemplate>
+			*/
+			function CreateBtnTemplate()
+	        {
+	            var template = new ControlTemplate(ToggleButton.Type);
+                var grid = new FrameworkElementFactory(Grid.Type, "grid");
+
+	  /*           grid.SetValue(Grid.RowsProperty,"auto 1fr");
+	            grid.SetValue(Grid.ColumnsProperty,"auto"); */
+	             
+	            var path = new FrameworkElementFactory(Path.Type, "CollapsedArrow");
+	            path.SetValue(Path.DataProperty, "M 0 0 L 4 4 L 8 0 Z");
+	            grid.AppendChild(path);
+	            
+	            path = new FrameworkElementFactory(Path.Type, "ExpandededArrow");
+	            path.SetValue(Path.DataProperty, "M 0 4 L 4 0 L 8 4 Z");
+	            path.SetValue(UIElement.VisibilityProperty, Visibility.Collapsed);
+	            grid.AppendChild(path);
+	            
+	            template.VisualTree = grid;
+	            
+	            return template;
+	        }
+			
+			/*
+			
+			<Style TargetType="{x:Type Expander}">
+			  <Setter Property="Template">
+			    <Setter.Value>
+			      <ControlTemplate TargetType="{x:Type Expander}">
+			        <Grid>
+			          <Grid.RowDefinitions>
+			            <RowDefinition Height="Auto" />
+			            <RowDefinition x:Name="ContentRow"
+			                           Height="0" />
+			          </Grid.RowDefinitions>
+			          <Border x:Name="Border"
+			                  Grid.Row="0"
+			                  BorderThickness="1"
+			                  CornerRadius="2,2,0,0">
+			            <Border.BorderBrush>
+			              <LinearGradientBrush EndPoint="0,1"
+			                                   StartPoint="0,0">
+			                <GradientStop Color="{DynamicResource BorderLightColor}"
+			                              Offset="0" />
+			                <GradientStop Color="{DynamicResource BorderDarkColor}"
+			                              Offset="1" />
+			              </LinearGradientBrush>
+
+			            </Border.BorderBrush>
+			            <Border.Background>
+
+			              <LinearGradientBrush StartPoint="0,0"
+			                                   EndPoint="0,1">
+			                <LinearGradientBrush.GradientStops>
+			                  <GradientStopCollection>
+			                    <GradientStop Color="{DynamicResource ControlLightColor}"
+			                                  Offset="0.0" />
+			                    <GradientStop Color="{DynamicResource ControlMediumColor}"
+			                                  Offset="1.0" />
+			                  </GradientStopCollection>
+			                </LinearGradientBrush.GradientStops>
+			              </LinearGradientBrush>
+
+			            </Border.Background>
+			            <Grid>
+			              <Grid.ColumnDefinitions>
+			                <ColumnDefinition Width="20" />
+			                <ColumnDefinition Width="*" />
+			              </Grid.ColumnDefinitions>
+			              <ToggleButton OverridesDefaultStyle="True"
+			                            Template="{StaticResource ExpanderToggleButton}"
+			                            IsChecked="{Binding IsExpanded, Mode=TwoWay, 
+			                  RelativeSource={RelativeSource TemplatedParent}}">
+			                <ToggleButton.Background>
+			                  <LinearGradientBrush EndPoint="0.5,1"
+			                                       StartPoint="0.5,0">
+			                    <GradientStop Color="{DynamicResource ControlLightColor}"
+			                                  Offset="0" />
+			                    <GradientStop Color="{DynamicResource ControlMediumColor}"
+			                                  Offset="1" />
+			                  </LinearGradientBrush>
+			                </ToggleButton.Background>
+			              </ToggleButton>
+			              <ContentPresenter Grid.Column="1"
+			                                Margin="4"
+			                                ContentSource="Header"
+			                                RecognizesAccessKey="True" />
+			            </Grid>
+			          </Border>
+			          <Border x:Name="Content"
+			                  Grid.Row="1"
+			                  BorderThickness="1,0,1,1"
+			                  CornerRadius="0,0,2,2">
+			            <Border.BorderBrush>
+			              <SolidColorBrush Color="{DynamicResource BorderMediumColor}" />
+			            </Border.BorderBrush>
+			            <Border.Background>
+			              <SolidColorBrush Color="{DynamicResource ContentAreaColorDark}" />
+			            </Border.Background>
+			            <ContentPresenter Margin="4" />
+			          </Border>
+			        </Grid>
+			        <ControlTemplate.Triggers>
+			          <Trigger Property="IsExpanded"
+			                   Value="True">
+			            <Setter TargetName="ContentRow"
+			                    Property="Height"
+			                    Value="{Binding DesiredHeight, ElementName=Content}" />
+			          </Trigger>
+			        </ControlTemplate.Triggers>
+			      </ControlTemplate>
+			    </Setter.Value>
+			  </Setter>
+			</Style>
+			*/
+			
+	    	function CreateExpanderTemplate()
+	        {
+	            /* ControlTemplate */var template = new ControlTemplate(Expander.Type);
+
+	            /* FrameworkElementFactory */
+	            var grid = new FrameworkElementFactory(Grid.Type, "grid");
+	            
+	      	  	grid.SetValue(Grid.RowsProperty,"auto 0px");
+	          
+	            /*<Grid>
+	              <Grid.ColumnDefinitions>
+	                <ColumnDefinition Width="20" />
+	                <ColumnDefinition Width="*" />
+	              </Grid.ColumnDefinitions>
+	              <ToggleButton
+	                IsChecked="{Binding Path=IsExpanded,Mode=TwoWay,
+	                                    RelativeSource={RelativeSource TemplatedParent}}"
+	                OverridesDefaultStyle="True" 
+	                Template="{StaticResource ExpanderToggleButton}" 
+	                Background="{StaticResource NormalBrush}" />
+	              <ContentPresenter 
+	                Grid.Column="1"
+	                Margin="4"
+	                ContentSource="Header" 
+	                RecognizesAccessKey="True" />
+	            </Grid>*/
+	            
+	            var headGrid = new FrameworkElementFactory(Grid.Type, "headGrid");
+	            grid.AppendChild(headGrid);
+	             
+	             
+            	var btn = new FrameworkElementFactory(ToggleButton.Type);
+            	btn.SetValue(ButtonBase.ClickModeProperty, ClickMode.Release);
+	            btn.SetValue(Control.TemplateProperty, CreateBtnTemplate());
+	
+	            var binding = new Binding();
+	            binding.Path = new PropertyPath("IsExpanded");
+	            binding.RelativeSource = RelativeSource.TemplatedParent;
+	            binding.Mode = BindingMode.TwoWay;
+	            btn.SetBinding(ToggleButton.IsCheckedProperty, binding);
+	             
+	            headGrid.AppendChild(btn);
+	             
+	            var headerCp = new FrameworkElementFactory(ContentPresenter.Type, "cp3");
+	            headerCp.SetValue(ContentPresenter.ContentSourceProperty, "Header");
+	            headerCp.SetValue(Grid.ColumnProperty, 2);
+	            headGrid.AppendChild(headerCp);
+	            /*<Border 
+	            	Name="Content" 
+		            Grid.Row="1" 
+		            Background="{StaticResource WindowBackgroundBrush}"
+		            BorderBrush="{StaticResource SolidBorderBrush}" 
+		            BorderThickness="1,0,1,1" 
+		            CornerRadius="0,0,2,2" >
+		            <ContentPresenter Margin="4" />
+          		</Border>*/
+/*           		
+          		var contentBorder = new FrameworkElementFactory(Border.Type, "border2");
+          		contentBorder.SetValue(Grid.RowProperty, 1);
+          		//contentBorder.SetValue(Grid.ColumnSpanProperty, 2);
+	            grid.AppendChild(contentBorder); */
+	            
+	            var contentCp = new FrameworkElementFactory(ContentPresenter.Type, "cp2");
+	            contentCp.SetValue(Grid.RowProperty, 2);
+	            contentCp.SetValue(Grid.ColumnSpanProperty, 2);
+	            grid.AppendChild(contentCp);
+
+	            template.VisualTree = grid;
+	            
+	/*             <ControlTemplate.Triggers>
+		            <Trigger Property="IsExpanded"
+		                     Value="True">
+		              <Setter TargetName="ContentRow"
+		                      Property="Height"
+		                      Value="{Binding DesiredHeight, ElementName=Content}" />
+		            </Trigger>
+	          	</ControlTemplate.Triggers> */
+	          	
+ 			 	var trg = new Trigger();
+                trg.Property = Expander.IsExpandedProperty;
+                trg.Value = false;
+	                
+                var setter = new Setter(DOMElement.HiddenProperty, "hidden", "cp2");
+                trg.AddChild(setter);
+	                
+                template.Triggers.Add(trg); 
+	            
+	            template.Seal();
+	            return template;
+	        }
+	    	
+	    	expander.Template = CreateExpanderTemplate();
+	    	
+			var page = new Page();
+			page.AddChild(expander); 
+						
+			//Application.Current.Resources.Set(TextBlock.Type, pStyle); 
+			//panel.Resources.Set(TextBlock.Type, pStyle); 
+			
+			//pStyle.AddChild(new Setter(TextBlock.ForegroundProperty, new SolidColorBrush(Colors.YellowGreen)));
+			//alert(panel.ShouldLookupImplicitStyles);
+			
+	
+			page.DataContext = "datacontext";
+			function CreatePageTemplate()
+	        {
+	            var template = new ControlTemplate(Page.Type);
+
+	            var cp = new FrameworkElementFactory(ContentPresenter.Type, "cp1");
+
+	            template.VisualTree = cp;
+	            
+	            return template;
+	        }
+			page.Template = CreatePageTemplate();
+			
+			page.Arrange();
+			
+
+			
+			alert(expander.DataContext);
+			
+		});
+
+	</script>
+</body>
+</html>

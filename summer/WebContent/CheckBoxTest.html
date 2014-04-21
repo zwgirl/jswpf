@@ -1,0 +1,2024 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+
+	<script>
+		var dojoConfig = {
+		    baseUrl: "js",
+		    tlmSiblingOfDojo: false,
+		    packages: [
+		        { name: "dojo", location: "lib/dojo" },
+		        { name: "dijit", location: "lib/dijit" },
+		        { name: "dojox", location: "lib/dojox" },
+		        { name: "test", location: "test" },
+		        { name: "utility", location: "MS/utility" },
+		        { name: "reflection", location: "system/reflection" },
+		        { name: "internal", location: "MS/internal" },
+		        { name: "system", location: "system" },
+		        { name: "data", location: "system/windows/data" },
+		        { name: "globalization", location: "system/globalization" },
+		        
+		        { name: "text", location: "system/text" },
+		        
+		        { name: "documents", location: "system/windows/documents" },
+		        
+		        { name: "input", location: "system/windows/input" },
+		        { name: "shapes", location: "system/windows/shapes" },
+		        { name: "media", location: "system/windows/media" },
+		        { name: "markup", location: "system/windows/markup" },  
+		        { name: "controls", location: "system/windows/controls" },	
+		        { name: "primitives", location: "system/windows/controls/primitives" },
+		        { name: "animation", location: "system/windows/media/animation" },
+		        
+		        { name: "collections", location: "system/collections" },
+		        { name: "generic", location: "system/collections/generic" },
+		        { name: "objectmodel", location: "system/collections/objectmodel" },
+		        { name: "specialized", location: "system/collections/specialized" },
+		        { name: "componentmodel", location: "system/componentmodel" },
+		        
+		        { name: "internal.data", location: "MS/internal/data" },
+		        { name: "internal.commands", location: "MS/internal/commands" },
+		        { name: "internal.controls", location: "MS/internal/controls" },
+		        { name: "threading", location: "system/windows/threading" },
+		        { name: "windows", location: "system/windows"},
+		        { name: "my", location: "my"
+		        	, main: "app" 
+		        	}
+		    ]
+		};
+	</script>
+
+	<script type="text/javascript"  data-dojo-config="async: true" src="js/lib/dojo.js"></script>
+	
+	
+<style type="text/css">
+<!--
+#help{
+    width:30px;
+    height:20px;
+    background-color:green;
+    position:fixed;
+    left:60px;
+    top:100px;
+}
+-->
+</style>
+	
+</head>
+<body>
+	<div id="test1" />
+	<script>
+ 	console.log(new Date().toString());
+		//console.log(require);
+		// using the class elsewhere...
+		require(["dojo/_base/declare", "internal.data/ViewManager", "internal.data/CommitManager",
+		         "internal.data/CollectionViewProxy",
+		         "windows/FrameworkContentElement", "windows/FrameworkElement", "controls/ItemsControl", "controls/ContextMenu",
+		         "controls/StackPanel", "windows/Style", "controls/ContextMenuService",
+		         "internal/FrameworkObject", 
+		         "controls/Control", "windows/ControlTemplate", "primitives/Popup", "primitives/ButtonBase", "controls/Button", 
+		         "windows/RoutedEventHandler", "windows/FrameworkElementFactory", "controls/Border",
+		         "controls/ContentPresenter",
+		         "controls/Page", "controls/PasswordBox", "controls/TextBlock", "windows/Trigger",
+		         "windows/Application", "documents/Run", "documents/Hyperlink", "documents/LineBreak",
+		         "documents/InlineUIContainer", "documents/FlowDocumentView",
+		         "documents/FlowDocument", "documents/Paragraph", "documents/List", "documents/ListItem",
+		         "controls/CheckBox", 
+				 "windows/Visibility", "windows/UIElement",
+		         "threading/DispatcherTimer", "system/TimeSpan", "controls/Orientation",
+		         "shapes/Rectangle",
+		         "shapes/Ellipse", "shapes/Line", "shapes/Polygon", "shapes/Polyline", "shapes/Path",
+		         "controls/TextBox",
+		         "controls/WrapPanel", "test/Person", "markup/INameScope", "data/RelativeSource",
+		         "data/ObjectDataProvider", "controls/ToolTip",
+		         "controls/MenuItem", "input/Cursors",
+		         "controls/Calendar", "primitives/CalendarItem", "controls/Grid", "windows/HorizontalAlignment",
+		         "primitives/CalendarButton", "primitives/CalendarDayButton",
+		         "controls/ComboBox", "controls/ComboBoxItem", "controls/ItemsPresenter", "generic/List",
+		         "controls/Image", "controls/DatePicker", "controls/DatePickerTextBox",
+		         "windows/DynamicResourceExtension"], 
+				function(declare, ViewManager, CommitManager,
+						CollectionViewProxy,
+						FrameworkContentElement, FrameworkElement, ItemsControl, ContextMenu,
+						StackPanel, Style, ContextMenuService, 
+						FrameworkObject, 
+						Control, ControlTemplate, Popup, ButtonBase, Button, 
+						RoutedEventHandler, FrameworkElementFactory, Border,
+						ContentPresenter,
+						Page, PasswordBox, TextBlock, Trigger,
+						Application, Run, Hyperlink, LineBreak,
+						InlineUIContainer, FlowDocumentView, 
+						FlowDocument, Paragraph, List, ListItem,
+						CheckBox,
+						Visibility, UIElement, 
+						DispatcherTimer, TimeSpan, Orientation, 
+						Rectangle,
+						Ellipse, Line, Polygon, Polyline, Path,
+						TextBox,
+						WrapPanel, Person, INameScope, RelativeSource,
+						ObjectDataProvider, ToolTip,
+						MenuItem, Cursors,
+						Calendar, CalendarItem, Grid, HorizontalAlignment,
+						CalendarButton, CalendarDayButton,
+						Combobox, ComboBoxItem, ItemsPresenter, List1,
+						Image, DatePicker, DatePickerTextBox,
+						DynamicResourceExtension){
+
+		 	console.log(new Date().toString());
+		    
+		    function CreatePageTemplate()
+	        {
+	            /* ControlTemplate */var template = new ControlTemplate(Page.Type);
+
+	            /* FrameworkElementFactory */
+	            var border = new FrameworkElementFactory(Border.Type, "border");
+
+	            /* FrameworkElementFactory */ 
+	            var cp = new FrameworkElementFactory(ContentPresenter.Type, "cp1");
+
+	            border.AppendChild(cp);
+	            template.VisualTree = border;
+	            
+	            //template.Seal();
+	            return template;
+	        }
+		    
+		  //var ics = new Style(ItemsControl.Type);
+		    function CreatePersonTemplate()
+	        {
+		        var template = new DataTemplate(Person.Type);
+	            
+	            var stack = new FrameworkElementFactory(StackPanel.Type, "stackPanel");
+	            var pwdBox1 = new FrameworkElementFactory(TextBox.Type, "btn1");
+	            //pwdBox1.SetValue(Control.FontSizeProperty, 14);
+	            
+	            var binding = new Binding();
+	            binding.Path = new PropertyPath("Name");
+	            binding.Mode = BindingMode.TwoWay;
+	            
+	            pwdBox1.SetValue(TextBox.TextProperty, binding);
+	            
+	            
+				var brush = new SolidColorBrush(Colors.YellowGreen);
+				brush.Seal();
+				
+	            pwdBox1.SetValue(Control.ForegroundProperty, brush);
+	            stack.AppendChild(pwdBox1);
+	            
+/* 	            var img1 = new FrameworkElementFactory(Image.Type, "img1");
+	            rootfactory.AppendChild(pwdBox1);
+	            rootfactory.AppendChild(img1); */
+	            
+	            var rect1 = new FrameworkElementFactory(Rectangle.Type, "rect1");
+	            stack.AppendChild(rect1);
+	            
+	            var ellipse = new FrameworkElementFactory(Ellipse.Type, "ellipse");
+	            stack.AppendChild(ellipse);
+	            
+	            var line = new FrameworkElementFactory(Line.Type, "line");
+	            stack.AppendChild(line);
+	            
+	            var polygon = new FrameworkElementFactory(Polygon.Type, "polygon");
+	            stack.AppendChild(polygon);
+	            
+	            var polyline = new FrameworkElementFactory(Polyline.Type, "polyline");
+	            stack.AppendChild(polyline);
+	            
+	            var path = new FrameworkElementFactory(Path.Type, "path");
+	            path.SetValue(Path.DataProperty, "M 0 0 L 7 7 M 0 7 L 7 0");
+	            
+	            //path.SetValue(Path.DataProperty, "M 0 0 L 4 4 L 8 0 Z");
+	            //path.SetValue(Path.DataProperty, "M 0 4 L 4 0 L 8 4 Z");
+	            stack.AppendChild(path);
+	            
+	            //var image1 = new FrameworkElementFactory(Image.Type, "image1");
+	            //stack.AppendChild(image1);
+	            
+	            
+	            template.VisualTree = stack;
+	            template.Seal();
+	            return template;
+	        }
+		    
+			
+			function CreateCheckBoxTemplate()
+	        {
+	            /* ControlTemplate */var template = new ControlTemplate(CheckBox.Type);
+	            
+	            
+	            /* FrameworkElementFactory */
+	            var border = new FrameworkElementFactory(Border.Type, "Border");
+	            //rootfactory.SetValue(Border.CornerRadiusProperty, CornerRadus);
+	            //rootfactory.SetValue(Border.BackgroundProperty, new SolidColorBrush(Colors.YellowGreen));
+
+
+	        	var stackPanel = new FrameworkElementFactory(StackPanel.Type);
+	        	stackPanel.SetValue(StackPanel.OrientationProperty, Orientation.Horizontal);
+	            border.AppendChild(stackPanel);
+	            
+	            var path = new FrameworkElementFactory(Path.Type, "checkMark");
+	            path.SetValue(Path.DataProperty, "M 0 0 L 7 7 M 0 7 L 7 0" /*"M 0 0 L 7 7 M 0 7 L 7 0"*/);
+	            
+	            
+	            var trg = new Trigger();
+                trg.Property = ToggleButton.IsCheckedProperty;
+                trg.Value = true;
+                
+                setter = new Setter(UIElement.VisibilityProperty, Visibility.Collapsed, "checkMark");
+                trg.AddChild(setter);
+                
+                template.Triggers.Add(trg);
+	           
+	            stackPanel.AppendChild(path);
+	            /* FrameworkElementFactory */ 
+	            var cp = new FrameworkElementFactory(ContentPresenter.Type);
+	            //rootfactory.SetValue(Border.BorderBrushProperty, BorderColor);
+	            //rootfactory.SetValue(Border.BorderThicknessProperty, BorderThickness);
+
+	            stackPanel.AppendChild(cp);
+
+	            template.VisualTree = border;
+	            
+	            //template.Seal();
+	            return template;
+	        }
+
+			/*
+			      <ControlTemplate TargetType="{x:Type CheckBox}">
+			        <BulletDecorator Background="Transparent">
+			          <BulletDecorator.Bullet>
+			            <Border x:Name="Border"
+			                    Width="13"
+			                    Height="13"
+			                    CornerRadius="0"
+			                    BorderThickness="1">
+			              <Grid>
+			                <Path Visibility="Collapsed"
+			                      Width="7"
+			                      Height="7"
+			                      x:Name="CheckMark"
+			                      SnapsToDevicePixels="False"
+			                      StrokeThickness="2"
+			                      Data="M 0 0 L 7 7 M 0 7 L 7 0">
+			                  <Path.Stroke>
+			                    <SolidColorBrush Color="{DynamicResource GlyphColor}" />
+			                  </Path.Stroke>
+			                </Path>
+			                <Path Visibility="Collapsed"
+			                      Width="7"
+			                      Height="7"
+			                      x:Name="InderminateMark"
+			                      SnapsToDevicePixels="False"
+			                      StrokeThickness="2"
+			                      Data="M 0 7 L 7 0">
+			                  <Path.Stroke>
+			                    <SolidColorBrush Color="{DynamicResource GlyphColor}" />
+			                  </Path.Stroke>
+			                </Path>
+			              </Grid>
+			            </Border>
+			          </BulletDecorator.Bullet>
+			          <ContentPresenter Margin="4,0,0,0"
+			                            VerticalAlignment="Center"
+			                            HorizontalAlignment="Left"
+			                            RecognizesAccessKey="True" />
+			        </BulletDecorator>
+			      </ControlTemplate>
+			*/
+			
+/* 			var MyPage = declare("MyPage", Page,{
+		
+			});
+			MyPage.Type = new Type("MyPage", MyPage, [Page.Type, INameScope.Type]); */
+			
+			var page = new Page();
+			
+			NameScope.SetNameScope(page, new NameScope());
+	
+			page.Template = CreatePageTemplate();
+			page.DataContext = "datacontext";
+			
+			function CreateStyle(){
+				var style = new Style(ListBoxItem.Type);
+				var setter = new Setter(Control.TemplateProperty, CreateListBoxItemControlTemplate());
+				style.AddChild(setter);
+				
+				return style;
+			}
+			
+			
+			
+			//lb.Resources.Set(ListBoxItem.Type, CreateStyle());
+			page.Resources.Set(new DataTemplateKey(Person.Type), CreatePersonTemplate());
+			
+		    function CreateToolTipTemplate()
+	        {
+	            /* ControlTemplate */var template = new ControlTemplate(ToolTip.Type);
+
+	            /* FrameworkElementFactory */
+	            var border = new FrameworkElementFactory(Border.Type, "border");
+	            var brush = new SolidColorBrush(Colors.Red);
+				brush.Seal();
+	            border.SetValue(Border.BackgroundProperty, brush);
+
+	            /* FrameworkElementFactory */ 
+	            var cp = new FrameworkElementFactory(ContentPresenter.Type, "cp1");
+
+	            border.AppendChild(cp);
+	            template.VisualTree = border;
+	            
+	            //template.Seal();
+	            return template;
+	        }
+		    
+			function CreateTolTipStyle(){
+				var style = new Style(ToolTip.Type);
+				var setter = new Setter(Control.TemplateProperty, CreateToolTipTemplate());
+				style.AddChild(setter);
+				
+				return style;
+			}
+			page.Resources.Set(ToolTip.Type, CreateTolTipStyle());
+			
+		    var panel = new WrapPanel();
+		    
+		    panel.SetValue(FrameworkElement.NameProperty, "WrapPanel");
+		    
+			page.AddChild(panel); 
+		    
+	/* 	    <StackPanel Background="Blue">
+		    <Button x:Name="refButton" Background="Orange"/>
+		    <Button Background="{Binding ElementName=refButton, Path=Background}"/>
+		    </StackPanel> */
+			var brush = new SolidColorBrush(Colors.Red);
+			brush.Seal();
+		    //panel.Background = brush;
+		    
+		    
+		    var person = new Person("毛泽东", "man", '10');
+		    var checkTemp = CreateCheckBoxTemplate();
+		    var checkBox1 = new CheckBox();
+		    panel.AddChild(checkBox1);
+		    
+		    checkBox1.Name = "refButton";
+		    checkBox1.RegisterName("refButton", checkBox1);
+		    checkBox1.Background = brush;
+		    checkBox1.Template = checkTemp
+		    checkBox1.Content = person;
+		    //checkBox1.Content= "sasasas";
+		    
+		    /* <ObjectDataProvider x:Key="myDataSource" ObjectType="{x:Type src:Person}">
+  				<ObjectDataProvider.ConstructorParameters>
+    				<system:String>Joe</system:String>
+  				</ObjectDataProvider.ConstructorParameters>
+			</ObjectDataProvider>
+			<TextBlock Text="{Binding Source={StaticResource myDataSource}, Path=PersonName}"/> */
+			
+		    
+		    person = new Person("周恩来", "man", '10');
+		    var checkBox2 = new CheckBox();
+		    //checkBox2.FontSize = 20;
+		    checkBox2.Name = "refButton2";
+		    checkBox2.Content= person;
+		    //checkBox2.Content= "sasasas";
+		    checkBox2.Template = checkTemp
+		    panel.AddChild(checkBox2); 
+		    
+		    
+		    var binding = new Binding();
+		    binding.ElementName = "refButton";
+		    binding.Path = new PropertyPath("Background");
+		    binding.Mode = BindingMode.OneWay;
+		    BindingOperations.SetBinding(checkBox2, Control.BackgroundProperty, binding);
+		    
+		    
+		   // console.log(new Date().toString());
+		    
+/* 		    for(var i=0; i<150; i++){
+		    	person = new Person("党员" +　i, "man", '10');
+			    checkBox1 = new CheckBox();
+			    checkBox1.Content = person;
+			    checkBox1.Template = checkTemp
+			    //checkBox1.Content= "sasasas";
+			    panel.AddChild(checkBox1);
+		    } */
+		    
+		    //console.log(new Date().toString());
+		    var textBox1 = new TextBox();
+		    panel.AddChild(textBox1);
+		    
+		    
+            var rs = new RelativeSource();
+            rs.Mode = RelativeSourceMode.FindAncestor;
+            rs.AncestorLevel = 1;
+            rs.AncestorType = WrapPanel.Type;
+
+            binding = new Binding();
+            binding.RelativeSource = rs;
+            binding.Path = new PropertyPath("Name");
+            textBox1.SetBinding(TextBox.TextProperty, binding);
+            
+		    var tb = new TextBlock(); 
+			tb.AddChild(new Run("ceshi"));
+			tb.AddChild(new LineBreak());
+			panel.AddChild(tb);
+		    
+            
+			var provider = new ObjectDataProvider();
+			provider.ConstructorParameters.Add("周恩来");
+			provider.ConstructorParameters.Add("man");
+			provider.ConstructorParameters.Add('10');
+			provider.ObjectType = Person.Type;
+			
+		    var textBox2 = new TextBox();
+		    //textBox2.FontSize = 20;
+		    panel.AddChild(textBox2);
+			
+		    var binding = new Binding();
+		    binding.Source = provider;
+		    binding.Path = new PropertyPath("Name");
+		    binding.Mode = BindingMode.OneWay;
+		    BindingOperations.SetBinding(textBox2, TextBox.TextProperty, binding);
+		    
+/* 		    <ObjectDataProvider x:Key="odp" ObjectType="{x:Type local:Calculator}" MethodName="Add">  
+            <ObjectDataProvider.MethodParameters>  
+                <system:String>0</system:String>  
+                <system:String>0</system:String>  
+            </ObjectDataProvider.MethodParameters>  
+        	</ObjectDataProvider>  */
+        	
+    	    var Calculator = declare(Object, 
+    	    {
+    	        Add:function(/* double */ one,/* double */ two)
+    	        {
+    	            return one + two;
+    	        }
+    	    });
+        	Calculator.Type = new Type("Calculator", Calculator, [Object.Type]);
+        	
+        	var odp = new ObjectDataProvider();
+        	odp.ObjectType = Calculator.Type;
+        	odp.MethodName = "Add";
+        	odp.MethodParameters.Add(1);
+        	
+        	odp.MethodParameters.Add(2);
+        	
+        	var textBox3 = new TextBox();
+		    panel.AddChild(textBox3);
+		    
+		    textBox2.ToolTip = "这个是tooltip！";
+		    
+		    var MyConverter = declare(IValueConverter, {
+//				public object 
+				Convert:function(/*object*/ o, /*Type*/ type, /*object*/ parameter, /*CultureInfo*/ culture) 
+		        {
+		            // conversion from any type to object is easy
+		            return new String(o);
+		        },
+
+//			        public object 
+		        ConvertBack:function(/*object*/ o, /*Type*/ type, /*object*/ parameter, /*CultureInfo*/ culture) 
+		        { 
+					return new String(o);
+		        }
+		    });
+		    
+		    MyConverter.Type = new Type("MyConverter", MyConverter, [IValueConverter.Type]);
+			
+		    var binding = new Binding();
+		    binding.Source = odp;
+		    //binding.Path = new PropertyPath("");
+		    binding.Mode = BindingMode.OneWay;
+		    binding.Converter = new MyConverter();
+		    BindingOperations.SetBinding(textBox3, TextBox.TextProperty, binding);
+		    
+			//page.Template = CreatePageTemplate();
+			//page.FontSize = 15;
+			
+			textBox2.Cursor = Cursors.Crosshair;
+			textBox2.Focus();
+			
+			//alert("Sasa" +　Keyboard.FocusedElement);
+			
+			/*
+			<Style TargetType="controls:Calendar">
+			    <Setter Property="IsTabStop" Value="False" />
+			    <Setter Property="Background">
+			        <Setter.Value>
+			            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+			                <GradientStop Color="#FFD3DEE8" Offset="0" />
+			                <GradientStop Color="#FFD3DEE8" Offset="0.16" />
+			                <GradientStop Color="#FFFCFCFD" Offset="0.16" />
+			                <GradientStop Color="#FFFFFFFF" Offset="1" />
+			            </LinearGradientBrush>
+			        </Setter.Value>
+			    </Setter>
+			    <Setter Property="BorderThickness" Value="1" />
+			    <Setter Property="BorderBrush">
+			        <Setter.Value>
+			            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+			                <GradientStop Color="#FFA3AEB9" Offset="0" />
+			                <GradientStop Color="#FF8399A9" Offset="0.375" />
+			                <GradientStop Color="#FF718597" Offset="0.375" />
+			                <GradientStop Color="#FF617584" Offset="1" />
+			            </LinearGradientBrush>
+			        </Setter.Value>
+			    </Setter>
+			    <Setter Property="Template">
+			        <Setter.Value>
+			            <ControlTemplate TargetType="controls:Calendar">
+			                <StackPanel x:Name="Root" HorizontalAlignment="Center">
+			                    <controlsPrimitives:CalendarItem x:Name="CalendarItem" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" />
+			                </StackPanel>
+			            </ControlTemplate>
+			        </Setter.Value>
+			    </Setter>
+			</Style>
+			*/
+			
+			var calendar = new Calendar();
+			//calendar.DisplayDate = Date.Today;
+			panel.AddChild(calendar);
+			
+			/*
+			<!--Button to go up a level to the year or decade.-->
+			<ControlTemplate x:Key="HeaderButtonTemplate"
+			                 TargetType="{x:Type Button}">
+			  <Grid Cursor="Hand">
+			    <ContentPresenter x:Name="buttonContent"
+			                      Margin="1,4,1,9"
+			                      ContentTemplate="{TemplateBinding ContentTemplate}"
+			                      Content="{TemplateBinding Content}"
+			                      TextElement.Foreground="#FF333333"
+			                      HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+			                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+			  </Grid>
+			</ControlTemplate>
+			*/
+			
+			function createHeaderButtonTemplate(){
+				var template = new ControlTemplate(Button.Type);
+				var grid = new FrameworkElementFactory(Grid.Type);
+				grid.SetValue(FrameworkElement.CursorProperty, Cursors.Move);
+				
+				var cp = new FrameworkElementFactory(ContentPresenter.Type, "buttonContent");
+				cp.SetValue(ContentControl.ContentProperty, new TemplateBindingExtension(ContentControl.ContentProperty));
+				cp.SetValue(ContentControl.ContentTemplateProperty, new TemplateBindingExtension(ContentControl.ContentTemplateProperty));
+				grid.AppendChild(cp);
+				
+				template.VisualTree = grid;
+				return template;
+			}
+			
+			/*
+			<Grid  Background="Transparent">
+		      <Path x:Name="path"
+		            Margin="14,-6,0,0"
+		            Stretch="Fill"
+		            HorizontalAlignment="Left"
+		            Height="10"
+		            VerticalAlignment="Center"
+		            Width="6"
+		            Data="M288.75,232.25 L288.75,240.625 L283,236.625 z">
+		        <Path.Fill>
+		          <SolidColorBrush Color="{DynamicResource GlyphColor}" />
+		        </Path.Fill>
+		      </Path>
+		    </Grid>
+			*/
+			function createPreviousButtonTemplate(){
+				var template = new ControlTemplate(Button.Type);
+				var grid = new FrameworkElementFactory(Grid.Type);
+				grid.SetValue(FrameworkElement.CursorProperty, Cursors.Move);
+				
+				var path = new FrameworkElementFactory(Path.Type, "path");
+	            path.SetValue(Path.DataProperty, "M 0 0 L 7 7 M 0 7 L 7 0");
+	            
+	            //path.SetValue(Path.DataProperty, "M288.75,232.25 L288.75,240.625 L283,236.625 z");
+				grid.AppendChild(path);
+				template.VisualTree = grid;
+				return template;
+			}
+			/*
+			<Grid Background="Transparent">
+		      <Path x:Name="path"
+		            Data="M282.875,231.875 L282.875,240.375 L288.625,236 z"
+		            HorizontalAlignment="Right"
+		            Height="10"
+		            Margin="0,-6,14,0"
+		            Stretch="Fill"
+		            VerticalAlignment="Center"
+		            Width="6">
+		        <Path.Fill>
+		          <SolidColorBrush Color="{DynamicResource GlyphColor}" />
+		        </Path.Fill>
+		      </Path>
+		    </Grid>
+		    */
+			
+			function createNextButtonTemplate(){
+				var template = new ControlTemplate(Button.Type);
+				var grid = new FrameworkElementFactory(Grid.Type);
+				grid.SetValue(FrameworkElement.CursorProperty, Cursors.Move);
+				
+				var path = new FrameworkElementFactory(Path.Type, "path");
+	            path.SetValue(Path.DataProperty, "M 0 0 L 7 7 M 0 7 L 7 0");
+	            
+	            //path.SetValue(Path.DataProperty, "M282.875,231.875 L282.875,240.375 L288.625,236 z");
+				grid.AppendChild(path);
+				template.VisualTree = grid;
+				return template;
+			}
+			
+			calendar.Resources.Set("HeaderButtonTemplate", createHeaderButtonTemplate());
+			calendar.Resources.Set("PreviousButtonTemplate", createPreviousButtonTemplate());
+			calendar.Resources.Set("NextButtonTemplate", createNextButtonTemplate());
+			
+			/*
+			<Style TargetType="CalendarDayButton"
+			       x:Key="CalendarDayButtonStyle">
+			  <Setter Property="MinWidth"
+			          Value="5" />
+			  <Setter Property="MinHeight"
+			          Value="5" />
+			  <Setter Property="FontSize"
+			          Value="10" />
+			  <Setter Property="HorizontalContentAlignment"
+			          Value="Center" />
+			  <Setter Property="VerticalContentAlignment"
+			          Value="Center" />
+			  <Setter Property="Template">
+			    <Setter.Value>
+			      <ControlTemplate TargetType="CalendarDayButton">
+			        <Grid>
+			          <Rectangle x:Name="TodayBackground"
+			                     RadiusX="1"
+			                     RadiusY="1"
+			                     Opacity="0">
+			            <Rectangle.Fill>
+			              <SolidColorBrush Color="{DynamicResource SelectedBackgroundColor}" />
+			            </Rectangle.Fill>
+			          </Rectangle>
+			          <Rectangle x:Name="SelectedBackground"
+			                     RadiusX="1"
+			                     RadiusY="1"
+			                     Opacity="0">
+			            <Rectangle.Fill>
+			              <SolidColorBrush Color="{DynamicResource SelectedBackgroundColor}" />
+			            </Rectangle.Fill>
+			          </Rectangle>
+			          <Border Background="{TemplateBinding Background}"
+			                  BorderThickness="{TemplateBinding BorderThickness}"
+			                  BorderBrush="{TemplateBinding BorderBrush}" />
+			          <Rectangle x:Name="HighlightBackground"
+			                     RadiusX="1"
+			                     RadiusY="1"
+			                     Opacity="0">
+			            <Rectangle.Fill>
+			              <SolidColorBrush Color="{DynamicResource ControlMouseOverColor}" />
+			            </Rectangle.Fill>
+			          </Rectangle>
+			          <ContentPresenter x:Name="NormalText"
+			                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+			                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+			                            Margin="5,1,5,1">
+			            <TextElement.Foreground>
+			              <SolidColorBrush Color="#FF333333" />
+			            </TextElement.Foreground>
+			          </ContentPresenter>
+			          <Path x:Name="Blackout"
+			                Opacity="0"
+			                Margin="3"
+			                HorizontalAlignment="Stretch"
+			                VerticalAlignment="Stretch"
+			                RenderTransformOrigin="0.5,0.5"
+			                Fill="#FF000000"
+			                Stretch="Fill"
+			                Data="M8.1772461,11.029181 L10.433105,
+			                  11.029181 L11.700684,12.801641 L12.973633,
+			                  11.029181 L15.191895,11.029181 L12.844727,
+			                  13.999395 L15.21875,17.060919 L12.962891,
+			                  17.060919 L11.673828,15.256231 L10.352539,
+			                  17.060919 L8.1396484,17.060919 L10.519043,
+			                  14.042364 z" />
+			          <Rectangle x:Name="DayButtonFocusVisual"
+			                     Visibility="Collapsed"
+			                     IsHitTestVisible="false"
+			                     RadiusX="1"
+			                     RadiusY="1">
+			            <Rectangle.Stroke>
+			              <SolidColorBrush Color="{DynamicResource SelectedBackgroundColor}" />
+			            </Rectangle.Stroke>
+			          </Rectangle>
+			        </Grid>
+			      </ControlTemplate>
+			    </Setter.Value>
+			  </Setter>
+			</Style>
+			*/
+			
+			
+			function createCalendarDayButtonStyle(){
+				var style = new Style(CalendarDayButton.Type);
+				var setter = new Setter(KeyboardNavigation.IsTabStopProperty, false);
+				style.Setters.Add(setter);
+				
+				var template = new ControlTemplate(CalendarDayButton.Type);
+				var grid = new FrameworkElementFactory(Grid.Type);
+				var rectangle = new FrameworkElementFactory(Rectangle.Type, "SelectedBackground");
+				//grid.AppendChild(rectangle);
+				
+				/*
+		          <ContentPresenter x:Name="NormalText"
+                      HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                      Margin="5,1,5,1">
+      					<TextElement.Foreground>
+        					<SolidColorBrush Color="#FF333333" />
+     					 </TextElement.Foreground>
+    				</ContentPresenter>
+    			*/
+    			
+    			/* FrameworkElementFactory */ 
+    			var cp = new FrameworkElementFactory(ContentPresenter.Type, "NormalText");
+    			grid.AppendChild(cp);
+    			
+		        template.VisualTree = grid;
+				
+				setter = new Setter(Control.TemplateProperty, template);
+				style.Setters.Add(setter);
+				
+			 	var trg = new Trigger();
+                trg.Property = CalendarDayButton.IsTodayProperty;
+                trg.Value = true;
+	                
+                var brush = new SolidColorBrush(Colors.Red);
+                brush.Seal();
+	                
+                setter = new Setter(Control.BackgroundProperty, brush);
+                trg.AddChild(setter);
+	                
+                template.Triggers.Add(trg);
+                 
+				return style;
+			}
+			
+			page.Resources.Set("CalendarDayButtonStyle", createCalendarDayButtonStyle());
+			
+			
+			/*
+			<!--Style for the months of a year and years of a decade.-->
+			<Style TargetType="CalendarButton"
+			       x:Key="CalendarButtonStyle">
+			  <Setter Property="MinWidth"
+			          Value="40" />
+			  <Setter Property="MinHeight"
+			          Value="42" />
+			  <Setter Property="FontSize"
+			          Value="10" />
+			  <Setter Property="HorizontalContentAlignment"
+			          Value="Center" />
+			  <Setter Property="VerticalContentAlignment"
+			          Value="Center" />
+			  <Setter Property="Template">
+			    <Setter.Value>
+			      <ControlTemplate TargetType="CalendarButton">
+			        <Grid>
+			          <Rectangle x:Name="SelectedBackground"
+			                     RadiusX="1"
+			                     RadiusY="1"
+			                     Opacity="0">
+			            <Rectangle.Fill>
+			              <SolidColorBrush Color="{DynamicResource SelectedBackgroundColor}" />
+			            </Rectangle.Fill>
+			          </Rectangle>
+			          <Rectangle x:Name="Background"
+			                     RadiusX="1"
+			                     RadiusY="1"
+			                     Opacity="0">
+			            <Rectangle.Fill>
+			              <SolidColorBrush Color="{DynamicResource SelectedBackgroundColor}" />
+			            </Rectangle.Fill>
+			          </Rectangle>
+			          <ContentPresenter x:Name="NormalText"
+			                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+			                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+			                            Margin="1,0,1,1">
+			            <TextElement.Foreground>
+			              <SolidColorBrush Color="#FF333333" />
+			            </TextElement.Foreground>
+			          </ContentPresenter>
+			          <Rectangle x:Name="CalendarButtonFocusVisual"
+			                     Visibility="Collapsed"
+			                     IsHitTestVisible="false"
+			                     RadiusX="1"
+			                     RadiusY="1">
+			            <Rectangle.Stroke>
+			              <SolidColorBrush Color="{DynamicResource SelectedBackgroundColor}" />
+			            </Rectangle.Stroke>
+			          </Rectangle>
+			        </Grid>
+			      </ControlTemplate>
+			    </Setter.Value>
+			  </Setter>
+			  <Setter Property="Background">
+			    <Setter.Value>
+			      <SolidColorBrush Color="{DynamicResource ControlMediumColor}" />
+			    </Setter.Value>
+			  </Setter>
+			</Style>
+			*/
+			function createCalendarButtonStyle(){
+				var style = new Style(CalendarButton.Type);
+				var setter = new Setter(KeyboardNavigation.IsTabStopProperty, false);
+				style.Setters.Add(setter);
+				
+				var template = new ControlTemplate(CalendarButton.Type);
+				var grid = new FrameworkElementFactory(Grid.Type);
+				var rectangle = new FrameworkElementFactory(Rectangle.Type, "SelectedBackground");
+				grid.AppendChild(rectangle);
+				
+		        template.VisualTree = grid;
+				
+				setter = new Setter(Control.TemplateProperty, template);
+				style.Setters.Add(setter);
+				
+				
+				return style;
+			}
+			
+			page.Resources.Set("CalendarButtonStyle", createCalendarButtonStyle());
+			
+			
+			function createCalendarStyle(){
+				var calendarStyle = new Style(Calendar.Type);
+				var setter = new Setter(KeyboardNavigation.IsTabStopProperty, false);
+				calendarStyle.Setters.Add(setter);
+				
+				var template = new ControlTemplate(Calendar.Type);
+				var stack = new FrameworkElementFactory(StackPanel.Type, "PART_Root");
+				var item = new FrameworkElementFactory(CalendarItem.Type, "PART_CalendarItem");
+				stack.AppendChild(item);
+				
+		        template.VisualTree = stack;
+				
+				setter = new Setter(Control.TemplateProperty, template);
+				calendarStyle.Setters.Add(setter);
+				
+				/*
+				  <Setter Property="CalendarButtonStyle"
+			          Value="{StaticResource CalendarButtonStyle}" />
+				  <Setter Property="CalendarDayButtonStyle"
+				          Value="{StaticResource CalendarDayButtonStyle}" />
+				  <Setter Property="CalendarItemStyle"
+				          Value="{StaticResource CalendarItemStyle}" />
+				*/
+				setter = new Setter(Calendar.CalendarButtonStyleProperty, FrameworkElement.FindResourceInternal(calendar, null, "CalendarButtonStyle"));
+				calendarStyle.Setters.Add(setter);
+				
+				setter = new Setter(Calendar.CalendarDayButtonStyleProperty, FrameworkElement.FindResourceInternal(calendar, null, "CalendarDayButtonStyle"));
+				calendarStyle.Setters.Add(setter);
+				
+				//setter = new Setter(Calendar.CalendarItemStyleProperty, FrameworkElement.FindResourceInternal(calendar, null, "HeaderButtonTemplate"));
+				//calendarStyle.Setters.Add(setter);
+				
+				return calendarStyle;
+			}
+
+			var clendarStyle = createCalendarStyle();
+			page.Resources.Set(Calendar.Type, clendarStyle);
+			
+			/*
+			<Style TargetType="controlsPrimitives:CalendarItem">
+			    <Setter Property="Template">
+			        <Setter.Value>
+			            <ControlTemplate TargetType="controlsPrimitives:CalendarItem">
+			                <Grid>
+			                    <Grid.Resources>
+			                        <SolidColorBrush x:Key="DisabledBrush" Color="#8CFFFFFF" />
+			                    </Grid.Resources>
+	
+			                    <Border BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" Background="{TemplateBinding Background}" Margin="0,2,0,2" CornerRadius="1">
+			                        <Border CornerRadius="1" BorderBrush="#FFFFFFFF" BorderThickness="2">
+			                            <Grid>
+			                                <Grid.RowDefinitions>
+			                                    <RowDefinition Height="Auto" />
+			                                    <RowDefinition Height="*" />
+			                                </Grid.RowDefinitions>
+			                                <Grid.ColumnDefinitions>
+			                                    <ColumnDefinition Width="Auto" />
+			                                    <ColumnDefinition Width="Auto" />
+			                                    <ColumnDefinition Width="Auto" />
+			                                </Grid.ColumnDefinitions>
+	
+			                                <Grid.Resources>
+			                                    <ControlTemplate x:Key="HeaderButtonTemplate" TargetType="Button">
+			                                        <Grid Cursor="Hand">
+	
+			                                            <ContentControl x:Name="Content" IsTabStop="False" Foreground="#FF333333" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" Margin="1,5,1,9" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+			                                        </Grid>
+			                                    </ControlTemplate>
+	
+			                                    <DataTemplate x:Name="DayTitleTemplate">
+			                                        <TextBlock FontWeight="Bold" FontSize="9.5" Text="{Binding}" Margin="0,4,0,4" HorizontalAlignment="Center" VerticalAlignment="Center" />
+			                                    </DataTemplate>
+	
+			                                    <ControlTemplate x:Key="PreviousButtonTemplate" TargetType="Button">
+			                                        <Grid Cursor="Hand">
+	
+			                                            <Rectangle Fill="#11E5EBF1" Stretch="Fill" Opacity="1" />
+			                                            <Grid>
+			                                                <Path x:Name="IconPath" Fill="#FF333333" Margin="14,-6,0,0" Height="10" Width="6" VerticalAlignment="Center" HorizontalAlignment="Left" Stretch="Fill" Data="M288.75,232.25 L288.75,240.625 L283,236.625 z" />
+			                                            </Grid>
+			                                        </Grid>
+			                                    </ControlTemplate>
+	
+			                                    <ControlTemplate x:Key="NextButtonTemplate" TargetType="Button">
+			                                        <Grid Cursor="Hand">
+	
+			                                            <Rectangle Fill="#11E5EBF1" Stretch="Fill" Opacity="1" />
+			                                            <Grid>
+			                                                <Path x:Name="IconPath" Fill="#FF333333" Margin="0,-6,14,0" Height="10" Width="6" Stretch="Fill" VerticalAlignment="Center" HorizontalAlignment="Right" Data="M282.875,231.875 L282.875,240.375 L288.625,236 z" />
+			                                            </Grid>
+			                                        </Grid>
+			                                    </ControlTemplate>
+			                                </Grid.Resources>
+	
+			                                <Button x:Name="PART_HeaderButton" Height="20" Width="28" Visibility="Collapsed" Template="{StaticResource PreviousButtonTemplate}" HorizontalAlignment="Left" />
+	
+			                                <Button x:Name="PART_PreviousButton" Grid.Column="1" FontWeight="Bold" FontSize="10.5" Template="{StaticResource HeaderButtonTemplate}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+	
+			                                <Button x:Name="PART_NextButton" Grid.Column="2" Height="20" Width="28" Visibility="Collapsed" Template="{StaticResource NextButtonTemplate}" HorizontalAlignment="Right" />
+	
+			                                <Grid x:Name="MonthView" Grid.Row="1" Grid.ColumnSpan="3" Visibility="Collapsed" Margin="6,-1,6,6">
+			                                    <Grid.RowDefinitions>
+			                                        <RowDefinition Height="Auto" />
+			                                        <RowDefinition Height="Auto" />
+			                                        <RowDefinition Height="Auto" />
+			                                        <RowDefinition Height="Auto" />
+			                                        <RowDefinition Height="Auto" />
+			                                        <RowDefinition Height="Auto" />
+			                                        <RowDefinition Height="Auto" />
+			                                    </Grid.RowDefinitions>
+			                                    <Grid.ColumnDefinitions>
+			                                        <ColumnDefinition Width="Auto" />
+			                                        <ColumnDefinition Width="Auto" />
+			                                        <ColumnDefinition Width="Auto" />
+			                                        <ColumnDefinition Width="Auto" />
+			                                        <ColumnDefinition Width="Auto" />
+			                                        <ColumnDefinition Width="Auto" />
+			                                        <ColumnDefinition Width="Auto" />
+			                                    </Grid.ColumnDefinitions>
+			                                </Grid>
+	
+			                                <Grid x:Name="YearView" Grid.Row="1" Grid.ColumnSpan="3" Visibility="Collapsed" Margin="6,-3,7,6">
+			                                    <Grid.RowDefinitions>
+			                                        <RowDefinition Height="Auto" />
+			                                        <RowDefinition Height="Auto" />
+			                                        <RowDefinition Height="Auto" />
+			                                    </Grid.RowDefinitions>
+			                                    <Grid.ColumnDefinitions>
+			                                        <ColumnDefinition Width="Auto" />
+			                                        <ColumnDefinition Width="Auto" />
+			                                        <ColumnDefinition Width="Auto" />
+			                                        <ColumnDefinition Width="Auto" />
+			                                    </Grid.ColumnDefinitions>
+			                                </Grid>
+			                            </Grid>
+			                        </Border>
+			                    </Border>
+	
+			                    <Rectangle x:Name="DisabledVisual" Opacity="0" Visibility="Collapsed" Stretch="Fill" RadiusX="2" RadiusY="2" StrokeThickness="1" Stroke="{StaticResource DisabledBrush}" Fill="{StaticResource DisabledBrush}" Margin="0,2,0,2" />
+			                </Grid>
+			            </ControlTemplate>
+			        </Setter.Value>
+			    </Setter>
+			</Style>
+			*/
+			
+			function createCalendarItemStyle(){
+				var calendarItemStyle = new Style(CalendarItem.Type);
+				
+				var template = new ControlTemplate(CalendarItem.Type);
+				var grid = new FrameworkElementFactory(Grid.Type);
+				template.VisualTree = grid;
+				
+				var border = new FrameworkElementFactory(Border.Type);
+				grid.AppendChild(border);
+				
+				var border2 = new FrameworkElementFactory(Border.Type);
+				border.AppendChild(border2);
+				var grid2 = new FrameworkElementFactory(Grid.Type);
+				border2.AppendChild(grid2);
+				
+/* 	        	 var r1 = new FrameworkElementFactory(RowDefinition.Type);
+	             //c1.SetValue(ColumnDefinition.WidthProperty, new GridLength(17.0));
+	             var r2 = new FrameworkElementFactory(RowDefinition.Type);
+	             //c2.SetValue(ColumnDefinition.WidthProperty, new GridLength(30.0));
+	             var c1 = new FrameworkElementFactory(ColumnDefinition.Type);
+	             var c2 = new FrameworkElementFactory(ColumnDefinition.Type);
+	             var c3 = new FrameworkElementFactory(ColumnDefinition.Type);
+	
+	             grid2.AppendChild(r1);
+	             grid2.AppendChild(r2);
+	             grid2.AppendChild(c1);
+	             grid2.AppendChild(c2);
+	             grid2.AppendChild(c3); */
+	             
+
+	             
+	             grid.SetValue(Grid.RowsProperty,"auto 1fr");
+	             grid.SetValue(Grid.ColumnsProperty,"auto auto auto");
+	             
+  
+	             
+             	/*
+	             <Button x:Name="PreviousButton" Height="20" Width="28" Visibility="Collapsed" Template="{StaticResource PreviousButtonTemplate}" HorizontalAlignment="Left" />
+	         	
+                 <Button x:Name="HeaderButton" Grid.Column="1" FontWeight="Bold" FontSize="10.5" Template="{StaticResource HeaderButtonTemplate}" HorizontalAlignment="Center" VerticalAlignment="Center" />
+
+                 <Button x:Name="NextButton" Grid.Column="2" Height="20" Width="28" Visibility="Collapsed" Template="{StaticResource NextButtonTemplate}" HorizontalAlignment="Right" />
+				*/
+				
+			
+                 var previousButton = FrameworkElementFactory(Button.Type, "PART_PreviousButton");
+                 previousButton.SetValue(FrameworkElement.HeightProperty, 20);
+                 previousButton.SetValue(FrameworkElement.WidthProperty, 28);
+                 previousButton.SetValue(UIElement.VisibilityProperty, Visibility.Collapsed);
+                 previousButton.SetValue(Control.TemplateProperty, FrameworkElement.FindResourceInternal(calendar, null, "PreviousButtonTemplate"));
+                 previousButton.SetValue(FrameworkElement.HorizontalAlignmentProperty, HorizontalAlignment.Left);
+                 grid2.AppendChild(previousButton);
+                 
+                 var headerButton = FrameworkElementFactory(Button.Type, "PART_HeaderButton");
+                 headerButton.SetValue(Control.FontWeightProperty, FontWeights.Bold);
+                 headerButton.SetValue(UIElement.VisibilityProperty, Visibility.Collapsed);
+                 headerButton.SetValue(Control.TemplateProperty, FrameworkElement.FindResourceInternal(calendar, null, "HeaderButtonTemplate"));
+                 headerButton.SetValue(FrameworkElement.HorizontalAlignmentProperty, HorizontalAlignment.Center);
+                 headerButton.SetValue(Grid.ColumnProperty, 2);
+                 grid2.AppendChild(headerButton);
+                 
+                 var nextButton = FrameworkElementFactory(Button.Type, "PART_NextButton");
+                 nextButton.SetValue(Control.FontWeightProperty, FontWeights.Bold);
+                 nextButton.SetValue(UIElement.VisibilityProperty, Visibility.Collapsed);
+                 nextButton.SetValue(Control.TemplateProperty, FrameworkElement.FindResourceInternal(calendar, null, "NextButtonTemplate"));
+                 nextButton.SetValue(FrameworkElement.HorizontalAlignmentProperty, HorizontalAlignment.Right);
+                 nextButton.SetValue(Grid.ColumnProperty, 3);
+                 grid2.AppendChild(nextButton);
+                 
+                 
+                 
+                 /*
+                 <Grid x:Name="MonthView" Grid.Row="1" Grid.ColumnSpan="3" Visibility="Collapsed" Margin="6,-1,6,6">
+	                 <Grid.RowDefinitions>
+	                     <RowDefinition Height="Auto" />
+	                     <RowDefinition Height="Auto" />
+	                     <RowDefinition Height="Auto" />
+	                     <RowDefinition Height="Auto" />
+	                     <RowDefinition Height="Auto" />
+	                     <RowDefinition Height="Auto" />
+	                     <RowDefinition Height="Auto" />
+	                 </Grid.RowDefinitions>
+	                 <Grid.ColumnDefinitions>
+	                     <ColumnDefinition Width="Auto" />
+	                     <ColumnDefinition Width="Auto" />
+	                     <ColumnDefinition Width="Auto" />
+	                     <ColumnDefinition Width="Auto" />
+	                     <ColumnDefinition Width="Auto" />
+	                     <ColumnDefinition Width="Auto" />
+	                     <ColumnDefinition Width="Auto" />
+	                 </Grid.ColumnDefinitions>
+             	</Grid>
+             	*/
+             	
+             	var grid3 = new FrameworkElementFactory(Grid.Type, "PART_MonthView");
+             	grid2.AppendChild(grid3);
+             	grid3.SetValue(Grid.ColumnSpanProperty, 4);
+             	grid3.SetValue(Grid.RowProperty, 2);
+				
+/*              	grid3.AppendChild(new FrameworkElementFactory(RowDefinition.Type));
+             	grid3.AppendChild(new FrameworkElementFactory(RowDefinition.Type));
+             	grid3.AppendChild(new FrameworkElementFactory(RowDefinition.Type));
+             	grid3.AppendChild(new FrameworkElementFactory(RowDefinition.Type));
+             	grid3.AppendChild(new FrameworkElementFactory(RowDefinition.Type));
+             	grid3.AppendChild(new FrameworkElementFactory(RowDefinition.Type));
+             	grid3.AppendChild(new FrameworkElementFactory(RowDefinition.Type));
+	             
+             	grid3.AppendChild(new FrameworkElementFactory(ColumnDefinition.Type));
+             	grid3.AppendChild(new FrameworkElementFactory(ColumnDefinition.Type));
+             	grid3.AppendChild(new FrameworkElementFactory(ColumnDefinition.Type));
+             	grid3.AppendChild(new FrameworkElementFactory(ColumnDefinition.Type));
+             	grid3.AppendChild(new FrameworkElementFactory(ColumnDefinition.Type));
+             	grid3.AppendChild(new FrameworkElementFactory(ColumnDefinition.Type));
+             	grid3.AppendChild(new FrameworkElementFactory(ColumnDefinition.Type)); */
+             	
+/*                 <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions> */
+            
+            grid.SetValue(Grid.RowsProperty,"auto auto auto auto auto auto auto");
+            grid.SetValue(Grid.ColumnsProperty,"auto auto auto auto auto auto auto");
+                 
+				
+				setter = new Setter(Control.TemplateProperty, template);
+				calendarItemStyle.Setters.Add(setter);
+				return calendarItemStyle;
+			}
+
+			page.Resources.Set(CalendarItem.Type, createCalendarItemStyle());
+			
+			var comboBox =new ComboBox();
+			panel.AddChild(comboBox);
+			
+            /* List<User> */var items = new List1();
+            items.Add(new Person("tom2", "man", '10'));
+            items.Add(new Person("tom3", "woman", '20'));
+            items.Add(new Person("tom4", "man", '20'));
+            items.Add(new Person("tom5", "woman", '20'));
+            items.Add(new Person("tom5", "woman", '10'));
+            
+             for(var i=0; i<10; i++){
+            	items.Add(new Person("tom5" + i, "woman", '20'));
+            } 
+             
+            console.log("json: " + JSON.stringify(items));
+             
+             comboBox.ItemsSource = items;
+			
+			//var ics = new Style(ItemsControl.Type);
+		    function CreatePersonTemplate()
+	        {
+		        var template = new DataTemplate(Person.Type);
+	            
+	            var stack = new FrameworkElementFactory(StackPanel.Type, "stackPanel");
+	            var pwdBox1 = new FrameworkElementFactory(TextBox.Type, "btn1");
+	            
+	            var binding = new Binding();
+	            binding.Path = new PropertyPath("Name");
+	            binding.Mode = BindingMode.TwoWay;
+	            
+	            pwdBox1.SetValue(TextBox.TextProperty, binding);
+	            
+				var brush = new SolidColorBrush(Colors.YellowGreen);
+				brush.Seal();
+				
+	            pwdBox1.SetValue(Control.ForegroundProperty, brush);
+	            stack.AppendChild(pwdBox1);
+	            
+/* 	            var img1 = new FrameworkElementFactory(Image.Type, "img1");
+	            rootfactory.AppendChild(pwdBox1);
+	            rootfactory.AppendChild(img1); */
+	            
+	            var rect1 = new FrameworkElementFactory(Rectangle.Type, "rect1");
+	            stack.AppendChild(rect1);
+	            
+	            var ellipse = new FrameworkElementFactory(Ellipse.Type, "ellipse");
+	            stack.AppendChild(ellipse);
+	            
+	            var line = new FrameworkElementFactory(Line.Type, "line");
+	            stack.AppendChild(line);
+	            
+	            var polygon = new FrameworkElementFactory(Polygon.Type, "polygon");
+	            stack.AppendChild(polygon);
+	            
+	            var polyline = new FrameworkElementFactory(Polyline.Type, "polyline");
+	            stack.AppendChild(polyline);
+	            
+	            var path = new FrameworkElementFactory(Path.Type, "path");
+	            //path.SetValue(Path.DataProperty, "M 0 0 L 7 7 M 0 7 L 7 0");
+	            
+	            path.SetValue(Path.DataProperty, "M 0 0 L 4 4 L 8 0 Z");
+	            path.SetValue(Path.DataProperty, "M 0 4 L 4 0 L 8 4 Z");
+	            stack.AppendChild(path);
+	            
+	            var image1 = new FrameworkElementFactory(Image.Type, "image1");
+	            stack.AppendChild(image1);
+	            
+	            
+	            template.VisualTree = stack;
+	            //template.Seal();
+	            return template;
+	        }
+		    
+		    page.Resources.Set(new DataTemplateKey(Person.Type), CreatePersonTemplate());
+			
+			/*
+			<ControlTemplate x:Key="ComboBoxToggleButton"
+                TargetType="{x:Type ToggleButton}">
+                <Border x:Name="Border"
+			           Grid.ColumnSpan="2"
+			           CornerRadius="2"
+			           BorderThickness="1">
+				   <Path x:Name="Arrow"
+				         Grid.Column="1"
+				         HorizontalAlignment="Center"
+				         VerticalAlignment="Center"
+				         Data="M 0 0 L 4 4 L 8 0 Z" >
+				   	<Path.Fill>
+				   		<SolidColorBrush Color="{DynamicResource GlyphColor}"/>
+				   	</Path.Fill>
+				   </Path>
+			   </Border>
+			</ControlTemplate>
+			*/
+			
+			function createComboBoxToggleButtonTemplate(){
+				/*
+				var template = new ControlTemplate(ToggleButton.Type);
+	            
+	            
+	            var border = new FrameworkElementFactory(Border.Type, "Border");
+	            //rootfactory.SetValue(Border.CornerRadiusProperty, CornerRadus);
+	            //rootfactory.SetValue(Border.BackgroundProperty, new SolidColorBrush(Colors.YellowGreen));
+	            
+	           // var path = new FrameworkElementFactory(Path.Type, "checkMark");
+	           // path.SetValue(Path.DataProperty, "M 0 0 L 7 7 M 0 7 L 7 0" );
+	           var tb = new FrameworkElementFactory(TextBox.Type, "checkMark");
+	           tb.SetValue(TextBox.TextProperty, "aaa" );
+	            
+	            
+	            border.AppendChild(tb);
+
+	            template.VisualTree = border;
+	            
+	            //template.Seal();
+	            return template;
+	            */
+				var template = new ControlTemplate(ToggleButton.Type);
+				var grid = new FrameworkElementFactory(Grid.Type);
+				grid.SetValue(FrameworkElement.CursorProperty, Cursors.Move);
+				
+				var path = new FrameworkElementFactory(Path.Type, "path");
+	            path.SetValue(Path.DataProperty, "M 0 0 L 7 7 M 0 7 L 7 0");
+	            
+	            //path.SetValue(Path.DataProperty, "M288.75,232.25 L288.75,240.625 L283,236.625 z");
+				grid.AppendChild(path);
+				template.VisualTree = grid;
+				return template;
+	            
+			}
+			
+			/*
+			<Style x:Key="{x:Type ComboBox}"
+			       TargetType="{x:Type ComboBox}">
+			  <Setter Property="OverridesDefaultStyle"
+			          Value="true" />
+			  <Setter Property="MinWidth"
+			          Value="120" />
+			  <Setter Property="MinHeight"
+			          Value="20" />
+			  <Setter Property="Template">
+			    <Setter.Value>
+			      <ControlTemplate TargetType="{x:Type ComboBox}">
+			        <Grid>
+			          <ToggleButton x:Name="ToggleButton"
+			                        Template="{StaticResource ComboBoxToggleButton}"
+			                        Grid.Column="2"
+			                        Focusable="false"
+			                        ClickMode="Press"
+			                        IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, 
+			              RelativeSource={RelativeSource TemplatedParent}}"/>
+			          <ContentPresenter x:Name="ContentSite"
+			                            IsHitTestVisible="False"
+			                            Content="{TemplateBinding SelectionBoxItem}"
+			                            ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
+			                            ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
+			                            Margin="3,3,23,3"
+			                            VerticalAlignment="Stretch"
+			                            HorizontalAlignment="Left">
+			          </ContentPresenter>
+			          <TextBox x:Name="PART_EditableTextBox"
+			                   Style="{x:Null}"
+			                   Template="{StaticResource ComboBoxTextBox}"
+			                   HorizontalAlignment="Left"
+			                   VerticalAlignment="Bottom"
+			                   Margin="3,3,23,3"
+			                   Focusable="True"
+			                   Background="Transparent"
+			                   Visibility="Hidden"
+			                   IsReadOnly="{TemplateBinding IsReadOnly}" />
+			          <Popup x:Name="PART_Popup"
+			                 Placement="Bottom"
+			                 IsOpen="{TemplateBinding IsDropDownOpen}"
+			                 AllowsTransparency="True"
+			                 Focusable="False"
+			                 PopupAnimation="Slide">
+			            <Grid x:Name="DropDown"
+			                  SnapsToDevicePixels="True"
+			                  MinWidth="{TemplateBinding ActualWidth}"
+			                  MaxHeight="{TemplateBinding MaxDropDownHeight}">
+			              <Border x:Name="DropDownBorder"
+			                      BorderThickness="1">
+			                <Border.BorderBrush>
+			                  <SolidColorBrush Color="{DynamicResource BorderMediumColor}" />
+			                </Border.BorderBrush>
+			                <Border.Background>
+			                  <SolidColorBrush Color="{DynamicResource ControlLightColor}" />
+			                </Border.Background>
+			              </Border>
+			              <ItemsPresenter KeyboardNavigation.DirectionalNavigation="Contained"/>
+			            </Grid>
+			          </Popup>
+			        </Grid>
+			        <ControlTemplate.Triggers>
+			          <Trigger Property="HasItems"
+			                   Value="false">
+			            <Setter TargetName="DropDownBorder"
+			                    Property="MinHeight"
+			                    Value="95" />
+			          </Trigger>
+			          <Trigger Property="IsGrouping"
+			                   Value="true">
+			            <Setter Property="ScrollViewer.CanContentScroll"
+			                    Value="false" />
+			          </Trigger>
+			          <Trigger SourceName="Popup"
+			                   Property="AllowsTransparency"
+			                   Value="true">
+			            <Setter TargetName="DropDownBorder"
+			                    Property="CornerRadius"
+			                    Value="4" />
+			            <Setter TargetName="DropDownBorder"
+			                    Property="Margin"
+			                    Value="0,2,0,0" />
+			          </Trigger>
+			        </ControlTemplate.Triggers>
+			      </ControlTemplate>
+			    </Setter.Value>
+			  </Setter>
+			</Style>
+			*/
+			
+			function createComboBoxStyle(){
+				var style = new Style(ComboBox.Type);
+				
+				var template = new ControlTemplate(ComboBox.Type);
+				var grid = new FrameworkElementFactory(Grid.Type);
+				
+/* 				grid.AppendChild(new FrameworkElementFactory(ColumnDefinition.Type));
+				grid.AppendChild(new FrameworkElementFactory(ColumnDefinition.Type));
+				
+				grid.AppendChild(new FrameworkElementFactory(RowDefinition.Type)); */
+				
+				/*
+				<ToggleButton x:Name="ToggleButton"
+                    Template="{StaticResource ComboBoxToggleButton}"
+                    Grid.Column="2"
+                    Focusable="false"
+                    ClickMode="Press"
+                    IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, 
+          		RelativeSource={RelativeSource TemplatedParent}}"/>
+          		*/
+          
+          		var toggleButon = new FrameworkElementFactory(ToggleButton.Type, "ToggleButton");
+          		toggleButon.SetValue(Grid.ColumnProperty, 1);
+          		toggleButon.SetValue(Control.TemplateProperty, createComboBoxToggleButtonTemplate());
+          		toggleButon.SetValue(ButtonBase.ClickModeProperty, ClickMode.Press);
+          		
+          		var binding = new Binding();
+          		binding.Mode = BindingMode.TwoWay;
+          		binding.Path = new PropertyPath("IsDropDownOpen");
+          		
+          		binding.RelativeSource = RelativeSource.TemplatedParent;
+          		toggleButon.SetBinding(ToggleButton.IsCheckedProperty, binding);
+          		
+          		grid.AppendChild(toggleButon);
+          		
+          		/*
+		          <ContentPresenter x:Name="ContentSite"
+                      IsHitTestVisible="False"
+                      Content="{TemplateBinding SelectionBoxItem}"
+                      ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
+                      ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
+                      Margin="3,3,23,3"
+                      VerticalAlignment="Stretch"
+                      HorizontalAlignment="Left">
+   				 </ContentPresenter>
+   				 */
+   				var cp = new FrameworkElementFactory(ContentPresenter.Type, "ContentSite");
+   				cp.SetValue(ContentPresenter.ContentProperty, new TemplateBindingExtension(ComboBox.SelectionBoxItemProperty));
+   				cp.SetValue(ContentPresenter.ContentTemplateSelectorProperty, new TemplateBindingExtension(ItemsControl.ItemTemplateSelectorProperty));
+				grid.AppendChild(cp);
+				
+				/*
+	          	<TextBox x:Name="PART_EditableTextBox"
+                  Style="{x:Null}"
+                  Template="{StaticResource ComboBoxTextBox}"
+                  HorizontalAlignment="Left"
+                  VerticalAlignment="Bottom"
+                  Margin="3,3,23,3"
+                  Focusable="True"
+                  Background="Transparent"
+                  Visibility="Hidden"
+                  IsReadOnly="{TemplateBinding IsReadOnly}" />
+                 */
+   				var textBox = new FrameworkElementFactory(TextBox.Type, "PART_EditableTextBox");
+                 textBox.SetValue(FrameworkElement.StyleProperty, new TemplateBindingExtension(ComboBox.SelectionBoxItemProperty));
+ 				grid.AppendChild(textBox);
+ 				
+ 				/*
+ 				<Popup x:Name="PART_Popup"
+	                 Placement="Bottom"
+	                 IsOpen="{TemplateBinding IsDropDownOpen}"
+	                 AllowsTransparency="True"
+	                 Focusable="False"
+	                 PopupAnimation="Slide">
+	            <Grid x:Name="DropDown"
+	                  SnapsToDevicePixels="True"
+	                  MinWidth="{TemplateBinding ActualWidth}"
+	                  MaxHeight="{TemplateBinding MaxDropDownHeight}">
+	              <Border x:Name="DropDownBorder"
+	                      BorderThickness="1">
+	                <Border.BorderBrush>
+	                  <SolidColorBrush Color="{DynamicResource BorderMediumColor}" />
+	                </Border.BorderBrush>
+	                <Border.Background>
+	                  <SolidColorBrush Color="{DynamicResource ControlLightColor}" />
+	                </Border.Background>
+	              </Border>
+	              <ItemsPresenter KeyboardNavigation.DirectionalNavigation="Contained"/>
+	            </Grid>
+	          </Popup>
+	          */
+	          	var popup = new FrameworkElementFactory(Popup.Type, "PART_Popup");
+	      		grid.AppendChild(popup);
+	          
+	          	popup.SetValue(Popup.IsOpenProperty, new TemplateBindingExtension(ComboBox.IsDropDownOpenProperty));
+	          	var grid1 = new FrameworkElementFactory(Grid.Type, "DropDown");
+	          	popup.AppendChild(grid1);
+		          
+	          	var border = new FrameworkElementFactory(Border.Type, "DropDownBorder");
+	          	grid1.AppendChild(border);
+		          
+	          	var itemsPresenter = new FrameworkElementFactory(ItemsPresenter.Type);
+	          	itemsPresenter.SetValue(KeyboardNavigation.DirectionalNavigationProperty, KeyboardNavigationMode.Contained);
+		          
+	          	grid1.AppendChild(itemsPresenter);
+		          
+	          	template.VisualTree = grid;
+					
+			  	setter = new Setter(Control.TemplateProperty, template);
+			  	style.Setters.Add(setter);
+				
+		     	return style;
+			}
+			
+			page.Resources.Set(ComboBox.Type, createComboBoxStyle());
+			
+			/*
+			<Style x:Key="{x:Type ComboBoxItem}"
+			       TargetType="{x:Type ComboBoxItem}">
+			  <Setter Property="SnapsToDevicePixels"
+			          Value="true" />
+			  <Setter Property="OverridesDefaultStyle"
+			          Value="true" />
+			  <Setter Property="Template">
+			    <Setter.Value>
+			      <ControlTemplate TargetType="{x:Type ComboBoxItem}">
+			        <Border x:Name="Border"
+			                Padding="2"
+			                SnapsToDevicePixels="true"
+			                Background="Transparent">
+			          <ContentPresenter />
+			        </Border>
+			      </ControlTemplate>
+			    </Setter.Value>
+			  </Setter>
+			</Style>
+			*/
+			
+			function createComboBoxItemStyle(){
+				var style = new Style(ComboBoxItem.Type);
+				
+				var template = new ControlTemplate(ComboBoxItem.Type);
+				var border = new FrameworkElementFactory(Border.Type, "Border");
+          
+          		var cp = new FrameworkElementFactory(ContentPresenter.Type);
+          		
+          		border.AppendChild(cp);
+          		
+          		template.VisualTree = border;
+          		
+				
+				setter = new Setter(Control.TemplateProperty, template);
+				style.Setters.Add(setter);
+				
+				return style;
+			}
+			
+			page.Resources.Set(ComboBoxItem.Type, createComboBoxItemStyle());
+			
+		    function CreateItemsPanel()
+	        {
+	            /* FrameworkElementFactory */
+	            var rootfactory = new FrameworkElementFactory(StackPanel.Type, "stackPanel");
+
+	            
+	            /* ControlTemplate */var template = new ItemsPanelTemplate(rootfactory);
+	            
+	            //template.Seal();
+	            return template;
+	        }
+		    
+		    var itemsPanel = CreateItemsPanel();
+		    comboBox.ItemsPanel = itemsPanel;
+		    
+		    comboBox = new ComboBox();
+		    comboBox.ItemsSource = items;
+		    comboBox.ItemsPanel = itemsPanel;
+		    panel.AddChild(comboBox);
+		    
+		    comboBox = new ComboBox();
+		    comboBox.ItemsSource = items;
+		    comboBox.ItemsPanel = itemsPanel;
+		    panel.AddChild(comboBox);
+		    
+		    comboBox = new ComboBox();
+		    comboBox.ItemsSource = items;
+		    comboBox.ItemsPanel = itemsPanel;
+		    panel.AddChild(comboBox);
+		    
+		    comboBox = new ComboBox();
+		    comboBox.ItemsSource = items;
+		    comboBox.ItemsPanel = itemsPanel;
+		    panel.AddChild(comboBox);
+		    
+		    comboBox = new ComboBox();
+		    comboBox.ItemsSource = items;
+		    comboBox.ItemsPanel = itemsPanel;
+		    panel.AddChild(comboBox);
+		    
+		    comboBox = new ComboBox();
+		    comboBox.ItemsSource = items;
+		    comboBox.ItemsPanel = itemsPanel;
+		    panel.AddChild(comboBox);
+		    
+		    comboBox = new ComboBox();
+		    comboBox.ItemsSource = items;
+		    comboBox.ItemsPanel = itemsPanel;
+		    panel.AddChild(comboBox);
+		    
+		    comboBox = new ComboBox();
+		    comboBox.ItemsSource = items;
+		    comboBox.ItemsPanel = itemsPanel;
+		    panel.AddChild(comboBox);
+		    
+		    comboBox = new ComboBox();
+		    comboBox.ItemsSource = items;
+		    comboBox.ItemsPanel = itemsPanel;
+		    panel.AddChild(comboBox);
+		    
+		    comboBox = new ComboBox();
+		    comboBox.ItemsSource = items;
+		    comboBox.ItemsPanel = itemsPanel;
+		    panel.AddChild(comboBox);
+		    
+		    comboBox = new ComboBox();
+		    comboBox.ItemsSource = items;
+		    comboBox.ItemsPanel = itemsPanel;
+		    panel.AddChild(comboBox);
+		    
+		    comboBox = new ComboBox();
+		    comboBox.ItemsSource = items;
+		    comboBox.ItemsPanel = itemsPanel;
+		    panel.AddChild(comboBox);
+		    
+		    comboBox = new ComboBox();
+		    comboBox.ItemsSource = items;
+		    comboBox.ItemsPanel = itemsPanel;
+		    panel.AddChild(comboBox);
+		    
+		    
+		    var datePicker = new DatePicker();
+		    
+		    /*
+		    <Style x:Key="DatePickerCalendarStyle"
+		        TargetType="{x:Type Calendar}"
+		        BasedOn="{StaticResource {x:Type Calendar}}" />
+		        */
+		        
+		    function createDatePickerCalendarStyle(){
+				var style = new Style(Calendar.Type, clendarStyle);
+				return style;
+		    }
+		        
+		    page.Resources.Set("DatePickerCalendarStyle", createDatePickerCalendarStyle());
+		    
+		    /*
+	        <!--The template for the button that displays the calendar.-->
+	        <Style x:Key="DropDownButtonStyle"
+	               TargetType="Button">
+	          <Setter Property="Template">
+	            <Setter.Value>
+	              <ControlTemplate TargetType="{x:Type Button}">
+	                <Grid>
+	                  <Grid Background="#11FFFFFF"
+	                        FlowDirection="LeftToRight"
+	                        HorizontalAlignment="Center"
+	                        Height="18"
+	                        Margin="0"
+	                        VerticalAlignment="Center"
+	                        Width="19">
+	                    <Path Fill="#FF2F2F2F"
+	                          Grid.Row="1"
+	                          Grid.Column="0"
+	                          Grid.RowSpan="3"
+	                          Grid.ColumnSpan="4"
+	                          HorizontalAlignment="Center"
+	                          VerticalAlignment="Center"
+	                          RenderTransformOrigin="0.5,0.5"
+	                          Margin="4,3,4,3"
+	                          Stretch="Fill"
+	                          Data="M11.426758,8.4305077 L11.749023,8.4305077 
+	                            L11.749023,16.331387 L10.674805,16.331387 
+	                            L10.674805,10.299648 L9.0742188,11.298672
+	                            L9.0742188,10.294277 C9.4788408,10.090176 
+	                            9.9094238,9.8090878 10.365967,9.4510155 
+	                            C10.82251,9.0929432 11.176106,8.7527733 
+	                            11.426758,8.4305077 z M14.65086,8.4305077 
+	                            L18.566387,8.4305077 L18.566387,9.3435936 
+	                            L15.671368,9.3435936 L15.671368,11.255703 
+	                            C15.936341,11.058764 16.27293,10.960293 
+	                            16.681133,10.960293 C17.411602,10.960293 
+	                            17.969301,11.178717 18.354229,11.615566 
+	                            C18.739157,12.052416 18.931622,12.673672
+	                            18.931622,13.479336 C18.931622,15.452317 
+	                            18.052553,16.438808 16.294415,16.438808
+	                            C15.560365,16.438808 14.951641,16.234707 
+	                            14.468243,15.826504 L14.881817,14.929531
+	                            C15.368796,15.326992 15.837872,15.525723 
+	                            16.289043,15.525723 C17.298809,15.525723 
+	                            17.803692,14.895514 17.803692,13.635098 
+	                            C17.803692,12.460618 17.305971,11.873379 
+	                            16.310528,11.873379 C15.83071,11.873379 
+	                            15.399232,12.079271 15.016094,12.491055
+	                            L14.65086,12.238613 z" />
+	                  </Grid>
+	                </Grid>
+	              </ControlTemplate>
+	            </Setter.Value>
+	          </Setter>
+	        </Style>
+	        */
+	        function createDropDownButtonStyle(){
+				var style = new Style(Button.Type);
+				
+	        	var template = new ControlTemplate(Button.Type);
+				var grid = new FrameworkElementFactory(Grid.Type);
+				grid.SetValue(FrameworkElement.CursorProperty, Cursors.Move);
+				
+				var path = new FrameworkElementFactory(Path.Type, "path");
+	            path.SetValue(Path.DataProperty, "M 0 0 L 7 7 M 0 7 L 7 0");
+	            
+	            //path.SetValue(Path.DataProperty, "M288.75,232.25 L288.75,240.625 L283,236.625 z");
+				grid.AppendChild(path);
+				template.VisualTree = grid;
+
+				setter = new Setter(Control.TemplateProperty, template);
+				style.Setters.Add(setter);
+				
+				return style;
+	        }
+	        
+	        page.Resources.Set("DropDownButtonStyle", createDropDownButtonStyle());
+		    
+	        /*
+		    //DatePicker
+		    <Style TargetType="{x:Type DatePicker}">
+			  <Setter Property="Foreground"
+			          Value="#FF333333" />
+			  <Setter Property="IsTodayHighlighted"
+			          Value="True" />
+			  <Setter Property="SelectedDateFormat"
+			          Value="Short" />
+			  <Setter Property="Padding"
+			          Value="2" />
+			  <Setter Property="BorderThickness"
+			          Value="1" />
+			  <Setter Property="HorizontalContentAlignment"
+			          Value="Stretch" />
+			  <!--Set CalendarStyle to DatePickerCalendarStyle.-->
+			  <Setter Property="CalendarStyle"
+			          Value="{DynamicResource DatePickerCalendarStyle}" />
+			  <Setter Property="Template">
+			    <Setter.Value>
+			      <ControlTemplate TargetType="{x:Type DatePicker}">
+			        <Border BorderThickness="{TemplateBinding BorderThickness}"
+			                Padding="{TemplateBinding Padding}">
+			          <Border.BorderBrush>
+			            <LinearGradientBrush EndPoint="0.5,1"
+			                                 StartPoint="0.5,0">
+			              <GradientStop Color="{DynamicResource BorderLightColor}"
+			                            Offset="0" />
+			              <GradientStop Color="{DynamicResource BorderDarkColor}"
+			                            Offset="1" />
+			            </LinearGradientBrush>
+			          </Border.BorderBrush>
+			          <Border.Background>
+			            <LinearGradientBrush EndPoint="0.5,1"
+			                                 StartPoint="0.5,0">
+			              <GradientStop Color="{DynamicResource HeaderTopColor}"
+			                            Offset="0" />
+			              <GradientStop Color="{DynamicResource ControlMediumColor}"
+			                            Offset="1" />
+			            </LinearGradientBrush>
+			          </Border.Background>
+			          <Grid x:Name="PART_Root"
+			                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+			                VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+			            <Grid.ColumnDefinitions>
+			              <ColumnDefinition Width="*" />
+			              <ColumnDefinition Width="Auto" />
+			            </Grid.ColumnDefinitions>
+			            <Button x:Name="PART_Button"
+			                    Grid.Column="1"
+			                    Foreground="{TemplateBinding Foreground}"
+			                    Focusable="False"
+			                    HorizontalAlignment="Left"
+			                    Margin="3,0,3,0"
+			                    Grid.Row="0"
+			                    Style="{StaticResource DropDownButtonStyle}"
+			                    VerticalAlignment="Top" />
+			            <DatePickerTextBox x:Name="PART_TextBox"
+			                               Grid.Column="0"
+			                               Foreground="{TemplateBinding Foreground}"
+			                               Focusable="{TemplateBinding Focusable}"
+			                               HorizontalContentAlignment="Stretch"
+			                               Grid.Row="0"
+			                               VerticalContentAlignment="Stretch" />
+			            <Grid x:Name="PART_DisabledVisual"
+			                  Grid.ColumnSpan="2"
+			                  Grid.Column="0"
+			                  IsHitTestVisible="False"
+			                  Opacity="0"
+			                  Grid.Row="0">
+			              <Grid.ColumnDefinitions>
+			                <ColumnDefinition Width="*" />
+			                <ColumnDefinition Width="Auto" />
+			              </Grid.ColumnDefinitions>
+			              <Popup x:Name="PART_Popup"
+			                     AllowsTransparency="True"
+			                     Placement="Bottom"
+			                     PlacementTarget="{Binding ElementName=PART_TextBox}"
+			                     StaysOpen="False" />
+			            </Grid>
+			          </Grid>
+			        </Border>
+			      </ControlTemplate>
+			    </Setter.Value>
+			  </Setter>
+			</Style>
+			*/
+			
+			function createDatePickerStyle(){
+				var style = new Style(DatePicker.Type);
+				/*
+				<Setter Property="CalendarStyle"
+			          Value="{DynamicResource DatePickerCalendarStyle}" />
+			          */
+				//setter = new Setter(DatePicker.CalendarStyleProperty, 
+				//		new DynamicResourceExtension("DatePickerCalendarStyle"));
+				//style.Setters.Add(setter);
+				
+				var template = new ControlTemplate(DatePicker.Type);
+				var grid = new FrameworkElementFactory(Grid.Type, "PART_Root");
+				grid.AppendChild(new FrameworkElementFactory(ColumnDefinition.Type));
+				grid.AppendChild(new FrameworkElementFactory(ColumnDefinition.Type));
+				
+				grid.AppendChild(new FrameworkElementFactory(RowDefinition.Type));
+				
+				
+				
+				
+				
+	          	var button = new FrameworkElementFactory(Button.Type, "PART_Button");
+	          	button.SetValue(Grid.ColumnProperty, 1);
+	          	button.SetValue(FrameworkElement.StyleProperty, 
+						FrameworkElement.FindResourceInternal(page, null, "DropDownButtonStyle"));
+	          	grid.AppendChild(button);
+	          	
+	          	var tb = new FrameworkElementFactory(DatePickerTextBox.Type, "PART_TextBox");
+	          	grid.AppendChild(tb);
+				
+				var popup = new FrameworkElementFactory(Popup.Type, "PART_Popup");
+				grid.AppendChild(popup);
+		          
+	          	popup.SetValue(Popup.StaysOpenProperty, false);
+	          	var binding = new Binding();
+	          	binding.ElementName  = "PART_TextBox";
+	          	popup.SetBinding(Popup.PlacementTargetProperty, binding);
+
+		          
+          		template.VisualTree = grid;
+				
+				setter = new Setter(Control.TemplateProperty, template);
+				style.Setters.Add(setter);
+				
+				return style;			
+			}
+			
+			page.Resources.Set(DatePicker.Type, createDatePickerStyle());
+			
+			panel.AddChild(new DatePicker());
+			
+			panel.AddChild(new DatePicker());
+			
+			panel.AddChild(new DatePicker());
+			
+			panel.AddChild(new DatePicker());
+			
+			panel.AddChild(new DatePicker());
+			panel.AddChild(new DatePicker());
+			panel.AddChild(new DatePicker());
+			panel.AddChild(new DatePicker());
+			panel.AddChild(new DatePicker());
+			panel.AddChild(new DatePicker());
+			panel.AddChild(new DatePicker());
+			panel.AddChild(new DatePicker());
+			panel.AddChild(new DatePicker());
+			panel.AddChild(new DatePicker());
+			panel.AddChild(new DatePicker());
+			
+           
+			
+			page.Cursor = Cursors.Crosshair;
+			
+			page.Arrange();
+			var seen = []
+			page.Title = "Summer是WPF的js实现";
+			/*
+			 console.log("json: " + JSON.stringify(page, function(key, val) {
+				   if (typeof val == "object") {
+				        if (seen.indexOf(val) >= 0)
+				            return
+				        seen.push(val)
+				    }
+				    return val
+				}));
+			*/
+			
+			if(Keyboard.FocusedElement!=null){
+				Keyboard.FocusedElement._dom.setFocus();
+			}
+
+			
+/* 			var timer = new DispatcherTimer(new TimeSpan(0,0,0,0,1000));
+			var count = 0;
+			timer.Tick.Combine(new Delegate(null, function() {
+				alert("timer"); 
+				if(count++ >= 0){
+					timer.Stop();
+			}}));
+			timer.Start(); */
+			
+			//alert(checkBox2.DataContext);
+			console.log(new Date().toString());
+			
+			var changeColor = document.createElement("input");
+			changeColor.setAttribute("type", "button");
+			changeColor.setAttribute("value", "changeColor");
+			changeColor.addEventListener("click", function(){
+				brush = new SolidColorBrush(Colors.Yellow);
+				brush.Seal();
+			    checkBox1.Background = brush;
+			    
+			    page.FontSize = 25;
+			    
+			    page.Title = "";
+				
+			});
+			document.body.appendChild(changeColor);
+		});
+
+	</script>
+	
+ 
+	
+	<div id="div1" style="border-style:solid;border-width:1pt; border-color:red; width: 100px; height: 200px"
+		 >
+		
+		<div id="div2"  style="border-style:solid;border-width:1pt; border-color:red; width: 80px; height: 100px"
+		>
+		
+		<input type="text" value="sasasasa"> 
+			<div>
+			sasasasasas
+			</div>
+		</input>
+	</div>
+	</div>
+	
+	
+	<div id="output">
+	</div>
+	
+	<div id="output1">
+	</div>
+	<input id='text' type="text">
+	</input>
+	
+	<script type="text/javascript">
+    function init() {
+      var btn = document.getElementById("div1");
+      //btn.addEventListener("mouseout", mouseOut, false);
+     // btn.addEventListener("mouseover", mouseOver, false);
+     // btn.addEventListener("mousedown", mouseDown, false);
+      //btn.addEventListener("mouseup", mouseUp, false);
+      //btn.addEventListener("mousemove", mouseMoved, false);
+/*       document.body.addEventListener("mouseout", mouseOut, false);
+      document.body.addEventListener("mouseover", mouseOver, false);
+      document.body.addEventListener("mousedown", mouseDown, false);
+      document.body.addEventListener("mouseup", mouseUp, false);
+      document.body.addEventListener("mousemove", mouseMoved, false);
+      document.body.style.backgroundColor = 'red'; */
+      
+      var text = document.getElementById("text");
+      text.addEventListener("mousedown", mouseDown, false);
+      text.addEventListener("click", Click, false);
+      text.addEventListener("focus", Focus, false);
+    }
+    
+    function mouseDown(e) {
+    	console.log("mouseDown");
+      e.target.setCapture();
+      e.preventDefault();
+      e.stopPropagation()
+              e.target.focus();
+      e.target.addEventListener("mousemove", mouseMoved, false);
+      return false;
+    }
+    
+    function mouseUp(e) {
+      e.target.removeEventListener("mousemove", mouseMoved, false);
+    }
+    
+    function mouseOver(e) {
+    	console.log("mouseOver");
+    	var output = document.getElementById("output1");
+        output.innerHTML = "mouseOver: " +  e.target.id + " : " + e.clientX + ", " + e.clientY +
+        "( x= " + e.target.offsetLeft + " ,y= " + e.target.offsetTop + ", width=" + e.target.offsetWidth + ", height=" + e.target.offsetHeight +")";
+    }
+    
+    function mouseOut(e) {
+    	console.log("mouseOut");
+    	var output = document.getElementById("output");
+    	
+        output.innerHTML = "mouseOut: " +  e.target.id + " : " + e.clientX + ", " + e.clientY +
+        "( x= " + e.target.offsetLeft + " ,y= " + e.target.offsetTop + ", width=" + e.target.offsetWidth + ", height=" + e.target.offsetHeight +")";
+      }
+    
+    
+    function Click(e) {
+    	console.log("Click");
+
+        e.preventDefault();
+        e.stopPropagation();
+    	var output = document.getElementById("output1");
+        output.innerHTML = "Click: " +  e.target.id + " : " + e.clientX + ", " + e.clientY +
+        "( x= " + e.target.offsetLeft + " ,y= " + e.target.offsetTop + ", width=" + e.target.offsetWidth + ", height=" + e.target.offsetHeight +")";
+    }
+    
+    function Focus(e) {
+    	console.log("Focus");
+    	var output = document.getElementById("output");
+    	
+        output.innerHTML = "Focus: " +  e.target.id + " : " + e.clientX + ", " + e.clientY +
+        "( x= " + e.target.offsetLeft + " ,y= " + e.target.offsetTop + ", width=" + e.target.offsetWidth + ", height=" + e.target.offsetHeight +")";
+      }
+    
+    function mouseMoved(e) {
+    	//console.log("mouseMoved");
+      var output = document.getElementById("output");
+      output.innerHTML = "Position: " + e.clientX + ", " + e.clientY;
+    }
+    
+
+    
+    init(); 
+    
+    window.onfocus = function(){
+    	console.log("window activated");
+    }
+    
+    window.onblur = function(){
+    	console.log("window deactivated");
+    }
+  </script>
+</body>
+</html>

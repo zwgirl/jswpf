@@ -1,0 +1,41 @@
+package org.summer.view.widget;
+/// <summary>
+    ///     Represents dependency scope of an <see cref="Expression"/> 
+    /// </summary> 
+    /// <remarks>
+    ///     Expressions are responsible for propagating invalidation to 
+    ///     dependents when a property changes. The property that changes is
+    ///     known as the "source".
+    /// </remarks>
+    public final  class DependencySource 
+    {
+        /// <summary> 
+        ///     Dependency source construction 
+        /// </summary>
+        /// <param name="d">DependencyObject source</param> 
+        /// <param name="dp">Property source</param>
+        public DependencySource(DependencyObject d, DependencyProperty dp)
+        {
+            _d = d; 
+            _dp = dp;
+        } 
+ 
+        /// <summary>
+        ///     DependencyObject source 
+        /// </summary>
+        public DependencyObject DependencyObject
+        {
+            get { return _d; } 
+        }
+ 
+        /// <summary> 
+        ///     Property source
+        /// </summary> 
+        public DependencyProperty DependencyProperty
+        {
+            get { return _dp; }
+        } 
+
+        private DependencyObject _d; 
+        private DependencyProperty _dp; 
+    }

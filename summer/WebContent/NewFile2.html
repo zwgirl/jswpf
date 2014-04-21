@@ -1,0 +1,174 @@
+<html >
+<head>
+<meta charset="utf-8">
+    <title>Table列冻结</title>
+<style type="text/css">
+#css_table {
+      display:table;
+  }
+.css_tr {
+      display: table-row;
+  }
+.css_td {
+      display: table-cell;
+  }
+  
+#table {display: table;}
+.row {display: table-row;}
+.cell {display: table-cell;}
+
+    
+.text_center {
+ text-align:center;   
+}
+</style>
+</head>
+<body>
+<table>
+    <tr>
+        <td>標題</td>
+        <td>回應</td>
+        <td>日期</td>
+    <tr>
+    <tr>
+        <td>如何停用WordPress內建搜尋功能？</td>
+        <td>5</td>
+        <td>2011-10-30</td>
+    <tr>
+</table>
+
+
+<div id="css_table">
+      <div class="css_tr">
+          <div class="css_td">標題</div>
+          <div class="css_td">回應</div>
+          <div class="css_td">日期</div>
+      </div>
+      <div class="css_tr">
+          <div class="css_td">如何停用WordPress內建搜尋功能？</div>
+          <div class="css_td">5</div>
+          <div class="css_td">2011-10-30</div>
+      </div>
+</div>
+
+<div id="css_table">
+          <div class="css_td">標題</div>
+          <div class="css_td">回應</div>
+          <div class="css_td">日期</div>
+          <div class="css_td">如何停用WordPress內建搜尋功能？</div>
+          <div class="css_td">5</div>
+          <div class="css_td">2011-10-30</div>
+</div>
+
+<div id="table">
+
+<div class="row">
+     <p class="cell">
+         asasasasasasasasasasasasasa
+          <div class="css_td">標題</div>
+          <div class="css_td">回應</div>
+         asasasasasasa
+         asasasasasasa
+         asasasasasasa
+    </p>
+    <div   class="cell">
+    <input type="text" value="sasasasasa"style = "height:120px;"/>
+    </div>
+    <div   class="cell">
+    <input type="button" value="sasasasasa"  class="cell"/>
+    </div>
+</div>
+
+<div id="table">
+  <div class="row">
+    <input type="text" value="sasasasasa" class="cell"/>
+    <input type="text" value="sasasasasa" class="cell"/>
+     <input type="text" value="sasasasasa" class="cell"/>
+  </div>
+  <div class="row">
+    <span class="cell"> asas </span>
+    <span class="cell">sas </span>
+     <span class="cell">sas </span>
+  </div>
+  <div class="row">
+    <span class="cell">sas </span>
+    <span class="cell">sasa </span>
+     <span class="cell">asa </span>
+  </div>
+</div>
+
+<!-- <canvas id="myCanvas1" width="200" height="100" style="border:1px solid #c3c3c3;">
+Your browser does not support the canvas element.
+</canvas>
+<canvas id="myCanvas2" width="200" height="100" style="border:1px solid #c3c3c3;">
+Your browser does not support the canvas element.
+</canvas>
+<canvas id="myCanvas3" width="200" height="100" style="border:1px solid #c3c3c3;">
+Your browser does not support the canvas element.
+</canvas>
+<canvas id="myCanvas4" width="200" height="100" style="border:1px solid #c3c3c3;">
+Your browser does not support the canvas element.
+</canvas>
+<canvas id="myCanvas5" width="200" height="100" style="border:1px solid #c3c3c3;">
+Your browser does not support the canvas element.
+</canvas>
+<canvas id="myCanvas6" width="200" height="100" style="border:1px solid #c3c3c3;">
+Your browser does not support the canvas element.
+</canvas>
+<canvas id="myCanvas7" width="200" height="100" style="border:1px solid #c3c3c3;">
+Your browser does not support the canvas element.
+</canvas>
+<canvas id="myCanvas8" width="200" height="100" style="border:1px solid #c3c3c3;">
+Your browser does not support the canvas element.
+</canvas>
+<canvas id="myCanvas9" width="200" height="100" style="border:1px solid #c3c3c3;">
+Your browser does not support the canvas element.
+</canvas>
+<canvas id="myCanvas10" width="200" height="100" style="border:1px solid #c3c3c3;">
+Your browser does not support the canvas element.
+</canvas>
+<canvas id="myCanvas11" width="200" height="100" style="border:1px solid #c3c3c3;">
+Your browser does not support the canvas element.
+</canvas>
+<canvas id="myCanvas12" width="200" height="100" style="border:1px solid #c3c3c3;">
+Your browser does not support the canvas element.
+</canvas>
+<canvas id="myCanvas13" width="200" height="100" style="border:1px solid #c3c3c3;">
+Your browser does not support the canvas element.
+</canvas>
+<canvas id="myCanvas14" width="200" height="100" style="border:1px solid #c3c3c3;">
+Your browser does not support the canvas element.
+</canvas> -->
+
+
+
+
+
+<script type="text/javascript">
+for(var i=0;i<200; i++){
+	var canvas = document.createElement("canvas");
+	canvas.id = "myCanvas" + i;
+	canvas.width = "100";
+	canvas.height = "200"
+	canvas.style="border:1px solid #c3c3c3;";
+	
+	document.body.appendChild(canvas);
+}
+
+function draw(id){
+	var c=document.getElementById(id);
+	var cxt=c.getContext("2d");
+	var grd=cxt.createLinearGradient(0,0,175,50);
+	grd.addColorStop(0,"#FF0000");
+	grd.addColorStop(1,"#00FF00");
+	cxt.fillStyle=grd;
+	cxt.fillRect(0,0,175,50);
+}
+for(var i=0; i<200;i++){
+	draw("myCanvas" +　i)
+}
+
+</script>
+
+</body>
+</html>

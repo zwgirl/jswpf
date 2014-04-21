@@ -1,0 +1,165 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+
+	<script>
+		var dojoConfig = {
+		    baseUrl: "js",
+		    tlmSiblingOfDojo: false,
+		    packages: [
+		        { name: "dojo", location: "lib/dojo" },
+		        { name: "dijit", location: "lib/dijit" },
+		        { name: "dojox", location: "lib/dojox" },
+		        { name: "utility", location: "MS/utility" },
+		        { name: "internal", location: "MS/internal" },
+		        { name: "system", location: "system" },
+		        { name: "data", location: "system/windows/data" },
+		        
+		        { name: "markup", location: "system/windows/markup" },  
+		        { name: "animation", location: "system/windows/media/animation" }, 
+		        { name: "controls", location: "system/windows/controls" },	
+		        { name: "primitives", location: "system/windows/controls/primitives" },
+		        
+		        { name: "collections", location: "system/collections" },
+		        { name: "generic", location: "system/collections/generic" },
+		        { name: "objectmodel", location: "system/collections/objectmodel" },
+		        { name: "specialized", location: "system/collections/specialized" },
+		        { name: "componentmodel", location: "system/componentmodel" },
+		        
+		        { name: "internal.data", location: "MS/internal/data" },
+		        { name: "threading", location: "system/windows/threading" },
+		        { name: "windows", location: "system/windows"},
+		        { name: "my", location: "my"
+		        	, main: "app" 
+		        	}
+		    ]
+		};
+	</script>
+
+	<script type="text/javascript"  data-dojo-config="async: true" src="js/lib/dojo.js"></script>
+	
+</head>
+<body>
+	<script>
+		//console.log(require);
+		// using the class elsewhere...
+		require(["data/Binding", "windows/DependencyObject",
+		         "system/Type", "windows/DependencyProperty", "windows/PropertyMetadata",
+		         "data/BindingOperations", "windows/PropertyPath", "data/BindingMode", 
+		         "componentmodel/PropertyChangedEventArgs", "system/Delegate", "windows/EventManager",
+		         "windows/RoutedEventHandler", "windows/RoutingStrategy"], 
+		         function(Binding, DependencyObject, 
+		        		 Type, DependencyProperty, PropertyMetadata, BindingOperations, PropertyPath, BindingMode, 
+		        		 PropertyChangedEventArgs, Delegate, EventManager ,RoutedEventHandler, RoutingStrategy){
+			
+			var binding = new Binding("propertyName.propertyName2.propertyName3");
+			var dp=DependencyProperty.Register("name", String.Type, DependencyObject.Type, new PropertyMetadata());
+			var dO = new DependencyObject();
+			
+			
+			function Person(){
+				
+			}
+			
+			Object.defineProperties(Person.prototype, {
+				Name:{
+					get:function(){
+						return this._name;
+					},
+					set:function(value)
+					{
+						var oldValue = this._name;
+						this._name = value;
+						if(oldValue !=value){
+							if(this._propertyChanged!==undefined){
+								this._propertyChanged.Invoke(new PropertyChangedEventArgs("Name"));
+							}
+						}
+					}
+				},
+				
+				PropertyChanged:
+				{
+					get:function(){
+						if(this._propertyChanged===undefined){
+							this._propertyChanged = new Delegate();
+						}
+						
+						return this._propertyChanged;
+					}	
+				}
+			});
+			
+			Person.Type = new Type("Person", Person, [DependencyObject.Type]);
+			
+			Object.defineProperties(Person, {
+				MouseRightButtonUpEvent:
+				{
+					get:function(){
+						if(Person._MouseRightButtonUpEvent === undefined){
+							Person._MouseRightButtonUpEvent = EventManager.RegisterRoutedEvent("MouseRightButtonUp", 
+									RoutingStrategy.Direct, RoutedEventHandler.Type, Person.Type);
+						}
+						
+						return Person._MouseRightButtonUpEvent
+					}
+				}
+			});
+			
+			function Child(){
+				
+			}
+			
+			Object.defineProperties(Child.prototype, {
+				ChildName:{
+					get:function(){
+						return this._name;
+					},
+					set:function(value)
+					{
+						var oldValue = this._name;
+						this._name = value;
+						if(oldValue !=value){
+							if(this._propertyChanged!==undefined){
+								this._propertyChanged.Invoke();
+							}
+						}
+					}
+				},
+				
+				PropertyChanged:
+				{
+					get:function(){
+						if(this._propertyChanged===undefined){
+							this._propertyChanged = new Delegate();
+						}
+						
+						return this._propertyChanged;
+					}	
+				}
+			});
+			
+			var person = new Person();
+			person.PropertyChanged.Combine(new Delegate(person, function (event){
+				alert("this is propertychanged event " +  event);
+			}));
+			person.Sex='2121';
+			binding.Source = person;
+			
+			binding.Path = new PropertyPath("Name");
+			binding.Mode = BindingMode.TwoWay;
+			
+			var be = BindingOperations.SetBinding(dO, dp, binding);
+
+			
+			dO.SetValue(dp, "maozedong");
+			
+			alert(Person.MouseRightButtonUpEvent);
+		});
+		
+
+	</script>
+</body>
+</html>
